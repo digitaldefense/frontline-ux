@@ -94,6 +94,9 @@ import {
   MdPseudoCheckboxState,
   MdRipple,
   MdRippleModule,
+  FlxThemeModule,
+  FlxThemeService,
+  ThemePresets
 } from '@angular/material/core';
 import {
   MD_DATEPICKER_SCROLL_STRATEGY,
@@ -525,3 +528,7 @@ export {MdHint as MatHint};
 export {MdPlaceholder as MatPlaceholder};
 export {MdPrefix as MatPrefix};
 export {MdSuffix as MatSuffix};
+
+export {FlxThemeModule as FlxThemeModule};
+export {FlxThemeService as FlxThemeService};
+export {ThemePresets as ThemePresets};

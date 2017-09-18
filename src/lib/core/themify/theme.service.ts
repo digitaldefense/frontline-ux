@@ -87,7 +87,7 @@ export class FlxThemeService {
   }
 
   /** Apply provided theme property as background color */
-  applyBgColor(element: any, renderer: any, color: string, reverseText?: boolean) {
+  applyBgColor(element: any, renderer: any, color: string) {
     if (color == null || !color.length) { return; }
     const elem = element.nativeElement;
     let cvs: string[];
