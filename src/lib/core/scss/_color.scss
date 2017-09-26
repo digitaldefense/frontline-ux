@@ -1,0 +1,218 @@
+// Colors
+
+$white:               #fff !default;
+$black:               #000 !default;
+
+$red:                 #F44336 !default;
+// $red-50:              #FFEBEE !default;
+// $red-100:             #FFCDD2 !default;
+// $red-200:             #EF9A9A !default;
+// $red-300:             #E57373 !default;
+// $red-400:             #EF5350 !default;
+// $red-500:             $red !default;
+// $red-600:             #E53935 !default;
+// $red-700:             #D32F2F !default;
+// $red-800:             #C62828 !default;
+// $red-900:             #B71C1C !default;
+
+$pink:                #E91E63 !default;
+$purple:              #9C27B0 !default;
+$deeppurple:          #673AB7 !default;
+$indigo:              #3F51B5 !default;
+$blue:                #2196F3 !default;
+$lightblue:           #03A9F4 !default;
+$cyan:                #00BCD4 !default;
+$teal:                #009688 !default;
+$green:               #4CAF50 !default;
+$lightgreen:          #8BC34A !default;
+$lime:                #CDDC39 !default;
+$yellow:              #FFEB3B !default;
+$amber:               #FFC107 !default;
+$orange:              #FF9800 !default;
+$deeporange:          #FF5722 !default;
+$brown:               #795548 !default;
+
+$gray:                #9E9E9E !default;
+$gray-50:             #FAFAFA !default;
+$gray-100:            #F5F5F5 !default;
+$gray-200:            #EEEEEE !default;
+$gray-300:            #E0E0E0 !default;
+$gray-400:            #BDBDBD !default;
+$gray-500:            $gray !default;
+$gray-600:            #757575 !default;
+$gray-700:            #616161 !default;
+$gray-800:            #424242 !default;
+$gray-900:            #212121 !default;
+
+$bluegray:            #607D8B !default;
+$bluegray-50:         #ECEFF1 !default;
+$bluegray-100:        #CFD8DC !default;
+$bluegray-200:        #B0BEC5 !default;
+$bluegray-300:        #90A4AE !default;
+$bluegray-400:        #78909C !default;
+$bluegray-500:        $bluegray !default;
+$bluegray-600:        #546E7A !default;
+$bluegray-700:        #455A64 !default;
+$bluegray-800:        #37474F !default;
+$bluegray-900:        #263238 !default;
+
+$black-87:            #202020;
+$black-54:            #737373;
+$black-42:            rgba(0,0,0, .42);
+$black-38:            #9B9B9B;
+$black-26:            #BDBDBD;
+$black-08:            #E6E6E6;
+
+$black-87a:           rgba(0,0,0, .87);
+$black-54a:           rgba(0,0,0, .54);
+$black-42a:           rgba(0,0,0, .42);
+$black-38a:           rgba(0,0,0, .38);
+$black-12a:           rgba(0,0,0, .12);
+$black-6a:            rgba(0,0,0, .06);
+
+$white-70:            #C1C1C1;
+$white-50:            #989898;
+$white-30:            #7A7A7A;
+$white-12:            #fff;
+
+$white-70a:           rgba(255, 255, 255, 0.7);
+$white-50a:           rgba(255, 255, 255, 0.5);
+$white-30a:           rgba(255, 255, 255, 0.3);
+$white-12a:           rgba(255, 255, 255, 0.12);
+$white-6a:            rgba(255, 255, 255, 0.06);
+
+
+// Themes
+//
+
+$light-primary:       $black-87;
+$light-secondary:     $black-54;
+$light-disabled:      $black-38;
+$light-hint:          $black-42;
+$light-divider:       $black-12a;
+$light-btn-default:   $white;
+$light-btn-hover:     $black-6a;
+$light-btn-active:    $black-6a;
+
+$light-statusbar:     $gray;
+$light-toolbar:       $gray-100;
+$light-body:          $gray-50;
+$light-card:          $white;
+
+$dark-primary:        $white;
+$dark-secondary:      $white-70;
+$dark-disabled:       $white-50;
+$dark-hint:           $white-50;
+$dark-divider:        $white-12a;
+$dark-btn-default:    $gray-800;
+$dark-btn-hover:      $black-12a;
+$dark-btn-active:     $black-12a;
+
+$dark-statusbar:      $black;
+$dark-toolbar:        $gray-900;
+$dark-body:           #303030;
+$dark-card:           $gray-800;
+
+$midnight-primary:    $white;
+$midnight-secondary:  $white-70a;
+$midnight-disabled:   $white-50a;
+$midnight-hint:       $white-50a;
+$midnight-divider:    $white-12a;
+
+$midnight-statusbar:  $bluegray-900;
+$midnight-toolbar:    $bluegray-800;
+$midnight-body:       $bluegray-700;
+$midnight-card:       $bluegray-600;
+
+
+// States
+$success:             $green;
+$warning:             $orange;
+$danger:              $red;
+
+// Light Theme Base
+
+// $bg-app-light:                  $gray-50;
+// $bg-paper-light:                $white;
+// $bg-toolbar-light:              $gray-100;
+// $bg-statusbar-light:            $gray-300;
+
+// $text-color-light:              $black-87;
+// $text-color-light-secondary:    $black-54;
+// $text-color-light-disabled:     $black-38a;
+
+// $focus-light:                   rgba(153, 153, 153, .12);
+// $disabled-light:                rgba(0, 0, 0, .26);
+
+// $text-color-dark:                #FFFFFF;
+// $text-color-dark-secondary:      $white-70;
+// $text-color-dark-disabled:       $white-50;
+
+// $hover-light:               
+
+// Grayscale
+// $gray-dark:                 #292b2c !default;
+// // $gray:                      #464a4c !default;
+// $gray-light:                #636c72 !default;
+// $gray-lighter:              #eceeef !default;
+// $gray-lightest:             #f7f7f9 !default;
+
+// $bg-darkest:                #13141B !default;
+// $bg-darker:                 #1B1E27 !default;
+// $bg-dark:                   #232837 !default;
+// $bg-medium:                 #2F3646 !default;
+// $bg-light:                  #455066 !default;
+// $bg-lighter:                #5B6882 !default;
+
+// $text-darker:               #72809B !default;
+// $text-dark:                 #919DB5 !default;
+// $text-medium:               #A8B2C7 !default;
+// $text-light:                #F0F1F6 !default;
+// $text-lighter:              #FFFFFF !default;
+
+
+// Theme colors: Light
+// $highlight-light:           #e0e0e0 !default;
+
+// // Theme colors: dark
+// $highlight-dark:            #424242;
+// $secondary-text-dark:       rgba(white, 0.7);
+
+
+
+// // Google Material Design: rgba as hex (less cpu intensive over known backgrounds)
+// $black-87:                  #202020;
+// $black-54:                  #737373;
+// $black-38:                  #9B9B9B;
+// $black-26:                  #BDBDBD;
+// $black-08:                  #E6E6E6;
+
+// $black-87a:                 rgba(0,0,0, .87);
+// $black-54a:                 rgba(0,0,0, .54);
+// $black-38a:                 rgba(0,0,0, .38);
+
+// $white-70:                  #fff;
+// $white-50:                  #fff;
+// $white-12:                  #fff;
+
+// $white-30:                  #7A7A7A;
+// $white-30a:                 rgba(255, 255, 255, .3);
+
+// $gray-100:                  #F5F5F5;
+
+// $hover-light:               $black-08;
+// $active-light:              #CBCBCB;
+// $disabled-light:            $black-08;
+
+// $hover-dark:                $white-30;
+// $active-dark:               #646464;
+// $disabled-dark:             $white-30;
+
+// // Material Design rgba values (Useful for themed colored backgrounds)
+// $hover-light-alpha:         rgba(0, 0, 0, 0.08);
+// $active-light-alpha:        rgba(0, 0, 0, .18);
+// $disabled-light-alpha:      $hover-light-alpha;
+
+// $hover-dark-alpha:          rgba(255, 255, 255, .26);
+// $active-dark-alpha:         rgba(255, 255, 255, .25);
+// $disabled-dark-alpha:       $hover-dark-alpha;

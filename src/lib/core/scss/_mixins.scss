@@ -1,0 +1,91 @@
+@mixin flx-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin hover {
+  // TODO: re-enable along with mq4-hover-shim
+//  @if $enable-hover-media-query {
+//    // See Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#hover
+//    // Currently shimmed by https://github.com/twbs/mq4-hover-shim
+//    @media (hover: hover) {
+//      &:hover { @content }
+//    }
+//  }
+//  @else {
+    &:hover { @content }
+//  }
+}
+
+@mixin hover-focus {
+  @if $enable-hover-media-query {
+    &:focus { @content }
+    @include hover { @content }
+  }
+  @else {
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin plain-hover-focus {
+  @if $enable-hover-media-query {
+    &,
+    &:focus {
+      @content
+    }
+    @include hover { @content }
+  }
+  @else {
+    &,
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin hover-focus-active {
+  @if $enable-hover-media-query {
+    &:focus,
+    &:active {
+      @content
+    }
+    @include hover { @content }
+  }
+  @else {
+    &:focus,
+    &:active,
+    &:hover {
+      @content
+    }
+  }
+}
+
+@mixin user-select($value) {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+// Menus
+//
+@mixin flx-menu-base($default-elevation) {
+  min-width: 112px;
+  max-width: 280px;
+
+  // Allow elevation to be overwritten.
+  &:not([class*='mat-elevation-z']) {
+    @include mat-elevation($default-elevation);
+  }
+
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;   // for momentum scroll on mobile
+}

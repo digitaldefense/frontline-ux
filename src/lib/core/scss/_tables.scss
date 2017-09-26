@@ -1,0 +1,210 @@
+// Tables
+
+$table-border-color-dark: #696969;
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: $spacer;
+
+  caption {
+    @extend %type-caption;
+    display: table-caption;
+    caption-side: top;
+    margin: 0;
+    padding: $spacer;
+  }
+
+  th,
+  td {
+    // font-size: $font-size-sm;
+    padding: $table-cell-padding;
+    vertical-align: top;
+  }
+
+  td {
+    border-top-width: $table-border-width;
+    border-top-style: solid;
+  }
+
+  thead th {
+    @extend %type-subheader;
+    // font-size: .75rem;
+    vertical-align: bottom;
+  }
+
+  tbody + tbody {
+    border-top-width: 2 * $table-border-width;
+    border-top-style: solid;
+  }
+
+  // .table {
+  //   background-color: $body-bg;
+  // }
+
+  .fl-theme-light & {
+    
+    td,
+    tbody + tbody {
+      // border-top-color: $table-border-color;
+    }
+  }
+
+  .fl-theme-dark & {
+    th {
+      color: $white-70;
+    }
+    td,
+    tbody + tbody {
+      // border-top-color: $table-border-color-dark;
+    }
+  }
+}
+
+
+//
+// Condensed table w/ half padding
+//
+
+.table-sm {
+  th,
+  td {
+    padding: $table-sm-cell-padding;
+  }
+}
+
+
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.table-bordered {
+  border-width: $table-border-width;
+  border-style: solid;
+
+  th,
+  td {
+    border-width: $table-border-width;
+    border-style: solid;
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: (2 * $table-border-width);
+    }
+  }
+}
+
+
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+.table-striped {
+  tbody tr:nth-of-type(odd) {
+    // background-color: $table-bg-accent;
+  }
+}
+
+
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+// Generate the contextual variants
+// @include table-row-variant(active, $table-bg-active);
+// @include table-row-variant(success, $state-success-bg);
+// @include table-row-variant(info, $state-info-bg);
+// @include table-row-variant(warning, $state-warning-bg);
+// @include table-row-variant(danger, $state-danger-bg);
+
+
+
+// Responsive tables
+//
+// Add `.table-responsive` to `.table`s and we'll make them mobile friendly by
+// enabling horizontal scrolling. Only applies <768px. Everything above that
+// will display normally.
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
+
+  // Prevent double border on horizontal scroll due to use of `display: block;`
+  &.table-bordered {
+    border: 0;
+  }
+}
+
+.ngx-datatable {
+    // background-color: #fafafa;
+
+    text-align: left;
+    width: 75%;
+    margin: 0 auto;
+
+    .datatable-header {
+        // background-color: #EEE;
+    }
+
+    .datatable-footer {
+        // background-color: #EaEaEa;
+    }
+}
+
+.ngx-datatable.fixed-height {
+    height: 50vh;
+}
+
+
+$table-border-color-light: $light-divider;
+$table-border-color-dark: $dark-divider;
+
+// THEME APPLICATION
+.flx-theme-light {
+  .table {
+    th { color: $light-hint; }
+    td,
+    tbody + tbody {
+      border-top-color: $table-border-color-light;
+    }
+  }
+
+  .table-striped {
+    tbody tr:nth-of-type(odd) {
+      // background-color: $table-bg-accent;
+    }
+  }
+
+  .table-hover {
+    tbody tr {
+      @include hover {
+        background-color: $gray-100;
+      }
+    }
+  }
+}
+
+.flx-theme-dark {
+  .table {
+    th {
+      color: $dark-hint;
+    }
+    td,
+    tbody + tbody {
+      border-top-color: $table-border-color-dark;
+    }
+  }
+
+  .table-hover {
+    tbody tr {
+      @include hover {
+        // background-color: #eee;
+      }
+    }
+  }
+}
