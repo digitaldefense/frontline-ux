@@ -1,5 +1,5 @@
-@import '../core/a11y/a11y';
 @import '../core/style/elevation';
+@import '../../cdk/a11y/a11y';
 
 $mat-chip-vertical-padding: 7px;
 $mat-chip-horizontal-padding: 12px;
@@ -8,11 +8,14 @@ $mat-chip-remove-margin-after: -4px;
 
 $mat-chips-chip-margin: 8px;
 
+$mat-chip-input-width: 150px;
+$mat-chip-input-margin: 3px;
+
 .mat-chip-list-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: baseline;
 }
 
 .mat-chip:not(.mat-basic-chip) {
@@ -89,4 +92,10 @@ $mat-chips-chip-margin: 8px;
     margin-right: $mat-chip-remove-margin-before;
     margin-left: $mat-chip-remove-margin-after;
   }
+}
+
+input.mat-chip-input {
+  width: $mat-chip-input-width;
+  margin: $mat-chip-input-margin;
+  flex: 1 0 $mat-chip-input-width;
 }

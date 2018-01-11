@@ -1,4 +1,5 @@
 @import '../core/style/variables';
+@import '../core/style/vendor-prefixes';
 
 $mat-progress-bar-height: 5px !default;
 $mat-progress-bar-full-animation-duration: 2000ms !default;
@@ -7,12 +8,10 @@ $mat-progress-bar-piece-animation-duration: 250ms !default;
 
 .mat-progress-bar {
   display: block;
-  // Height is provided for md-progress-bar to act as a default.
+  // Height is provided for mat-progress-bar to act as a default.
   height: $mat-progress-bar-height;
   overflow: hidden;
   position: relative;
-  // translateZ is added to force the md-progress-bar into its own GPU layer.
-  transform: translateZ(0);
   transition: opacity $mat-progress-bar-piece-animation-duration linear;
   width: 100%;
 
@@ -80,21 +79,29 @@ $mat-progress-bar-piece-animation-duration: 250ms !default;
       transition: none;
     }
     .mat-progress-bar-primary {
+      // Avoids stacked animation tearing in Firefox >= 57.
+      @include backface-visibility(hidden);
       animation: mat-progress-bar-primary-indeterminate-translate
           $mat-progress-bar-full-animation-duration infinite linear;
       left: -145.166611%;
     }
     .mat-progress-bar-primary.mat-progress-bar-fill::after {
+      // Avoids stacked animation tearing in Firefox >= 57.
+      @include backface-visibility(hidden);
       animation: mat-progress-bar-primary-indeterminate-scale
           $mat-progress-bar-full-animation-duration infinite linear;
     }
     .mat-progress-bar-secondary {
+      // Avoids stacked animation tearing in Firefox >= 57.
+      @include backface-visibility(hidden);
       animation: mat-progress-bar-secondary-indeterminate-translate
           $mat-progress-bar-full-animation-duration infinite linear;
       left: -54.888891%;
       display: block;
     }
     .mat-progress-bar-secondary.mat-progress-bar-fill::after {
+      // Avoids stacked animation tearing in Firefox >= 57.
+      @include backface-visibility(hidden);
       animation: mat-progress-bar-secondary-indeterminate-scale
           $mat-progress-bar-full-animation-duration infinite linear;
     }
@@ -102,6 +109,8 @@ $mat-progress-bar-piece-animation-duration: 250ms !default;
 
   &[mode='buffer'] {
     .mat-progress-bar-background {
+      // Avoids stacked animation tearing in Firefox >= 57.
+      @include backface-visibility(hidden);
       animation: mat-progress-bar-background-scroll
           $mat-progress-bar-piece-animation-duration infinite linear;
       display: block;
@@ -110,7 +119,7 @@ $mat-progress-bar-piece-animation-duration: 250ms !default;
 }
 
 
-// The values used for animations in md-progress-bar, both timing and transformation, can be
+// The values used for animations in mat-progress-bar, both timing and transformation, can be
 // considered magic values. They are sourced from the Material Design example spec and duplicate
 // the values of the original designers definitions.
 //

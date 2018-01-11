@@ -2,19 +2,22 @@ import {async, TestBed, fakeAsync, tick, ComponentFixture} from '@angular/core/t
 import {Component, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MdExpansionModule, MdExpansionPanel} from './index';
+import {MatExpansionModule, MatExpansionPanel} from './index';
 
 
-describe('MdExpansionPanel', () => {
+describe('MatExpansionPanel', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        MdExpansionModule
+        MatExpansionModule
       ],
       declarations: [
         PanelWithContent,
-        PanelWithCustomMargin
+        PanelWithContentInNgIf,
+        PanelWithCustomMargin,
+        LazyPanelWithContent,
+        LazyPanelOpenOnLoad,
       ],
     });
     TestBed.compileComponents();
@@ -33,6 +36,29 @@ describe('MdExpansionPanel', () => {
     expect(headerEl.classes['mat-expanded']).toBeTruthy();
     expect(contentEl.classes['mat-expanded']).toBeTruthy();
   });
+
+  it('should be able to render panel content lazily', fakeAsync(() => {
+    let fixture = TestBed.createComponent(LazyPanelWithContent);
+    let content = fixture.debugElement.query(By.css('.mat-expansion-panel-content')).nativeElement;
+    fixture.detectChanges();
+
+    expect(content.textContent.trim()).toBe('', 'Expected content element to be empty.');
+
+    fixture.componentInstance.expanded = true;
+    fixture.detectChanges();
+
+    expect(content.textContent.trim())
+        .toContain('Some content', 'Expected content to be rendered.');
+  }));
+
+  it('should render the content for a lazy-loaded panel that is opened on init', fakeAsync(() => {
+    let fixture = TestBed.createComponent(LazyPanelOpenOnLoad);
+    let content = fixture.debugElement.query(By.css('.mat-expansion-panel-content')).nativeElement;
+    fixture.detectChanges();
+
+    expect(content.textContent.trim())
+        .toContain('Some content', 'Expected content to be rendered.');
+  }));
 
   it('emit correct events for change in panel expanded state', () => {
     const fixture = TestBed.createComponent(PanelWithContent);
@@ -60,11 +86,12 @@ describe('MdExpansionPanel', () => {
 
   it('should not be able to focus content while closed', fakeAsync(() => {
     const fixture = TestBed.createComponent(PanelWithContent);
-    const button = fixture.debugElement.query(By.css('button')).nativeElement;
 
     fixture.componentInstance.expanded = true;
     fixture.detectChanges();
     tick(250);
+
+    const button = fixture.debugElement.query(By.css('button')).nativeElement;
 
     button.focus();
     expect(document.activeElement).toBe(button, 'Expected button to start off focusable.');
@@ -82,7 +109,7 @@ describe('MdExpansionPanel', () => {
     let fixture = TestBed.createComponent(PanelWithCustomMargin);
     fixture.detectChanges();
 
-    let panel = fixture.debugElement.query(By.css('md-expansion-panel'));
+    let panel = fixture.debugElement.query(By.css('mat-expansion-panel'));
     let styles = getComputedStyle(panel.nativeElement);
 
     expect(panel.componentInstance._hasSpacing()).toBe(false);
@@ -138,6 +165,16 @@ describe('MdExpansionPanel', () => {
       expect(arrow.style.transform).toBe('rotate(180deg)', 'Expected 180 degree rotation.');
     }));
 
+    it('make sure accordion item runs ngOnDestroy when expansion panel is destroyed', () => {
+      let fixture = TestBed.createComponent(PanelWithContentInNgIf);
+      fixture.detectChanges();
+      let destroyedOk = false;
+      fixture.componentInstance.panel.destroyed.subscribe(() => destroyedOk = true);
+      fixture.componentInstance.expansionShown = false;
+      fixture.detectChanges();
+      expect(destroyedOk).toBe(true);
+    });
+
   describe('disabled state', () => {
     let fixture: ComponentFixture<PanelWithContent>;
     let panel: HTMLElement;
@@ -146,8 +183,8 @@ describe('MdExpansionPanel', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(PanelWithContent);
       fixture.detectChanges();
-      panel = fixture.debugElement.query(By.css('md-expansion-panel')).nativeElement;
-      header = fixture.debugElement.query(By.css('md-expansion-panel-header')).nativeElement;
+      panel = fixture.debugElement.query(By.css('mat-expansion-panel')).nativeElement;
+      header = fixture.debugElement.query(By.css('mat-expansion-panel-header')).nativeElement;
     });
 
     it('should toggle the aria-disabled attribute on the header', () => {
@@ -202,15 +239,15 @@ describe('MdExpansionPanel', () => {
 
 @Component({
   template: `
-  <md-expansion-panel [expanded]="expanded"
+  <mat-expansion-panel [expanded]="expanded"
                       [hideToggle]="hideToggle"
                       [disabled]="disabled"
                       (opened)="openCallback()"
                       (closed)="closeCallback()">
-    <md-expansion-panel-header>Panel Title</md-expansion-panel-header>
+    <mat-expansion-panel-header>Panel Title</mat-expansion-panel-header>
     <p>Some content</p>
     <button>I am a button</button>
-  </md-expansion-panel>`
+  </mat-expansion-panel>`
 })
 class PanelWithContent {
   expanded = false;
@@ -218,22 +255,61 @@ class PanelWithContent {
   disabled = false;
   openCallback = jasmine.createSpy('openCallback');
   closeCallback = jasmine.createSpy('closeCallback');
-  @ViewChild(MdExpansionPanel) panel: MdExpansionPanel;
+  @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
 }
 
+@Component({
+  template: `
+  <div *ngIf="expansionShown">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>Panel Title</mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </div>`
+})
+class PanelWithContentInNgIf {
+  expansionShown = true;
+  @ViewChild(MatExpansionPanel) panel: MatExpansionPanel;
+}
 
 @Component({
   styles: [
-    `md-expansion-panel {
+    `mat-expansion-panel {
       margin: 13px 37px;
     }`
   ],
   template: `
-  <md-expansion-panel [expanded]="expanded">
+  <mat-expansion-panel [expanded]="expanded">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores officia, aliquam dicta
     corrupti maxime voluptate accusamus impedit atque incidunt pariatur.
-  </md-expansion-panel>`
+  </mat-expansion-panel>`
 })
 class PanelWithCustomMargin {
   expanded: boolean = false;
 }
+
+@Component({
+  template: `
+  <mat-expansion-panel [expanded]="expanded">
+    <mat-expansion-panel-header>Panel Title</mat-expansion-panel-header>
+
+    <ng-template matExpansionPanelContent>
+      <p>Some content</p>
+      <button>I am a button</button>
+    </ng-template>
+  </mat-expansion-panel>`
+})
+class LazyPanelWithContent {
+  expanded = false;
+}
+
+@Component({
+  template: `
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>Panel Title</mat-expansion-panel-header>
+
+    <ng-template matExpansionPanelContent>
+      <p>Some content</p>
+    </ng-template>
+  </mat-expansion-panel>`
+})
+class LazyPanelOpenOnLoad {}

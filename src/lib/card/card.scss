@@ -1,6 +1,6 @@
 @import '../core/style/variables';
 @import '../core/style/elevation';
-@import '../core/a11y/a11y';
+@import '../../cdk/a11y/a11y';
 
 
 $mat-card-default-padding: 24px !default;
@@ -10,13 +10,26 @@ $mat-card-header-size: 40px !default;
 
 .mat-card {
   @include mat-elevation-transition;
+  @include mat-overridable-elevation(2);
   display: block;
   position: relative;
   padding: $mat-card-default-padding;
   border-radius: $mat-card-border-radius;
 
-  &:not([class*='mat-elevation-z']) {
-    @include mat-elevation(2);
+  .mat-divider {
+    position: absolute;
+    left: 0;
+    width: 100%;
+
+    [dir='rtl'] & {
+      left: auto;
+      right: 0;
+    }
+
+    &.mat-divider-inset {
+      position: static;
+      margin: 0;
+    }
   }
 
   @include cdk-high-contrast {

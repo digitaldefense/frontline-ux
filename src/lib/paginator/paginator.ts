@@ -1,11 +1,12 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 
+import {coerceNumberProperty} from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -17,9 +18,8 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import {MATERIAL_COMPATIBILITY_MODE} from '@angular/material/core';
 import {Subscription} from 'rxjs/Subscription';
-import {MdPaginatorIntl} from './paginator-intl';
+import {MatPaginatorIntl} from './paginator-intl';
 
 /** The default page size if there is no page size and there are no provided page size options. */
 const DEFAULT_PAGE_SIZE = 50;
@@ -46,19 +46,18 @@ export class PageEvent {
  */
 @Component({
   moduleId: module.id,
-  selector: 'md-paginator, mat-paginator',
+  selector: 'mat-paginator',
+  exportAs: 'matPaginator',
   templateUrl: 'paginator.html',
   styleUrls: ['paginator.css'],
   host: {
     'class': 'mat-paginator',
   },
-  providers: [
-    {provide: MATERIAL_COMPATIBILITY_MODE, useValue: false}
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  preserveWhitespaces: false,
 })
-export class MdPaginator implements OnInit, OnDestroy {
+export class MatPaginator implements OnInit, OnDestroy {
   private _initialized: boolean;
   private _intlChanges: Subscription;
 
@@ -66,7 +65,7 @@ export class MdPaginator implements OnInit, OnDestroy {
   @Input()
   get pageIndex(): number { return this._pageIndex; }
   set pageIndex(pageIndex: number) {
-    this._pageIndex = pageIndex;
+    this._pageIndex = coerceNumberProperty(pageIndex);
     this._changeDetectorRef.markForCheck();
   }
   _pageIndex: number = 0;
@@ -75,7 +74,7 @@ export class MdPaginator implements OnInit, OnDestroy {
   @Input()
   get length(): number { return this._length; }
   set length(length: number) {
-    this._length = length;
+    this._length = coerceNumberProperty(length);
     this._changeDetectorRef.markForCheck();
   }
   _length: number = 0;
@@ -84,7 +83,7 @@ export class MdPaginator implements OnInit, OnDestroy {
   @Input()
   get pageSize(): number { return this._pageSize; }
   set pageSize(pageSize: number) {
-    this._pageSize = pageSize;
+    this._pageSize = coerceNumberProperty(pageSize);
     this._updateDisplayedPageSizeOptions();
   }
   private _pageSize: number;
@@ -93,7 +92,7 @@ export class MdPaginator implements OnInit, OnDestroy {
   @Input()
   get pageSizeOptions(): number[] { return this._pageSizeOptions; }
   set pageSizeOptions(pageSizeOptions: number[]) {
-    this._pageSizeOptions = pageSizeOptions;
+    this._pageSizeOptions = (pageSizeOptions || []).map(p => coerceNumberProperty(p));
     this._updateDisplayedPageSizeOptions();
   }
   private _pageSizeOptions: number[] = [];
@@ -104,7 +103,7 @@ export class MdPaginator implements OnInit, OnDestroy {
   /** Displayed set of page size options. Will be sorted and include current page size. */
   _displayedPageSizeOptions: number[];
 
-  constructor(public _intl: MdPaginatorIntl,
+  constructor(public _intl: MatPaginatorIntl,
               private _changeDetectorRef: ChangeDetectorRef) {
     this._intlChanges = _intl.changes.subscribe(() => this._changeDetectorRef.markForCheck());
   }

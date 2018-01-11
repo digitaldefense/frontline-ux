@@ -6,19 +6,16 @@
 This is the home for the Angular team's Material Design components built for and with Angular.
 
 #### Quick links
-[Documentation, demos, and guides][aio] | 
+[Documentation, demos, and guides][aio] |
 [Google group](https://groups.google.com/forum/#!forum/angular-material2) |
 [Contributing](https://github.com/angular/material2/blob/master/CONTRIBUTING.md) |
-[Plunker Template](http://plnkr.co/edit/o077B6uEiiIgkC0S06dd?p=preview)
+[Plunker Template](https://goo.gl/uDmqyY) |
+[StackBlitz Template](https://goo.gl/wwnhMV)
 
 ### Getting started
 
 See our [Getting Started Guide][getting-started]
 if you're building your first project with Angular Material.
-
-### Project status
-Angular Material is currently in beta and under active development.
-During beta, new features will be added regularly and APIs will evolve based on user feedback.
 
 Check out our [directory of design documents](https://github.com/angular/material2/wiki/Design-doc-directory)
 for more insight into our process.
@@ -29,17 +26,15 @@ and which pieces are blocked) and make a comment.
 Also see our [`Good for community contribution`](https://github.com/angular/material2/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+for+community+contribution%22)
 label.
 
-High level stuff planned for Q3 2017 (July - September):
-* As many bug fixes as humanly possible
-* Additional features for data-table
-* Continued accessibility improvements
-* Nested menus
-* All components are OnPush
-* Improved documentation, guides, examples, and navigation on [material.angular.io][aio]
-* Improve library-wide API consistency
-* Stepper component
-* Sticky header helper
-* action-list and selection-list
+High level stuff planned for Q4 2017 (October - December):
+* ~~RC and stable release~~
+* Research and prototyping for virtual-scroll
+* Research and exploration for data visualization
+* cdkTree and matTree
+* Expanded cdkTable features
+* cdk/dialog
+* Switch build to bazel
+* Overlay positioning improvements
 
 
 #### Available features
@@ -55,12 +50,12 @@ High level stuff planned for Q3 2017 (July - September):
 | data-table       | Sticky headers & incremental row rendering in-progress |   [Docs][28] |
 | datepicker       |                                                        |   [Docs][25] |
 | dialog           |                                                        |   [Docs][22] |
-| expansion-panel  |                                    Needs documentation |           -  |
+| expansion-panel  |                                                        |   [Docs][32] |
 | grid-list        |                                                        |   [Docs][9]  |
 | icon             |                                                        |   [Docs][10] |
 | input            |                                                        |   [Docs][5]  |
-| list             |                   Selection and action list planned Q3 |   [Docs][8]  |
-| menu             |                                 Nested menu planned Q3 |   [Docs][17] |
+| list             |                                 Action list planned Q1 |   [Docs][8]  |
+| menu             |                                                        |   [Docs][17] |
 | paginator        |                                                        |   [Docs][29] |
 | progress-bar     |                                                        |   [Docs][12] |
 | progress-spinner |                                                        |   [Docs][11] |
@@ -72,15 +67,16 @@ High level stuff planned for Q3 2017 (July - September):
 | slider           |                                                        |   [Docs][16] |
 | snackbar / toast |                                                        |   [Docs][21] |
 | sort-header      |                                                        |   [Docs][30] |
+| stepper          |                                                        |   [Docs][33] |
 | tabs             |                                                        |   [Docs][13] |
 | textarea         |                                                        |   [Docs][5]  |
 | toolbar          |                                                        |   [Docs][7]  |
 | tooltip          |                                                        |   [Docs][18] |
-| ---------------- | ------------------------------------------------------ | ------------ | 
+| ---------------- | ------------------------------------------------------ | ------------ |
 | theming          |                                                        |  [Guide][20] |
 | typography       |                                                        |  [Guide][27] |
 | layout           |                      See [angular/flex-layout][lay_rp] |  [Wiki][0]   |
-| cdk              |                    Launched, documentation in-progress |              |
+| cdk              |                                                        |   [Docs][34] |
 
 
 #### In progress, planned, and non-planned features
@@ -88,12 +84,12 @@ High level stuff planned for Q3 2017 (July - September):
 | Feature          | Status                              | Docs         | Issue          |
 |------------------|-------------------------------------|--------------|----------------|
 | tree             |      In-progress ([sneak peek][31]) |           -  |  [#3175][3175] |
-| stepper          |        In-progress, planned Q3 2017 |           -  |   [#508][0508] |
-| sticky-header    |        In-progress, planned Q3 2017 |           -  |   [#474][0474] |
-| virtual-repeat   |        Not started, planned Q4 2017 |           -  |   [#823][0823] |
+| sticky-header    |        In-progress, planned Q2 2018 |           -  |   [#474][0474] |
+| virtual-repeat   |        Prototyping, planned Q1 2018 |           -  |   [#823][0823] |
+| badge            |        In-progress, planned Q4 2017 |           -  |  [#3085][3058] |
 | fab speed-dial   |            Not started, not planned |           -  |   [#860][0860] |
 | fab toolbar      |            Not started, not planned |           -  |              - |
-| bottom-sheet     |            Not started, not planned |           -  |              - |
+| bottom-sheet     |            Not started, not planned |           -  |  [#8113][8113] |
 | bottom-nav       |            Not started, not planned |           -  |   [#408][0408] |
 
  [0]: https://github.com/angular/flex-layout/wiki
@@ -115,7 +111,7 @@ High level stuff planned for Q3 2017 (July - September):
 [16]: https://material.angular.io/components/component/slider
 [17]: https://material.angular.io/components/component/menu
 [18]: https://material.angular.io/components/component/tooltip
-[19]: https://github.com/angular/material2/blob/master/src/lib/core/ripple/README.md
+[19]: https://github.com/angular/material2/blob/master/src/lib/core/ripple/ripple.md
 [20]: https://material.angular.io/guide/theming
 [21]: https://material.angular.io/components/component/snack-bar
 [22]: https://material.angular.io/components/component/dialog
@@ -128,6 +124,9 @@ High level stuff planned for Q3 2017 (July - September):
 [29]: https://material.angular.io/components/component/paginator
 [30]: https://material.angular.io/components/component/sort
 [31]: https://tina-material-tree.firebaseapp.com/simple-tree
+[32]: https://material.angular.io/components/expansion/overview
+[33]: https://material.angular.io/components/stepper/overview
+[34]: https://material.angular.io/cdk/categories
 
 [0107]: https://github.com/angular/material2/issues/107
 [0119]: https://github.com/angular/material2/issues/119
@@ -149,11 +148,12 @@ High level stuff planned for Q3 2017 (July - September):
 [4191]: https://github.com/angular/material2/pull/4191
 [0995]: https://github.com/angular/material2/pull/995
 [0474]: https://github.com/angular/material2/pull/474
+[8113]: https://github.com/angular/material2/issues/8113
+[3058]: https://github.com/angular/material2/issues/3058
 
 [aio]: https://material.angular.io
-[getting-started]: https://github.com/angular/material2/blob/master/guides/getting-started.md
+[getting-started]: https://material.angular.io/guide/getting-started
 [lay_rp]:  https://github.com/angular/flex-layout
-[theming]: https://github.com/angular/material2/blob/master/guides/theming.md
 
 
 ## The goal of Angular Material
