@@ -8,6 +8,7 @@
 
 import {NgModule} from '@angular/core';
 import {
+  FlxThemeModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
