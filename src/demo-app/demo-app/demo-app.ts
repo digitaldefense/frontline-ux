@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import {OverlayContainer} from '@angular/cdk/overlay';
 
-import { FlxThemeService, ThemePresets } from '@angular/material';
 
 /**
  * The entry app for demo site. Routes under `accessibility` will use AccessibilityDemo component,
@@ -19,13 +18,8 @@ import { FlxThemeService, ThemePresets } from '@angular/material';
   selector: 'entry-app',
   template: '<router-outlet></router-outlet>',
   encapsulation: ViewEncapsulation.None,
-  providers: [FlxThemeService, ThemePresets]
 })
-export class EntryApp {
-  constructor(private _themify: FlxThemeService) {
-    this._themify.set('teal-lightBlue-light');
-  }
-}
+export class EntryApp {}
 
 /**
  * Home component for welcome message in DemoApp.

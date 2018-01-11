@@ -1,5 +1,7 @@
 import {NgModule} from '@angular/core';
 import {
+  FlxThemeModule,
+
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
@@ -85,6 +87,8 @@ import {PortalModule} from '@angular/cdk/portal';
     OverlayModule,
     PlatformModule,
     PortalModule,
+
+    FlxThemeModule
   ]
 })
 export class DemoMaterialModule {}

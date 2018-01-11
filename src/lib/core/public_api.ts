@@ -34,6 +34,3 @@ export * from './util/object-extend';
 
 // TODO: don't have this
 export * from './testing/month-constants';
-
-
-export * from './themify/index';

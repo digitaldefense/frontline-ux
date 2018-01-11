@@ -1,3 +1,17 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * @license
+ * Copyright Digital Defence. Inc. All Rights Reserved.
+ * This is a proprietary addition to Google's Material Design for Angular
+ */
+
 const black = 'rgba(0, 0, 0, 0.87)';
 const white = '#ffffff';
 
@@ -16,8 +30,7 @@ export const PALETTE = {
     'A100': '#ff8a80',
     'A200': '#ff5252',
     'A400': '#ff1744',
-    'A700': '#d50000',
-    'text': white
+    'A700': '#d50000'
   },
   pink: {
     '50': '#fce4ec',
@@ -33,8 +46,7 @@ export const PALETTE = {
     'A100': '#ff80ab',
     'A200': '#ff4081',
     'A400': '#f50057',
-    'A700': '#c51162',
-    'text': white
+    'A700': '#c51162'
   },
   purple: {
     '50': '#f3e5f5',
@@ -47,11 +59,10 @@ export const PALETTE = {
     '700': '#7b1fa2',
     '800': '#6a1b9a',
     '900': '#4a148c',
-    'A100': '#EA80FC',
-    'A200': '#E040FB',
-    'A400': '#D500F9',
-    'A700': '#AA00FF',
-    'text': white
+    'A100': '#ea80fc',
+    'A200': '#e040fb',
+    'A400': '#d500f9',
+    'A700': '#aa00ff'
   },
   deepPurple: {
     '50': '#ede7f6',
@@ -67,8 +78,7 @@ export const PALETTE = {
     'A100': '#b388ff',
     'A200': '#7c4dff',
     'A400': '#651fff',
-    'A700': '#6200ea',
-    'text': white
+    'A700': '#6200ea'
   },
   indigo: {
     '50': '#e8eaf6',
@@ -84,8 +94,7 @@ export const PALETTE = {
     'A100': '#8c9eff',
     'A200': '#536dfe',
     'A400': '#3d5afe',
-    'A700': '#304ffe',
-    'text': white
+    'A700': '#304ffe'
   },
   blue: {
     '50': '#e3f2fd',
@@ -101,59 +110,29 @@ export const PALETTE = {
     'A100': '#82b1ff',
     'A200': '#448aff',
     'A400': '#2979ff',
-    'A700': '#2962ff',
-    'text': white
+    'A700': '#2962ff'
   },
   lightBlue: {
-    '50': '#E1F5FE',
-    '100': '#B3E5FC',
-    '200': '#81D4FA',
     '300': '#4FC3F7',
-    '400': '#29B6F6',
     '500': '#03A9F4',
-    '600': '#039BE5',
-    '700': '#0288D1',
     '800': '#0277BD',
-    '900': '#01579B',
     'A100': '#80D8FF',
     'A200': '#40C4FF',
-    'A400': '#00B0FF',
-    'A700': '#0091EA',
-    'text': black
+    'A400': '#00B0FF'
   },
   cyan: {
-    '50': '#E0F7FA',
-    '100': '#B2EBF2',
-    '200': '#80DEEA',
-    '300': '#4DD0E1',
-    '400': '#26C6DA',
     '500': '#00BCD4',
-    '600': '#00ACC1',
-    '700': '#0097A7',
-    '800': '#00838F',
-    '900': '#006064',
     'A100': '#84FFFF',
     'A200': '#18FFFF',
-    'A400': '#00E5FF',
-    'A700': '#00B8D4',
-    'text': black
+    'A400': '#00E5FF'
   },
   teal: {
-    '50': '#E0F7FA',
-    '100': '#B2EBF2',
-    '200': '#80DEEA',
     '300': '#4DB6AC',
-    '400': '#26C6DA',
     '500': '#009688',
-    '600': '#00ACC1',
-    '700': '#0097A7',
     '800': '#00695C',
-    '900': '#006064',
     'A100': '#A7FFEB',
     'A200': '#64FFDA',
-    'A400': '#1DE9B6',
-    'A700': '#00B8D4',
-    'text': white
+    'A400': '#1DE9B6'
   },
   green: {
     '50': '#e8f5e9',
@@ -169,59 +148,25 @@ export const PALETTE = {
     'A100': '#b9f6ca',
     'A200': '#69f0ae',
     'A400': '#00e676',
-    'A700': '#00c853',
-    'text': black
+    'A700': '#00c853'
   },
   lightGreen: {
-    '50': '#F1F8E9',
-    '100': '#DCEDC8',
-    '200': '#C5E1A5',
-    '300': '#AED581',
-    '400': '#9CCC65',
     '500': '#8BC34A',
-    '600': '#7CB342',
-    '700': '#689F38',
-    '800': '#558B2F',
-    '900': '#33691E',
     'A100': '#CCFF90',
     'A200': '#B2FF59',
-    'A400': '#76FF03',
-    'A700': '#64DD17',
-    'text': black
+    'A400': '#76FF03'
   },
   lime: {
-    '50': '#F9FBE7',
-    '100': '#F0F4C3',
-    '200': '#E6EE9C',
-    '300': '#DCE775',
-    '400': '#D4E157',
     '500': '#CDDC39',
-    '600': '#C0CA33',
-    '700': '#AFB42B',
-    '800': '#9E9D24',
-    '900': '#827717',
     'A100': '#F4FF81',
     'A200': '#EEFF41',
-    'A400': '#C6FF00',
-    'A700': '#AEEA00',
-    'text': black
+    'A400': '#C6FF00'
   },
   yellow: {
-    '50': '#FFFDE7',
-    '100': '#FFF9C4',
-    '200': '#FFF59D',
-    '300': '#FFF176',
-    '400': '#FFEE58',
     '500': '#FFEB3B',
-    '600': '#FDD835',
-    '700': '#FBC02D',
-    '800': '#F9A825',
-    '900': '#F57F17',
     'A100': '#FFFF8D',
     'A200': '#FFFF00',
-    'A400': '#FFEA00',
-    'A700': '#FFD600',
-    'text': black
+    'A400': '#FFEA00'
   },
   amber: {
     '50': '#fff8e1',
@@ -237,55 +182,25 @@ export const PALETTE = {
     'A100': '#ffe57f',
     'A200': '#ffd740',
     'A400': '#ffc400',
-    'A700': '#ffab00',
-    'text': black
+    'A700': '#ffab00'
   },
   orange: {
-    '50': '#FFF3E0',
-    '100': '#FFE0B2',
-    '200': '#FFCC80',
-    '300': '#FFB74D',
-    '400': '#FFA726',
     '500': '#FF9800',
-    '600': '#FB8C00',
-    '700': '#F57C00',
-    '800': '#EF6C00',
-    '900': '#E65100',
     'A100': '#FFD180',
     'A200': '#FFAB40',
-    'A400': '#FF9100',
-    'A700': '#FF6D00',
-    'text': black
+    'A400': '#FF9100'
   },
   deepOrange: {
-    '50': '#FBE9E7',
-    '100': '#FFCCBC',
-    '200': '#FFAB91',
-    '300': '#FF8A65',
-    '400': '#FF7043',
     '500': '#FF5722',
-    '600': '#F4511E',
-    '700': '#E64A19',
-    '800': '#D84315',
-    '900': '#BF360C',
     'A100': '#FF9E80',
     'A200': '#FF6E40',
-    'A400': '#FF3D00',
-    'A700': '#DD2C00',
-    'text': white
+    'A400': '#FF3D00'
   },
   brown: {
-    '50': '#EFEBE9',
-    '100': '#D7CCC8',
-    '200': '#BCAAA4',
-    '300': '#A1887F',
-    '400': '#8D6E63',
     '500': '#795548',
-    '600': '#6D4C41',
-    '700': '#5D4037',
-    '800': '#4E342E',
-    '900': '#3E2723',
-    'text': white
+    'A100': '#BCAAA4',
+    'A200': '#8D6E63',
+    'A400': '#6D4C41'
   },
   gray: {
     '0': '#ffffff',
@@ -303,8 +218,7 @@ export const PALETTE = {
     'A100': '#ffffff',
     'A200': '#eeeeee',
     'A400': '#bdbdbd',
-    'A700': '#616161',
-    'text': black
+    'A700': '#616161'
   },
   blueGray: {
     '50': '#eceff1',
@@ -320,13 +234,6 @@ export const PALETTE = {
     'A100': '#cfd8dc',
     'A200': '#b0bec5',
     'A400': '#78909c',
-    'A700': '#455a64',
-    'text': white
-  },
-  black: {
-    '500': black
-  },
-  white: {
-    '500': white
+    'A700': '#455a64'
   }
 };
