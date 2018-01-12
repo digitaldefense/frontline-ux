@@ -18,6 +18,7 @@ export * from './label/label-options';
 export * from './ripple/index';
 export * from './selection/index';
 export * from './style/index';
+export * from './theme/index';
 
 /** @deprecated */
 export {MAT_LABEL_GLOBAL_OPTIONS as MAT_PLACEHOLDER_GLOBAL_OPTIONS} from './label/label-options';

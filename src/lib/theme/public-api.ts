@@ -8,17 +8,16 @@
 
 import { NgModule } from '@angular/core';
 import { FlxTheme } from './theme';
-import { FlxThemeService } from './theme.service';
-import { ThemePresets } from './presets';
+// import { FlxThemeService } from './theme.service';
+// import { ThemePresets } from './presets';
 
 
 @NgModule({
   exports: [FlxTheme],
   declarations: [FlxTheme],
-  providers: [FlxThemeService, ThemePresets],
+  // providers: [FlxThemeService, ThemePresets],
 })
 export class FlxThemeModule {}
 
-export * from './theme';
-export * from './theme.service';
+// export * from './theme';
 // export * from './presets';

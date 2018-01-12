@@ -19,7 +19,7 @@ import {
   Input,
   Renderer2,
   ViewEncapsulation } from '@angular/core';
-import { FlxThemeService } from './theme.service';
+// import { FlxThemeService } from './theme.service';
 
 @Directive({
   selector: '[flxTheme]',
@@ -30,14 +30,14 @@ export class FlxTheme {
   @Input('flxTheme') get theme() { return this._theme; }
   set theme(value: string) {
     this._theme = value;
-    this._themeSvc.setTheme(value);
+    // this._themeSvc.setTheme(value);
     this._getBodyTag(this._element.nativeElement);
   }
 
   constructor(
     private _element: ElementRef,
     private _renderer: Renderer2,
-    private _themeSvc: FlxThemeService
+    // private _themeSvc: FlxThemeService
   ) {}
 
   private _getBodyTag(startNode: HTMLElement) {
@@ -50,8 +50,8 @@ export class FlxTheme {
   }
 
   private _applyThemeStyles(body: HTMLElement) {
-    const theme = this._themeSvc.theme;
-    console.log(theme);
+    // const theme = this._themeSvc.theme;
+    const theme = {background: '#333', text: 'white', domain: 'dark'};
     this._renderer.setStyle(body, 'background-color', theme.background);
     this._renderer.setStyle(body, 'color', theme.text);
     this._renderer.addClass(body, `fl-theme-${theme.domain}`);
