@@ -12,4 +12,4 @@
  * This is a proprietary addition to Google's Material Design for Angular
  */
 
-export * from './public_api';
+export * from './public-api';
