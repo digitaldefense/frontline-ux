@@ -13,12 +13,10 @@
  */
 
 import {
-  Component,
   Directive,
   ElementRef,
   Input,
-  Renderer2,
-  ViewEncapsulation } from '@angular/core';
+  Renderer2 } from '@angular/core';
 // import { FlxThemeService } from './theme.service';
 
 @Directive({
