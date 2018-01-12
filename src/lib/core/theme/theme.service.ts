@@ -13,7 +13,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ThemePresets } from './presets';
+import { FlxThemePresets } from './presets';
 
 // const GRAY_VARIANTS = ['darkest', 'darker', 'dark', 'medium', 'light', 'lighter', 'lighest'];
 
@@ -41,7 +41,7 @@ export class FlxThemeService {
     return this._theme;
   }
 
-  constructor(private _presets: ThemePresets) {}
+  constructor(private _presets: FlxThemePresets) {}
 
   /** Initialize the Theme by name */
   setTheme(value: string) {

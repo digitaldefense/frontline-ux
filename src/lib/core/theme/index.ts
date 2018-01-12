@@ -7,5 +7,5 @@
  */
 
 export { PALETTE } from './palette';
-export { ThemePresets } from './presets';
+export { FlxThemePresets } from './presets';
 export { FlxThemeService } from './theme.service';

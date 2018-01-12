@@ -68,7 +68,7 @@ export const baseThemes = {
 };
 
 @Injectable()
-export class ThemePresets {
+export class FlxThemePresets {
   private _preset = 'light';
 
   light = {
