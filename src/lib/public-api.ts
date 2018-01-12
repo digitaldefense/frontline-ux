@@ -7,6 +7,7 @@
  */
 
 export * from './version';
+export * from '@angular/material/ghost';
 export * from '@angular/material/autocomplete';
 export * from '@angular/material/button';
 export * from '@angular/material/button-toggle';

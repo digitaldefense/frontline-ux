@@ -90,6 +90,7 @@ System.config({
     '@angular/material/tabs': 'dist/packages/material/tabs/index.js',
     '@angular/material/toolbar': 'dist/packages/material/toolbar/index.js',
     '@angular/material/tooltip': 'dist/packages/material/tooltip/index.js',
+    '@angular/material/ghost': 'dist/packages/material/ghost/index.js',
   },
   packages: {
     // Thirdparty barrels.

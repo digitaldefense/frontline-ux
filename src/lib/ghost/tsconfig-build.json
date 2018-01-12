@@ -8,7 +8,8 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "@angular/material/theme",
-    "skipTemplateCodegen": true
+    "flatModuleId": "@angular/material/ghost",
+    "skipTemplateCodegen": true,
+    "fullTemplateTypeCheck": true
   }
 }
