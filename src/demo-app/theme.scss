@@ -27,7 +27,3 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .unicorn-dark-theme {
   @include angular-material-theme($dark-theme);
 }
-
-// @import '../../dist/packages/material/core/core-flx';
-
-// @include flx-core();

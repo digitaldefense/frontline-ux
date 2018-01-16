@@ -1,358 +1,127 @@
-
-// Options
 //
-// Quickly modify global styling by enabling or disabling optional features.
+// Color system
+//
 
-// $enable-rounded:            true !default;
-// $enable-shadows:            false !default;
-// $enable-gradients:          false !default;
-// $enable-transitions:        true !default;
-$enable-hover-media-query:  false !default;
-// $enable-grid-classes:       true !default;
-// $enable-print-styles:       true !default;
+// stylelint-disable
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
 
 
 // Spacing
 //
-// Control the default styling of most Bootstrap elements by modifying these
-// variables. Mostly focused on spacing.
-// You can add more entries to the $spacers map, should you need more variation.
 
-$spacer:   1rem !default;
-$spacer-x: $spacer !default;
-$spacer-y: $spacer !default;
-$border-width: 1px !default;
-
-// This variable affects the `.h-*` and `.w-*` classes.
-$sizes: (
-  25: 25%,
-  50: 50%,
-  75: 75%,
-  100: 100%
-) !default;
-
-
-// Links
-//
-// Style anchor elements.
-
-// $link-color:            $brand-primary !default;
-$link-decoration:       none !default;
-// $link-hover-color:      darken($link-color, 15%) !default;
-$link-hover-decoration: none !default;
-
-
-// Fonts
-//
-// Font, line-height, and color for body text, headings, and more.
-
-$font-family-sans-serif: "News Cycle", "Helvetica Neue", system-ui, "Segoe UI", Roboto, Arial, sans-serif !default;
-$font-family-serif:      Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family-base:       $font-family-sans-serif !default;
-
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
-$font-size-lg:   1.25rem !default;
-$font-size-sm:   .875rem !default;
-$font-size-xs:   .75rem !default;
-
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
-
-$font-weight-base: $font-weight-normal !default;
-$line-height-base: 1.5 !default;
-
-$font-size-h1: 2.5rem !default;
-$font-size-h2: 2rem !default;
-$font-size-h3: 1.75rem !default;
-$font-size-h4: 1.5rem !default;
-$font-size-h5: 1.25rem !default;
-$font-size-h6: 1rem !default;
-
-$headings-margin-bottom: ($spacer / 1.5) !default;
-$headings-font-family:   "Yantraman", "Helvetica Neue", Arial, sans-serif !default;
-$headings-font-weight:   600 !default;
-$headings-line-height:   1.1 !default;
-$headings-color:         inherit !default;
-$headings-size:         1.9rem !default; // 24sp
-
-$title-font-size: 1.4rem !default;
-$title-font-weight: 300 !default;
-
-$subtitle-font-size: 0.8rem !default;
-$subtitle-font-weight: $headings-font-weight !default;
-
-$display1-size: 6rem !default; // 112sp
-$display2-size: 5.5rem !default; // 56sp
-$display3-size: 4.5rem !default; // 45sp
-$display4-size: 3.5rem !default; // 34sp
-
-$display1-weight:     300 !default;
-$display2-weight:     300 !default;
-$display3-weight:     300 !default;
-$display4-weight:     300 !default;
-$display-line-height: $headings-line-height !default;
-
-$lead-font-size:   1.25rem !default;
-$lead-font-weight: 300 !default;
-
-$small-font-size: 80% !default;
-
-// $text-muted: $gray-light !default;
-
-// $abbr-border-color: $gray-light !default;
-
-// $blockquote-small-color:  $gray-light !default;
-$blockquote-font-size:    ($font-size-base * 1.25) !default;
-// $blockquote-border-color: $gray-lighter !default;
-$blockquote-border-width: .25rem !default;
-
-// $hr-border-color: rgba($black,.1) !default;
-$hr-border-width: $border-width !default;
-
-$mark-padding: .2em !default;
-
-$dt-font-weight: $font-weight-bold !default;
-
-// $kbd-box-shadow:         inset 0 -.1rem 0 rgba($black,.25) !default;
-$nested-kbd-font-weight: $font-weight-bold !default;
-
-$list-inline-padding: 5px !default;
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge((
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3)
+), $spacers);
 
 
 // Components
 //
 // Define common padding and border radius sizes and more.
 
-$line-height-lg:         (4 / 3) !default;
-$line-height-sm:         1.5 !default;
+$line-height-lg:              1.5 !default;
+$line-height-sm:              1.5 !default;
 
-$border-radius:          .25rem !default;
-$border-radius-lg:       .3rem !default;
-$border-radius-sm:       .2rem !default;
+$border-width:                1px !default;
+$border-color:                $gray-300 !default;
 
-// $component-active-color: $white !default;
-// $component-active-bg:    $brand-primary !default;
+$border-radius:               .25rem !default;
+$border-radius-lg:            .3rem !default;
+$border-radius-sm:            .2rem !default;
 
-$caret-width:            .3em !default;
 
-$transition-base:        all .2s ease-in-out !default;
-$transition-fade:        opacity .15s linear !default;
-$transition-collapse:    height .35s ease !default;
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-base:            -apple-system, system-ui, BlinkMacSystemFont, "News Cycle", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+
+$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg:                ($font-size-base * 1.25) !default;
+$font-size-sm:                ($font-size-base * .875) !default;
+
+$font-weight-light:           100 !default;
+$font-weight-normal:          400 !default;
+$font-weight-bold:            700 !default;
+
+$font-weight-base:            $font-weight-normal !default;
+$line-height-base:            1.5 !default;
+
+$paragraph-margin-bottom:     1rem !default;
+
+$h1-font-size:                $font-size-base * 2.5 !default;
+$h2-font-size:                $font-size-base * 2 !default;
+$h3-font-size:                $font-size-base * 1.75 !default;
+$h4-font-size:                $font-size-base * 1.5 !default;
+$h5-font-size:                $font-size-base * 1.25 !default;
+$h6-font-size:                $font-size-base !default;
+
+$headings-margin-bottom:      ($spacer / 2) !default;
+$headings-font-family:        inherit !default;
+$headings-font-weight:        500 !default;
+$headings-line-height:        1.2 !default;
+$headings-color:              inherit !default;
+
+$display1-size:               6rem !default;
+$display2-size:               5.5rem !default;
+$display3-size:               4.5rem !default;
+$display4-size:               3.5rem !default;
+
+$display1-weight:             300 !default;
+$display2-weight:             300 !default;
+$display3-weight:             300 !default;
+$display4-weight:             300 !default;
+$display-line-height:         $headings-line-height !default;
+
+$lead-font-size:              ($font-size-base * 1.25) !default;
+$lead-font-weight:            300 !default;
+
+$small-font-size:             80% !default;
+
+$text-muted:                  $gray-600 !default;
+
+$blockquote-small-color:      $gray-600 !default;
+$blockquote-font-size:        ($font-size-base * 1.25) !default;
+
+$hr-border-color:             rgba($black, .1) !default;
+$hr-border-width:             $border-width !default;
+
+$mark-padding:                .2em !default;
+
+$dt-font-weight:              $font-weight-bold !default;
+
+$kbd-box-shadow:              inset 0 -.1rem 0 rgba($black, .25) !default;
+$nested-kbd-font-weight:      $font-weight-bold !default;
+
+$list-inline-padding:         .5rem !default;
+
+$mark-bg:                     #fcf8e3 !default;
+
+$hr-margin-y:                 $spacer !default;
 
 
 // Tables
 //
 // Customizes the `.table` component with basic values, each used across all table variations.
 
-$table-cell-padding:            .75rem !default;
-$table-sm-cell-padding:         .3rem !default;
+$table-cell-padding:          .75rem !default;
+$table-cell-padding-sm:       .3rem !default;
 
-$table-bg:                      transparent !default;
-
-// $table-inverse-bg:              $gray-dark !default;
-// $table-inverse-color:           $body-bg !default;
-
-// $table-bg-accent:               rgba($black,.05) !default;
-// $table-bg-hover:                rgba($black,.075) !default;
-// $table-bg-active:               $table-bg-hover !default;
-
-// $table-head-bg:                 $gray-lighter !default;
-// $table-head-color:              $gray !default;
-
-$table-border-width:            $border-width !default;
-// $table-border-color:            $gray-lighter !default;
-
-
-// Buttons
-//
-// For each of Bootstrap's buttons, define text, background and border color.
-
-$btn-padding-x:                  1rem !default;
-$btn-padding-y:                  .5rem !default;
-$btn-line-height:                1.25 !default;
-$btn-font-weight:                $font-weight-normal !default;
-$btn-font-size:                  .8rem;
-// $btn-box-shadow:                 inset 0 1px 0 rgba($white,.15), 0 1px 1px rgba($black,.075) !default;
-// $btn-focus-box-shadow:           0 0 0 2px rgba($brand-primary, .25) !default;
-// $btn-active-box-shadow:          inset 0 3px 5px rgba($black,.125) !default;
-
-// $btn-primary-color:              $white !default;
-// $btn-primary-bg:                 $brand-primary !default;
-// $btn-primary-border:             $btn-primary-bg !default;
-
-// $btn-secondary-color:            $gray-dark !default;
-// $btn-secondary-bg:               $white !default;
-// $btn-secondary-border:           #ccc !default;
-
-// $btn-info-color:                 $white !default;
-// $btn-info-bg:                    $brand-info !default;
-// $btn-info-border:                $btn-info-bg !default;
-
-// $btn-success-color:              $white !default;
-// $btn-success-bg:                 $brand-success !default;
-// $btn-success-border:             $btn-success-bg !default;
-
-// $btn-warning-color:              $white !default;
-// $btn-warning-bg:                 $brand-warning !default;
-// $btn-warning-border:             $btn-warning-bg !default;
-
-// $btn-danger-color:               $white !default;
-// $btn-danger-bg:                  $brand-danger !default;
-// $btn-danger-border:              $btn-danger-bg !default;
-
-// $btn-link-disabled-color:        $gray-light !default;
-
-$btn-padding-x-sm:               .5rem !default;
-$btn-padding-y-sm:               .25rem !default;
-
-$btn-padding-x-lg:               1.5rem !default;
-$btn-padding-y-lg:               .75rem !default;
-
-$btn-block-spacing-y:            .5rem !default;
-$btn-toolbar-margin:             .5rem !default;
-
-// Allows for customizing button radius independently from global border radius
-$btn-border-radius:              $border-radius !default;
-$btn-border-radius-lg:           $border-radius-lg !default;
-$btn-border-radius-sm:           $border-radius-sm !default;
-
-$btn-transition:                 all .2s ease-in-out !default;
-
-
-// Form states and alerts
-//
-// Define colors for form feedback states and, by default, alerts.
-
-// $state-success-text:             #3c763d !default;
-// $state-success-bg:               #dff0d8 !default;
-// $state-success-border:           darken($state-success-bg, 5%) !default;
-
-// $state-info-text:                #31708f !default;
-// $state-info-bg:                  #d9edf7 !default;
-// $state-info-border:              darken($state-info-bg, 7%) !default;
-
-// $state-warning-text:             #8a6d3b !default;
-// $state-warning-bg:               #fcf8e3 !default;
-// $mark-bg:                        $state-warning-bg !default;
-// $state-warning-border:           darken($state-warning-bg, 5%) !default;
-
-// $state-danger-text:              #a94442 !default;
-// $state-danger-bg:                #f2dede !default;
-// $state-danger-border:            darken($state-danger-bg, 5%) !default;
-
-
-// FROM MATERIAL DESIGN
-
-// Easing Curves
-$mat-linear-out-slow-in-timing-function: cubic-bezier(0, 0, 0.2, 0.1) !default;
-$mat-fast-out-slow-in-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
-$mat-fast-out-linear-in-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
-
-$ease-in-out-curve-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
-
-$swift-ease-out-duration: 400ms !default;
-$swift-ease-out-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
-$swift-ease-out: all $swift-ease-out-duration $swift-ease-out-timing-function !default;
-
-$swift-ease-in-duration: 300ms !default;
-$swift-ease-in-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2) !default;
-$swift-ease-in: all $swift-ease-in-duration $swift-ease-in-timing-function !default;
-
-$swift-ease-in-out-duration: 500ms !default;
-$swift-ease-in-out-timing-function: $ease-in-out-curve-function !default;
-$swift-ease-in-out: all $swift-ease-in-out-duration $swift-ease-in-out-timing-function !default;
-
-$swift-linear-duration: 80ms !default;
-$swift-linear-timing-function: linear !default;
-$swift-linear: all $swift-linear-duration $swift-linear-timing-function !default;
-
-
-
-
-$headings-font-weight-light: 300;
-
-
-
-// Material Design Type Styles
-//
-
-@mixin font($family, $size, $weight) {
-  font-family: $family;
-  font-size: $size;
-  font-weight: $weight;
-}
-
-%type-display4 {
-  font-family: $headings-font-family;
-  font-size: $font-size-base * 7;
-  font-weight: $headings-font-weight-light;
-  white-space: nowrap;
-  line-height: 1;
-}
-
-%type-display3 {
-  font-family: $headings-font-family;
-  font-size: $font-size-base * 4.5;
-  font-weight: $headings-font-weight;
-  white-space: nowrap;
-  line-height: 1;
-}
-
-%type-display2 {
-  font-family: $headings-font-family;
-  font-size: $font-size-base * 3;
-  font-weight: $headings-font-weight;
-  line-height: 1.1;
-}
-
-%type-display1 {
-  font-family: $headings-font-family;
-  font-size: $font-size-base * 2.125;
-  font-weight: $headings-font-weight;
-  line-height: 1.2;
-}
-
-%type-headline {
-  font-family: $headings-font-family;
-  font-size: $font-size-base * 1.6;
-  font-weight: $headings-font-weight;
-}
-
-%type-title {
-  font-family: $headings-font-family;
-  font-size: $font-size-base * 1.4;
-  font-weight: $headings-font-weight-light;
-  letter-spacing: .05em;
-}
-
-%type-subheader {
-  font-size: $font-size-base * .9;
-  font-weight: $font-weight-bold;
-}
-
-%type-body2 {
-  // font-family: $font-family-base;
-  font-size: $font-size-base;
-  font-weight: $font-weight-bold;
-}
-
-%type-body1 {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-base;
-}
-
-%type-caption {
-  font-size: $font-size-base * .85;
-  font-weight: $font-weight-normal;
-}
-
-%type-button {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  font-weight: $font-weight-bold;
-  text-align: center;
-  text-transform: uppercase;
-}
+$table-bg:                    transparent !default;

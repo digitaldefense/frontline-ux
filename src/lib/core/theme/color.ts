@@ -42,12 +42,12 @@ export function mixinFlxColor<T extends Constructor<FlxElementRef>>(base: T,
 
       if (colorPalette !== this._color) {
         if (this._color) {
-          // this._elementRef.nativeElement.classList.remove(`flx-${this._color}`);
-          this._renderer.removeClass(elem, `flx-${this._color}`);
+          // this._elementRef.nativeElement.classList.remove(`mat-${this._color}`);
+          this._renderer.removeClass(elem, `mat-${this._color}`);
         }
         if (colorPalette) {
-          // this._elementRef.nativeElement.classList.add(`flx-${colorPalette}`);
-          this._renderer.addClass(elem, `flx-${colorPalette}`);
+          // this._elementRef.nativeElement.classList.add(`mat-${colorPalette}`);
+          this._renderer.addClass(elem, `mat-${colorPalette}`);
         }
 
         this._color = colorPalette;

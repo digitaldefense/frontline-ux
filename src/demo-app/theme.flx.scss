@@ -7,12 +7,14 @@ $font-weight-bold: 700 !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: 1.5 !default;
 
-body {
-  margin: 0;
-  padding: 0;
+@import '../../dist/packages/material/core/flx-styles';
 
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  font-weight: $font-weight-base;
-  line-height: $line-height-base;
-}
+// body {
+//   margin: 0;
+//   padding: 0;
+
+//   font-family: $font-family-base;
+//   font-size: $font-size-base;
+//   font-weight: $font-weight-base;
+//   line-height: $line-height-base;
+// }
