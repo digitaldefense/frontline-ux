@@ -7,12 +7,10 @@
  */
 
 import { NgModule } from '@angular/core';
-// import { FlxThemeService, FlxThemePresets } from '@angular/material/core';
 import { FlxGhost } from './ghost';
 
 @NgModule({
   exports: [FlxGhost],
   declarations: [FlxGhost],
-  // providers: [FlxThemeService, FlxThemePresets]
 })
 export class FlxGhostModule {}

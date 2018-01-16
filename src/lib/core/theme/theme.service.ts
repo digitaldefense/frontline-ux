@@ -48,16 +48,6 @@ let pink = '#e91e63';
 
 @Injectable()
 export class FlxThemeService {
-  // private _theme: FlxTheme;
-
-  // set theme(value: FlxTheme) {
-  //   this._theme = value;
-  //   console.log(this._theme);
-  // }
-  // get theme(): FlxTheme {
-  //   return this._theme;
-  // }
-
   private _theme$: Subject<FlxTheme> = new Subject();
 
   theme = this._theme$.asObservable();
@@ -66,8 +56,6 @@ export class FlxThemeService {
 
   /** Initialize the Theme by name */
   setTheme(value: string) {
-    console.log('FlxThemeService: setTheme', value);
-    // this.theme = new FlxTheme(value);
     const theme = new FlxTheme(value);
     this._theme$.next(<FlxTheme>theme);
   }
