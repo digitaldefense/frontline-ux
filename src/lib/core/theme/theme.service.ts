@@ -13,38 +13,11 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-// import { FlxThemePresets } from './presets';
-// import { FlxColorPalette } from './palette';
 import { FlxTheme } from './theme';
+import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 // const GRAY_VARIANTS = ['darkest', 'darker', 'dark', 'medium', 'light', 'lighter', 'lighest'];
-
-let black = 'rgba(0,0,0,.87)';
-let white = '#fff';
-let blue = '#2196f3';
-let pink = '#e91e63';
-
-// export class Theme {
-//   name: string;
-//   domain: 'light' | 'dark';
-//   // background: string;
-//   // text: string;
-//   // primary: string;
-//   // primaryLight: string;
-//   // primaryDark: string;
-//   // accent: string;
-//   // accentLight: string;
-//   // accentDark: string;
-// }
-
-// export const BASECOATS: Theme[] = [
-//   { name: 'light', domain: 'light', background: white, text: black, primary: blue,
-//   primaryLight: blue, primaryDark: blue, accent: pink, accentLight: pink, accentDark: pink },
-//   { name: 'dark', domain: 'dark', background: black, text: white, primary: blue,
-//   primaryLight: blue, primaryDark: blue, accent: pink, accentLight: pink, accentDark: pink },
-// ];
 
 @Injectable()
 export class FlxThemeService {

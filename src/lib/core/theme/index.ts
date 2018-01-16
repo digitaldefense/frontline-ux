@@ -9,10 +9,11 @@
 import { NgModule } from '@angular/core';
 import { FlxThemeService } from './theme.service';
 
-export { FlxTheme } from './theme';
-export { FlxThemeService } from './theme.service';
-
 @NgModule({
   providers: [FlxThemeService]
 })
-export class FlxThemeModule {}
+export class FlxThemeProviders {}
+
+export { FlxCanColor, mixinFlxColor, FlxColor } from './color';
+export { FlxTheme } from './theme';
+export { FlxThemeService } from './theme.service';

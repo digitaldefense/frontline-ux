@@ -13,7 +13,6 @@
  */
 
 import { Inject, Injectable, Optional } from '@angular/core';
-// import { FlxColorPalette } from './palette';
 
 export const flxPalette = {
   red: {
