@@ -17,6 +17,7 @@ export class FlxGhost {
 
   @Input('flxGhost') get ghost(): string { return this._ghost; }
   set ghost(value: string) {
+    console.log('flxGhost: set', value);
     this._ghost = value;
     this._themeSvc.setTheme(value);
     this._getBodyTag(this._element.nativeElement);
@@ -36,8 +37,8 @@ export class FlxGhost {
   }
 
   private _applyThemeStyles(body: HTMLElement) {
-    const theme = this._themeSvc.theme;
-    // const theme = { background: '#333', text: 'white', domain: 'dark' };
+    // const theme = this._themeSvc.theme;
+    const theme = { background: '#333', text: 'white', domain: 'dark' };
     this._renderer.setStyle(body, 'background-color', theme.background);
     this._renderer.setStyle(body, 'color', theme.text);
     this._renderer.addClass(body, `fl-theme-${theme.domain}`);

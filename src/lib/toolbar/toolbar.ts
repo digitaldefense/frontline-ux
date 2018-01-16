@@ -15,10 +15,12 @@ import {
   ElementRef,
   isDevMode,
   QueryList,
+  Renderer2,
   ViewEncapsulation
 } from '@angular/core';
-import {CanColor, mixinColor} from '@angular/material/core';
+import {CanColor, mixinColor, FlxThemeService, FlxTheme} from '@angular/material/core';
 import {Platform} from '@angular/cdk/platform';
+import { Subscription } from 'rxjs/Subscription';
 
 // Boilerplate for applying mixins to MatToolbar.
 /** @docs-private */
@@ -51,12 +53,22 @@ export class MatToolbarRow {}
   preserveWhitespaces: false,
 })
 export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterViewInit {
+  private _subscription: Subscription;
 
   /** Reference to all toolbar row elements that have been projected. */
   @ContentChildren(MatToolbarRow) _toolbarRows: QueryList<MatToolbarRow>;
 
-  constructor(elementRef: ElementRef, private _platform: Platform) {
+  constructor(
+    elementRef: ElementRef,
+    private _platform: Platform,
+    private _renderer: Renderer2,
+    private _themeSvc: FlxThemeService
+  ) {
     super(elementRef);
+    this._subscription = this._themeSvc.theme.subscribe((theme: FlxTheme) => {
+      console.log('toolbar', theme);
+      this._applyThemeColors(theme);
+    });
   }
 
   ngAfterViewInit() {
@@ -66,6 +78,12 @@ export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterV
 
     this._checkToolbarMixedModes();
     this._toolbarRows.changes.subscribe(() => this._checkToolbarMixedModes());
+  }
+
+  private _applyThemeColors(theme) {
+    const elem = this._elementRef.nativeElement;
+    this._renderer.setStyle(elem, 'background-color', theme.primary);
+    this._renderer.setStyle(elem, 'color', theme.text);
   }
 
   /**

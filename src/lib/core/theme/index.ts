@@ -6,6 +6,16 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-export { PALETTE } from './palette';
+// import { NgModule } from '@angular/core';
+// import { FlxColorPalette } from './palette';
+// import { FlxThemeService } from './theme.service';
+
+// @NgModule({
+//   providers: [FlxColorPalette, FlxThemeService]
+// })
+// export class FlxThemeModule {}
+
+export { FlxColorPalette } from './palette';
 export { FlxThemePresets } from './presets';
+export { FlxTheme } from './theme';
 export { FlxThemeService } from './theme.service';

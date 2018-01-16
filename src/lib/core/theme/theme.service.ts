@@ -13,39 +13,63 @@
  */
 
 import { Injectable } from '@angular/core';
-import { FlxThemePresets } from './presets';
+import { Subject } from 'rxjs/Subject';
+// import { FlxThemePresets } from './presets';
+import { FlxColorPalette } from './palette';
+import { FlxTheme } from './theme';
+import { Observable } from 'rxjs/Observable';
 
 // const GRAY_VARIANTS = ['darkest', 'darker', 'dark', 'medium', 'light', 'lighter', 'lighest'];
 
-export class Theme {
-  name: string;
-  domain: string;
-  background: string;
-  text: string;
-  primary: string;
-  primaryLight: string;
-  primaryDark: string;
-  accent: string;
-  accentLight: string;
-  accentDark: string;
-}
+let black = 'rgba(0,0,0,.87)';
+let white = '#fff';
+let blue = '#2196f3';
+let pink = '#e91e63';
+
+// export class Theme {
+//   name: string;
+//   domain: 'light' | 'dark';
+//   // background: string;
+//   // text: string;
+//   // primary: string;
+//   // primaryLight: string;
+//   // primaryDark: string;
+//   // accent: string;
+//   // accentLight: string;
+//   // accentDark: string;
+// }
+
+// export const BASECOATS: Theme[] = [
+//   { name: 'light', domain: 'light', background: white, text: black, primary: blue,
+//   primaryLight: blue, primaryDark: blue, accent: pink, accentLight: pink, accentDark: pink },
+//   { name: 'dark', domain: 'dark', background: black, text: white, primary: blue,
+//   primaryLight: blue, primaryDark: blue, accent: pink, accentLight: pink, accentDark: pink },
+// ];
 
 @Injectable()
 export class FlxThemeService {
-  private _theme: Theme;
+  // private _theme: FlxTheme;
 
-  set theme(value: Theme) {
-    this._theme = value;
-  }
-  get theme(): Theme {
-    return this._theme;
-  }
+  // set theme(value: FlxTheme) {
+  //   this._theme = value;
+  //   console.log(this._theme);
+  // }
+  // get theme(): FlxTheme {
+  //   return this._theme;
+  // }
 
-  constructor(private _presets: FlxThemePresets) {}
+  private _theme$: Subject<FlxTheme> = new Subject();
+
+  theme = this._theme$.asObservable();
+
+  constructor(private _palette: FlxColorPalette) {}
 
   /** Initialize the Theme by name */
   setTheme(value: string) {
-    this._theme = this._presets.getTheme(value);
+    console.log('FlxThemeService: setTheme', value);
+    // this.theme = new FlxTheme(value);
+    const theme = new FlxTheme(value);
+    this._theme$.next(<FlxTheme>theme);
   }
 
   // /** Apply provided theme property as text color */

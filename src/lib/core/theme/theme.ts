@@ -12,15 +12,10 @@
  * This is a proprietary addition to Google's Material Design for Angular
  */
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
+// import { FlxColorPalette } from './palette';
 
-// import { PALETTE } from './palette';
-// import { Theme } from './theme.service';
-
-// const black = 'rgba(0, 0, 0, 0.87)';
-// const white = '#ffffff';
-
-const PALETTE = {
+const palette = {
   red: {
     '50': '#ffebee',
     '100': '#ffcdd2',
@@ -243,112 +238,67 @@ const PALETTE = {
   }
 };
 
-const black = '5, 5, 5';
-const white = '250, 250, 250';
-
-const black12 = `rgba(${black}, 0.12)`;
-const white12 = `rgba(${white}, 0.12)`;
-const white3 = `rgba(${white}, 0.3)`;
-
-const baseThemes = {
+const basecoats = {
   light: {
-    background: PALETTE.gray['50'],
-    highlight: PALETTE.gray['300'],
-    text: `rgba(${black}, 0.87)`,
-    default: '#fff',
-    success: PALETTE.green['500'],
-    warning: PALETTE.amber['500'],
-    danger: PALETTE.red['500'],
-    icon: `rgba(${black}, 0.64)`,
-    icons: `rgba(${black}, 0.64)`,
-    toolbar: PALETTE.gray['300'],
-    hover: `rgba(${black}, 0.04)`,
-    card: 'white',
-    dialog: 'white',
-    divider: black12,
-    disabled: `rgba(${black}, 0.38)`,
-    disabledBtnBg: black12,
-    hintText: `rgba(${black}, 0.38)`,
-    secondaryText: `rgba(${black}, 0.54)`,
+    background: palette.gray['50'],
+    highlight: palette.gray['300'],
+    text: `rgba(0,0,0, 0.87)`,
   },
   dark: {
     background: '#303030',
-    highlight: PALETTE.gray['800'],
+    highlight: palette.gray['800'],
     text: 'white',
-    default: '#424242',
-    success: PALETTE.green['500'],
-    warning: PALETTE.amber['500'],
-    danger: PALETTE.red['500'],
-    icon: 'white',
-    icons: 'white',
-    toolbar: PALETTE.gray['900'],
-    hover: `rgba(${white}, 0.04)`,
-    card: PALETTE.gray['800'],
-    dialog: PALETTE.gray['800'],
-    divider: white12,
-    disabled: white3,
-    disabledBtnBg: white12,
-    hintText: `rgba(${white}, 0.3)`,
-    secondaryText: `rgba(${white}, 0.6)`,
   }
 };
 
 @Injectable()
-export class FlxThemePresets {
-  private _preset = 'light';
+export class FlxTheme {
+  name: string;
+  domain: 'light' | 'dark' | string;
+  background: string;
+  text: string;
+  primary: string;
+  primaryDark: string;
+  primaryLight: string;
+  accent: string;
+  accentDark: string;
+  accentLight: string;
+  link: string;
+  highlight: string;
 
-  light = {
-    name: 'light',
-    domain: 'light',
-    primary: PALETTE.blue['500'],
-    primaryLight: PALETTE.blue['300'],
-    primaryDark: PALETTE.blue['800'],
-    accent: PALETTE.pink['A200'],
-    accentLight: PALETTE.pink['A100'],
-    accentDark: PALETTE.pink['A400'],
-    link: PALETTE.blue['A200']
-  };
-  dark = {
-    name: 'dark',
-    domain: 'dark',
-    primary: PALETTE.blue['500'],
-    primaryLight: PALETTE.blue['300'],
-    primaryDark: PALETTE.blue['800'],
-    accent: PALETTE.pink['A200'],
-    accentLight: PALETTE.pink['A100'],
-    accentDark: PALETTE.pink['A400'],
-    link: PALETTE.pink['A200']
-  };
-
-  gray(value: string) {
-    return PALETTE.gray[value];
+  constructor(name: string) {
+    this._parseNameParts(name);
   }
 
-  getTheme(name: string) {
-    let topcoat, base, theme;
+  private _parseNameParts(name: string) {
     if (name === 'light' || name === 'dark') {
-      topcoat = this[name];
-      base = baseThemes[topcoat.domain];
+      this.domain = this[name];
+      this._generateBaseCoat(name);
+      this._generateTopCoat('blueGray', 'blue');
     } else {
       const parts: string[] = name.split('-');
       const primary = parts[0];
       const accent = parts[1];
-      const basePart = parts[2];
-      console.log('getTheme: primary', primary);
-      topcoat = {
-        'domain': basePart || 'light',
-        'primary': PALETTE[primary]['500'],
-        'primaryLight': PALETTE[primary]['300'],
-        'primaryDark': PALETTE[primary]['800'],
-        'accent': PALETTE[accent]['A200'],
-        'accentLight': PALETTE[accent]['A100'],
-        'accentDark': PALETTE[accent]['A400'],
-        'link': PALETTE[accent]['A200'],
-      };
-      base = baseThemes[basePart] || baseThemes['light'];
-    }
+      this.domain = parts[2];
 
-    theme = Object.assign({}, topcoat, base);
-    return theme;
+      this._generateBaseCoat(this.domain);
+      this._generateTopCoat(primary, accent);
+    }
+  }
+
+  private _generateBaseCoat(domain) {
+    this.background = basecoats[domain].background;
+    this.text = basecoats[domain].text;
+    this.highlight = basecoats[domain].highlight;
+  }
+
+  private _generateTopCoat(primary, accent) {
+    this.primary = palette[primary]['500'];
+    this.primaryLight = palette[primary]['300'];
+    this.primaryDark = palette[primary]['800'];
+    this.accent = palette[accent]['A200'];
+    this.accentLight = palette[accent]['A100'];
+    this.accentDark = palette[accent]['A400'];
+    this.link = palette[accent]['A200'];
   }
 }
