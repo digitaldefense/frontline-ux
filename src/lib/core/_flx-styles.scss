@@ -1,7 +1,15 @@
 @import 'scss/variables';
 @import 'scss/reboot';
 
-// @import 'core';
+@import 'core';
 
-// // Include non-theme styles for core.
-// @include mat-core();
+// Include non-theme styles for core.
+@include mat-core();
+
+
+.demo-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
