@@ -15,6 +15,5 @@
 // })
 // export class FlxThemeModule {}
 
-export { FlxColorPalette } from './palette';
 export { FlxTheme } from './theme';
 export { FlxThemeService } from './theme.service';

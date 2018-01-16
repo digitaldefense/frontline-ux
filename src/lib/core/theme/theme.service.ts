@@ -15,7 +15,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 // import { FlxThemePresets } from './presets';
-import { FlxColorPalette } from './palette';
+// import { FlxColorPalette } from './palette';
 import { FlxTheme } from './theme';
 import { Observable } from 'rxjs/Observable';
 
@@ -52,7 +52,7 @@ export class FlxThemeService {
 
   theme = this._theme$.asObservable();
 
-  constructor(private _palette: FlxColorPalette) {}
+  constructor() {}
 
   /** Initialize the Theme by name */
   setTheme(value: string) {

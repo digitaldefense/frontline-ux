@@ -15,7 +15,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 // import { FlxColorPalette } from './palette';
 
-const palette = {
+export const flxPalette = {
   red: {
     '50': '#ffebee',
     '100': '#ffcdd2',
@@ -240,13 +240,13 @@ const palette = {
 
 const basecoats = {
   light: {
-    background: palette.gray['50'],
-    highlight: palette.gray['300'],
+    background: flxPalette.gray['50'],
+    highlight: flxPalette.gray['300'],
     text: `rgba(0,0,0, 0.87)`,
   },
   dark: {
     background: '#303030',
-    highlight: palette.gray['800'],
+    highlight: flxPalette.gray['800'],
     text: 'white',
   }
 };
@@ -267,23 +267,22 @@ export class FlxTheme {
   highlight: string;
 
   constructor(name: string) {
+    this.name = name;
     this._parseNameParts(name);
   }
 
   private _parseNameParts(name: string) {
     if (name === 'light' || name === 'dark') {
       this.domain = this[name];
-      this._generateBaseCoat(name);
       this._generateTopCoat('blueGray', 'blue');
     } else {
       const parts: string[] = name.split('-');
       const primary = parts[0];
       const accent = parts[1];
       this.domain = parts[2];
-
-      this._generateBaseCoat(this.domain);
       this._generateTopCoat(primary, accent);
     }
+    this._generateBaseCoat(this.domain);
   }
 
   private _generateBaseCoat(domain) {
@@ -293,12 +292,12 @@ export class FlxTheme {
   }
 
   private _generateTopCoat(primary, accent) {
-    this.primary = palette[primary]['500'];
-    this.primaryLight = palette[primary]['300'];
-    this.primaryDark = palette[primary]['800'];
-    this.accent = palette[accent]['A200'];
-    this.accentLight = palette[accent]['A100'];
-    this.accentDark = palette[accent]['A400'];
-    this.link = palette[accent]['A200'];
+    this.primary = flxPalette[primary]['500'];
+    this.primaryLight = flxPalette[primary]['300'];
+    this.primaryDark = flxPalette[primary]['800'];
+    this.accent = flxPalette[accent]['A200'];
+    this.accentLight = flxPalette[accent]['A100'];
+    this.accentDark = flxPalette[accent]['A400'];
+    this.link = flxPalette[accent]['A200'];
   }
 }

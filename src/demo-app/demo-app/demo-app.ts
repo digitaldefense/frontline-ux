@@ -8,7 +8,7 @@
 
 import {OverlayContainer} from '@angular/cdk/overlay';
 import {Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
-import { FlxThemeService, FlxColorPalette } from '@angular/material/core';
+import { FlxThemeService } from '@angular/material/core';
 // import { FlxGhost } from '@angular/material/ghost';
 
 
@@ -24,7 +24,7 @@ import { FlxThemeService, FlxColorPalette } from '@angular/material/core';
   template: '<router-outlet></router-outlet>',
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
-  providers: [FlxThemeService, FlxColorPalette]
+  providers: [FlxThemeService]
 })
 export class EntryApp {}
 
