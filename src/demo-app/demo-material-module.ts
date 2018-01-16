@@ -41,7 +41,7 @@ import {
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
-import {MatNativeDateModule, MatRippleModule} from '@angular/material';
+import {MatNativeDateModule, MatRippleModule, FlxThemeModule} from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {A11yModule} from '@angular/cdk/a11y';
@@ -56,6 +56,7 @@ import {PortalModule} from '@angular/cdk/portal';
  */
 @NgModule({
   exports: [
+    FlxThemeModule,
     FlxGhostModule,
     MatAutocompleteModule,
     MatButtonModule,
