@@ -18,6 +18,7 @@ import {
   OnDestroy,
   Optional,
   Self,
+  Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -26,7 +27,8 @@ import {
   CanDisableRipple,
   mixinColor,
   mixinDisabled,
-  mixinDisableRipple
+  mixinDisableRipple,
+  FlxThemeService
 } from '@angular/material/core';
 
 
@@ -103,7 +105,11 @@ export class MatMiniFab {
 // Boilerplate for applying mixins to MatButton.
 /** @docs-private */
 export class MatButtonBase {
-  constructor(public _elementRef: ElementRef) {}
+  constructor(
+    public _elementRef: ElementRef,
+    public _renderer: Renderer2,
+    public _themeSvc: FlxThemeService
+  ) {}
 }
 export const _MatButtonMixinBase = mixinColor(mixinDisabled(mixinDisableRipple(MatButtonBase)));
 
@@ -136,9 +142,11 @@ export class MatButton extends _MatButtonMixinBase
   _isIconButton: boolean = this._hasHostAttributes('mat-icon-button');
 
   constructor(elementRef: ElementRef,
+              renderer: Renderer2,
+              themeSvc: FlxThemeService,
               private _platform: Platform,
               private _focusMonitor: FocusMonitor) {
-    super(elementRef);
+    super(elementRef, renderer, themeSvc);
     this._focusMonitor.monitor(this._elementRef.nativeElement, true);
   }
 
@@ -196,8 +204,10 @@ export class MatAnchor extends MatButton {
   constructor(
       platform: Platform,
       focusMonitor: FocusMonitor,
-      elementRef: ElementRef) {
-    super(elementRef, platform, focusMonitor);
+      elementRef: ElementRef,
+      renderer: Renderer2,
+      themeSvc: FlxThemeService) {
+    super(elementRef, renderer, themeSvc, platform, focusMonitor);
   }
 
   _haltDisabledEvents(event: Event) {
