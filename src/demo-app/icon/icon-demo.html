@@ -1,35 +1,14 @@
 <div class="demo-icon">
-  <p>
-    These are some icons.
-  </p>
-
-  <p>
-    By name registered with MatIconProvider:
-    <mat-icon svgIcon="thumb-up" class="green"></mat-icon>
-    <mat-icon svgIcon="thumb-up"></mat-icon>
-  </p>
-
-  <p>
-    From icon set:
-    <mat-icon svgIcon="core:alarm"></mat-icon>
-    <mat-icon svgIcon="core:accessibility"></mat-icon>
-    <mat-icon svgIcon="core:alarm"></mat-icon>
-  </p>
-
-  <p>
-    Ligature from Material Icons font:
-    <mat-icon>home</mat-icon>
-  </p>
-
-  <p>
-    Using a theme:
-    <mat-icon color="primary">home</mat-icon>
-    <mat-icon color="accent">home</mat-icon>
-    <mat-icon color="warn">home</mat-icon>
-  </p>
-
-  <p>
-    Custom icon font and CSS:
-    <mat-icon fontSet="fontawesome" fontIcon="fa-birthday-cake"></mat-icon>
-  </p>
+  <section title="Examples">
+    <mat-icon ngClass="fa-tree"></mat-icon>
+    <mat-icon ngClass="fa-rocket" color="accent"></mat-icon>
+    <mat-icon ngClass="fa-user-circle"></mat-icon>
+  </section>
+  
+  <section title="Font Awesome Features">
+    <h2 class="subtitle">Animated Icons</h2>
+    <mat-icon [ngClass]="['fa-spinner', 'fa-spin', 'fa-fw']"></mat-icon>
+    <mat-icon [ngClass]="['fa-spinner', 'fa-pulse', 'fa-fw']" color="primary"></mat-icon>
+    <mat-icon [ngClass]="['fa-refresh', 'fa-spin', 'fa-fw']"></mat-icon>
+  </section>
 </div>

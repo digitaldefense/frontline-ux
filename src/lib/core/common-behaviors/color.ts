@@ -25,8 +25,6 @@ export interface HasElementRef {
 }
 
 /** Possible color palette values.  */
-// export type ThemePalette = 'primary' | 'accent' | 'warn' | 'primary-x' | 'accent-x' | 'warn-x'
-//   | 'danger' | 'danger-x' | undefined;
 export type ThemePalette = string | undefined;
 
 const textNodes = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'];
@@ -65,8 +63,6 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
       // Set the default color that can be specified from the mixin.
       this.color = defaultColor;
-
-      // this._updateElemColor();
     }
 
     private _updateElemColor() {

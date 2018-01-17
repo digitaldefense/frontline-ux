@@ -8,6 +8,8 @@ $mat-icon-size: 24px !default;
   background-repeat: no-repeat;
   display: inline-block;
   fill: currentColor;
+  font-size: $mat-icon-size;
+  text-align: center;
   height: $mat-icon-size;
   width: $mat-icon-size;
 }
