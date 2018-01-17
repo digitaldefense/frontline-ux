@@ -111,7 +111,8 @@ export class MatButtonBase {
     public _themeSvc: FlxThemeService
   ) {}
 }
-export const _MatButtonMixinBase = mixinColor(mixinDisabled(mixinDisableRipple(MatButtonBase)));
+export const _MatButtonMixinBase = mixinColor(
+  mixinDisabled(mixinDisableRipple(MatButtonBase)), 'accent');
 
 
 /**
