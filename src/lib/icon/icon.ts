@@ -15,10 +15,11 @@ import {
   Input,
   OnChanges,
   OnInit,
+  Renderer2,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import {CanColor, mixinColor} from '@angular/material/core';
+import {CanColor, mixinColor, FlxThemeService} from '@angular/material/core';
 import {MatIconRegistry} from './icon-registry';
 
 
@@ -220,5 +221,49 @@ export class MatIcon extends _MatIconMixinBase implements OnChanges, OnInit, Can
    */
   private _cleanupFontValue(value: string) {
     return typeof value === 'string' ? value.trim().split(' ')[0] : value;
+  }
+}
+
+
+/** @docs-private */
+// export class FlxIconBase {
+//   constructor(
+//     public _elementRef: ElementRef,
+//     public _renderer: Renderer2,
+//     public _themeSvc: FlxThemeService) { }
+// }
+// export const _FlxIconMixinBase = mixinFlxColor(FlxIconBase);
+
+@Component({
+  moduleId: module.id,
+  selector: 'flx-icon',
+  template: '<ng-content></ng-content>',
+  exportAs: 'flxIcon',
+  styleUrls: ['icon.css'],
+  inputs: ['color'],
+  host: {
+    'role': 'img',
+    'class': 'flx-icon fa',
+  },
+  encapsulation: ViewEncapsulation.None,
+  preserveWhitespaces: false,
+})
+export class FlxIcon {
+// export class FlxIcon extends _FlxIconMixinBase implements FlxCanColor {
+
+  @Input() ngClass: string[] | Set<string> | { [icn: string]: any };
+
+  constructor(
+    elementRef: ElementRef,
+//     renderer: Renderer2,
+//     themeSvc: FlxThemeService,
+    @Attribute('aria-hidden') ariaHidden: string) {
+//     super(elementRef, renderer, themeSvc);
+
+    // If the user has not explicitly set aria-hidden, mark the icon as hidden, as this is
+    // the right thing to do for the majority of icon use-cases.
+    if (!ariaHidden) {
+      elementRef.nativeElement.setAttribute('aria-hidden', 'true');
+    }
   }
 }
