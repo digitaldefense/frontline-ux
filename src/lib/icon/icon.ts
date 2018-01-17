@@ -24,9 +24,13 @@ import {CanColor, mixinColor, FlxThemeService} from '@angular/material/core';
 // Boilerplate for applying mixins to MatIcon.
 /** @docs-private */
 export class MatIconBase {
-  constructor(public _elementRef: ElementRef) {}
+  constructor(
+    public _elementRef: ElementRef,
+    public _renderer: Renderer2,
+    public _themeSvc: FlxThemeService,
+  ) {}
 }
-export const _MatIconMixinBase = mixinColor(MatIconBase);
+export const _MatIconMixinBase = mixinColor(MatIconBase, 'text');
 
 
 /**
@@ -76,8 +80,10 @@ export class MatIcon extends _MatIconMixinBase implements CanColor {
 
   constructor(
       elementRef: ElementRef,
+      renderer: Renderer2,
+      themeSvc: FlxThemeService,
       @Attribute('aria-hidden') ariaHidden: string) {
-    super(elementRef);
+    super(elementRef, renderer, themeSvc);
 
     // If the user has not explicitly set aria-hidden, mark the icon as hidden, as this is
     // the right thing to do for the majority of icon use-cases.
