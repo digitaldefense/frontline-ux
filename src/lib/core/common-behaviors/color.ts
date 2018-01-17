@@ -83,8 +83,12 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
     private _isTextNode(element: HTMLElement): Boolean {
       const textNodes = [
-        'P', 'H1', 'H2', 'H3', 'H4', 'H5', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'A'
+        'P', 'H1', 'H2', 'H3', 'H4', 'H5', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'
       ];
+      if (element.tagName === 'BUTTON' || element.tagName === 'A') {
+        const classList = element.classList;
+        return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button'));
+      }
       return textNodes.indexOf(element.tagName) !== -1;
     }
   };
