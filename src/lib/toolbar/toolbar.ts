@@ -18,8 +18,8 @@ import {
   Renderer2,
   ViewEncapsulation
 } from '@angular/core';
-// import {CanColor, mixinColor, FlxThemeService, FlxTheme} from '@angular/material/core';
-import {FlxCanColor, mixinFlxColor, FlxThemeService, FlxTheme} from '@angular/material/core';
+import {CanColor, mixinColor, FlxThemeService, FlxTheme} from '@angular/material/core';
+import { MatButton } from '@angular/material/button';
 import {Platform} from '@angular/cdk/platform';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -31,7 +31,7 @@ export class MatToolbarBase {
     public _renderer: Renderer2,
     public _themeSvc: FlxThemeService) {}
 }
-export const _MatToolbarMixinBase = mixinFlxColor(MatToolbarBase);
+export const _MatToolbarMixinBase = mixinColor(MatToolbarBase);
 
 @Directive({
   selector: 'mat-toolbar-row',
@@ -56,11 +56,14 @@ export class MatToolbarRow {}
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class MatToolbar extends _MatToolbarMixinBase implements FlxCanColor, AfterViewInit {
+export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterViewInit {
   // private _subscription: Subscription;
 
   /** Reference to all toolbar row elements that have been projected. */
   @ContentChildren(MatToolbarRow) _toolbarRows: QueryList<MatToolbarRow>;
+
+  /** Reference all toolbar controls */
+  @ContentChildren(MatButton) _controls: QueryList<MatButton>;
 
   constructor(
     elementRef: ElementRef,
@@ -78,6 +81,10 @@ export class MatToolbar extends _MatToolbarMixinBase implements FlxCanColor, Aft
 
     this._checkToolbarMixedModes();
     this._toolbarRows.changes.subscribe(() => this._checkToolbarMixedModes());
+
+    if (this._controls) {
+      this._controls.forEach(btn => { btn.color = 'primaryContrast'; });
+    }
   }
 
   /**

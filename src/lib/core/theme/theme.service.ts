@@ -14,23 +14,24 @@
 
 import { Injectable } from '@angular/core';
 import { FlxTheme } from './theme';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+// import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 // const GRAY_VARIANTS = ['darkest', 'darker', 'dark', 'medium', 'light', 'lighter', 'lighest'];
 
+const defaultTheme = new FlxTheme('blue-blue-light');
+
 @Injectable()
 export class FlxThemeService {
-  private _theme$: Subject<FlxTheme> = new Subject();
-
-  theme = this._theme$.asObservable();
+  theme: BehaviorSubject<FlxTheme> = new BehaviorSubject(defaultTheme);
 
   constructor() {}
 
   /** Initialize the Theme by name */
   setTheme(value: string) {
     const theme = new FlxTheme(value);
-    this._theme$.next(<FlxTheme>theme);
+    this.theme.next(<FlxTheme>theme);
   }
 
   // /** Apply provided theme property as text color */

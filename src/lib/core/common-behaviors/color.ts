@@ -22,13 +22,14 @@ export interface HasElementRef {
   _elementRef: ElementRef;
   _renderer?: Renderer2;
   _themeSvc?: FlxThemeService;
-  _params?: any;
 }
 
 /** Possible color palette values.  */
 // export type ThemePalette = 'primary' | 'accent' | 'warn' | 'primary-x' | 'accent-x' | 'warn-x'
 //   | 'danger' | 'danger-x' | undefined;
 export type ThemePalette = string | undefined;
+
+const textNodes = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'];
 
 /** Mixin to augment a directive with a `color` property. */
 export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
@@ -38,8 +39,11 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
     private _subscription: Subscription;
 
+    private _theme: FlxTheme;
+
     get color(): ThemePalette { return this._color; }
     set color(value: ThemePalette) {
+      console.log('set color', value);
       const colorPalette = value || defaultColor;
 
       if (colorPalette !== this._color) {
@@ -52,6 +56,8 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
         this._color = colorPalette;
       }
+
+      this._updateElemColor();
     }
 
     constructor(...args: any[]) {
@@ -60,11 +66,20 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
       // Set the default color that can be specified from the mixin.
       this.color = defaultColor;
 
-      if (this._themeSvc !== undefined) {
-        this._subscription = this._themeSvc.theme.subscribe((theme: FlxTheme) => {
-          this._applyThemeColors(theme);
-        });
-      }
+      // this._updateElemColor();
+    }
+
+    private _updateElemColor() {
+      if (this._themeSvc === undefined) { return; }
+      this._theme = this._themeSvc.theme.getValue();
+
+      this._applyThemeColors(this._theme);
+
+      // Find a way to enable Subscriptions for DDI. Leave disabled for static accounts
+      // this._subscription = this._themeSvc.theme.subscribe((theme: FlxTheme) => {
+      //   this._theme = theme;
+      //   this._applyThemeColors(theme);
+      // });
     }
 
     private _applyThemeColors(theme) {
@@ -82,9 +97,6 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
     }
 
     private _isTextNode(element: HTMLElement): Boolean {
-      const textNodes = [
-        'P', 'H1', 'H2', 'H3', 'H4', 'H5', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'
-      ];
       if (element.tagName === 'BUTTON' || element.tagName === 'A') {
         const classList = element.classList;
         return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button'));
