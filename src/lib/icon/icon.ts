@@ -30,7 +30,7 @@ export class MatIconBase {
     public _themeSvc: FlxThemeService,
   ) {}
 }
-export const _MatIconMixinBase = mixinColor(MatIconBase, 'text');
+export const _MatIconMixinBase = mixinColor(MatIconBase);
 
 
 /**

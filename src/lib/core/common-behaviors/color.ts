@@ -41,7 +41,6 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
     get color(): ThemePalette { return this._color; }
     set color(value: ThemePalette) {
-      console.log('set color', value);
       const colorPalette = value || defaultColor;
 
       if (colorPalette !== this._color) {
@@ -79,15 +78,14 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
     }
 
     private _applyThemeColors(theme) {
-      if (this._renderer === undefined) { return; }
+      if (this._renderer === undefined || this._color === undefined) { return; }
 
       const elem = this._elementRef.nativeElement;
-      const color = (this._color === undefined) ? 'primary' : this._color;
       if (this._isTextNode(elem)) {
-        this._renderer.setStyle(elem, 'color', theme[color]);
+        this._renderer.setStyle(elem, 'color', theme[this._color]);
       } else {
-        const reverse = color + 'Contrast';
-        this._renderer.setStyle(elem, 'background-color', theme[color]);
+        const reverse = this._color + 'Contrast';
+        this._renderer.setStyle(elem, 'background-color', theme[this._color]);
         this._renderer.setStyle(elem, 'color', theme[reverse]);
       }
     }
