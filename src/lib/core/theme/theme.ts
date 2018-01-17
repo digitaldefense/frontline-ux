@@ -237,6 +237,31 @@ export const flxPalette = {
   }
 };
 
+const white = '#fff';
+const black = '#000';
+
+const contrastMap = {
+  red: ['400', 'A200'],
+  pink: ['400', 'A200'],
+  purple: ['300', 'A200'],
+  deepPurple: ['300', 'A200'],
+  indigo: ['300', 'A200'],
+  blue: ['600', 'A200'],
+  lightBlue: ['700', 'A700'],
+  cyan: ['700', '0'],
+  teal: ['500', '0'],
+  green: ['600', '0'],
+  lightGreen: ['800', '0'],
+  lime: ['500', '0'],
+  yellow: ['0', '0'],
+  amber: ['0', '0'],
+  orange: ['900', '0'],
+  deepOrange: ['600', 'A400'],
+  brown: ['300', '0'],
+  gray: ['600', '0'],
+  blueGray: ['400', '0'],
+};
+
 const basecoats = {
   light: {
     background: flxPalette.gray['50'],
@@ -259,9 +284,11 @@ export class FlxTheme {
   primary: string;
   primaryDark: string;
   primaryLight: string;
+  primaryContrast: string;
   accent: string;
   accentDark: string;
   accentLight: string;
+  accentContrast: string;
   link: string;
   highlight: string;
 
@@ -294,9 +321,20 @@ export class FlxTheme {
     this.primary = flxPalette[primary]['500'];
     this.primaryLight = flxPalette[primary]['300'];
     this.primaryDark = flxPalette[primary]['800'];
+    this.primaryContrast = this._generateContrastLayer('primary', primary);
     this.accent = flxPalette[accent]['A200'];
     this.accentLight = flxPalette[accent]['A100'];
     this.accentDark = flxPalette[accent]['A400'];
+    this.accentContrast = this._generateContrastLayer('accent', accent);
     this.link = flxPalette[accent]['A200'];
+  }
+
+  private _generateContrastLayer(theme, color): string {
+    const val: string = (theme === 'primary') ? contrastMap[color][0] : contrastMap[color][1];
+    return (this._parseColorValue(val) >= 500) ? white : black;
+  }
+
+  private _parseColorValue(color: string): number {
+    return (color.charAt(0) === 'A') ? parseInt(color.substr(1), 10) : parseInt(color, 10);
   }
 }
