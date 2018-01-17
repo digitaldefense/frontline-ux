@@ -329,9 +329,18 @@ export class FlxTheme {
     this.link = flxPalette[accent]['A200'];
   }
 
-  private _generateContrastLayer(theme, color): string {
-    const val: string = (theme === 'primary') ? contrastMap[color][0] : contrastMap[color][1];
-    return (this._parseColorValue(val) >= 500) ? white : black;
+  private _generateContrastLayer(theme: string, color: string): string {
+    let val: string;
+    let threshold: number;
+
+    if (theme === 'primary') {
+      val = contrastMap[color][0];
+      threshold = 500;
+    } else {
+      val = contrastMap[color][1];
+      threshold = 200;
+    }
+    return (this._parseColorValue(val) >= threshold) ? white : black;
   }
 
   private _parseColorValue(color: string): number {
