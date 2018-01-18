@@ -16,6 +16,7 @@ import {ButtonDemo} from '../button/button-demo';
 import {CardDemo} from '../card/card-demo';
 import {CheckboxDemo} from '../checkbox/checkbox-demo';
 import {ChipsDemo} from '../chips/chips-demo';
+import {ColorDemo} from '../color/color-demo';
 import {DatepickerDemo} from '../datepicker/datepicker-demo';
 import {DialogDemo} from '../dialog/dialog-demo';
 import {DrawerDemo} from '../drawer/drawer-demo';
@@ -61,6 +62,7 @@ export const DEMO_APP_ROUTES: Routes = [
     {path: 'card', component: CardDemo},
     {path: 'checkbox', component: CheckboxDemo},
     {path: 'chips', component: ChipsDemo},
+    {path: 'color', component: ColorDemo},
     {path: 'datepicker', component: DatepickerDemo},
     {path: 'dialog', component: DialogDemo},
     {path: 'drawer', component: DrawerDemo},

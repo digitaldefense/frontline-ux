@@ -57,6 +57,7 @@ export class DemoApp {
     {name: 'Card', route: '/card'},
     {name: 'Checkbox', route: '/checkbox'},
     {name: 'Chips', route: '/chips'},
+    {name: 'Color', route: '/color'},
     {name: 'Datepicker', route: '/datepicker'},
     {name: 'Dialog', route: '/dialog'},
     {name: 'Drawer', route: '/drawer'},

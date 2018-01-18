@@ -58,6 +58,7 @@ import {TypographyDemo} from '../typography/typography-demo';
 import {DemoApp, Home} from './demo-app';
 import {DEMO_APP_ROUTES} from './routes';
 import {TableDemoModule} from '../table/table-demo-module';
+import { ColorDemo } from 'color/color-demo';
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import {TableDemoModule} from '../table/table-demo-module';
     CardDemo,
     CheckboxDemo,
     ChipsDemo,
+    ColorDemo,
     ContentElementDialog,
     DatepickerDemo,
     DemoApp,
