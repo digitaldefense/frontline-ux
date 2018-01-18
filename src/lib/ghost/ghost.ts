@@ -36,6 +36,7 @@ export class FlxGhost {
   }
 
   private _applyThemeStyles(body: HTMLElement) {
+    console.log('applyThemeStyles');
     const theme = this._themeSvc.theme.getValue();
     // this._renderer.setStyle(body, 'background-color', theme.background);
     // this._renderer.setStyle(body, 'color', theme.text);

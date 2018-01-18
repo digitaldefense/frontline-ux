@@ -7,7 +7,8 @@
  */
 
 import {OverlayContainer} from '@angular/cdk/overlay';
-import {Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, ViewEncapsulation} from '@angular/core';
+import { FlxThemeService } from '@angular/material/core';
 
 
 /**
@@ -23,7 +24,11 @@ import {Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class EntryApp {}
+export class EntryApp {
+  constructor(private _themeSvc: FlxThemeService) {
+    _themeSvc.setTheme('amber-pink-light');
+  }
+}
 
 /**
  * Home component for welcome message in DemoApp.
@@ -45,6 +50,11 @@ export class Home {}
   moduleId: module.id,
   selector: 'demo-app',
   templateUrl: 'demo-app.html',
+  // template: `
+  //   <div>
+  //     <button mat-button>Color test</button>
+  //   </div>
+  // `,
   styleUrls: ['demo-app.css'],
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,

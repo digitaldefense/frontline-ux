@@ -27,7 +27,9 @@ export interface HasElementRef {
 /** Possible color palette values.  */
 export type ThemePalette = string | undefined;
 
-const textNodes = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'];
+const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'];
+
+const accentElements = ['A', 'BUTTON'];
 
 /** Mixin to augment a directive with a `color` property. */
 export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
@@ -54,27 +56,24 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
         this._color = colorPalette;
       }
 
-      this._updateElemColor();
+      this._applyThemeColors(this._theme);
     }
 
     constructor(...args: any[]) {
       super(...args);
 
+      if (this._themeSvc !== undefined) { this._theme = this._themeSvc.theme.getValue(); }
+
       // Set the default color that can be specified from the mixin.
-      this.color = defaultColor;
+      this._setColor();
     }
 
-    private _updateElemColor() {
-      if (this._themeSvc === undefined) { return; }
-      this._theme = this._themeSvc.theme.getValue();
-
-      this._applyThemeColors(this._theme);
-
-      // Find a way to enable Subscriptions for DDI. Leave disabled for static accounts
-      // this._subscription = this._themeSvc.theme.subscribe((theme: FlxTheme) => {
-      //   this._theme = theme;
-      //   this._applyThemeColors(theme);
-      // });
+    private _setColor() {
+      const elem = this._elementRef.nativeElement;
+      if (accentElements.indexOf(elem.tagName) !== -1) {
+        defaultColor = 'accent';
+      }
+      this.color = defaultColor;
     }
 
     private _applyThemeColors(theme) {
@@ -90,6 +89,8 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
       }
     }
 
+    // Anchor and Button elements need to be handled by their class name since their appearances
+    // can vary depending on button style
     private _isTextNode(element: HTMLElement): Boolean {
       if (element.tagName === 'BUTTON' || element.tagName === 'A') {
         const classList = element.classList;

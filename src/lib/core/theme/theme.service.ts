@@ -12,7 +12,8 @@
  * This is a proprietary addition to Google's Material Design for Angular
  */
 
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 import { FlxTheme } from './theme';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // import { Subject } from 'rxjs/Subject';
@@ -26,12 +27,18 @@ const defaultTheme = new FlxTheme('blue-blue-light');
 export class FlxThemeService {
   theme: BehaviorSubject<FlxTheme> = new BehaviorSubject(defaultTheme);
 
-  constructor() {}
+  constructor(@Inject(DOCUMENT) private _doc: any) {}
 
   /** Initialize the Theme by name */
   setTheme(value: string) {
     const theme = new FlxTheme(value);
     this.theme.next(<FlxTheme>theme);
+    this._applyThemeClass(theme);
+  }
+
+  private _applyThemeClass(theme) {
+    const doc = this._doc.getElementsByTagName('body')[0];
+    doc.classList.add(`fl-theme-${theme.domain}`);
   }
 
   // /** Apply provided theme property as text color */
