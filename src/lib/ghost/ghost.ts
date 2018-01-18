@@ -37,8 +37,8 @@ export class FlxGhost {
 
   private _applyThemeStyles(body: HTMLElement) {
     const theme = this._themeSvc.theme.getValue();
-    this._renderer.setStyle(body, 'background-color', theme.background);
-    this._renderer.setStyle(body, 'color', theme.text);
+    // this._renderer.setStyle(body, 'background-color', theme.background);
+    // this._renderer.setStyle(body, 'color', theme.text);
     this._renderer.addClass(body, `fl-theme-${theme.domain}`);
   }
 }
