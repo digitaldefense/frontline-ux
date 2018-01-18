@@ -3,13 +3,13 @@
     <button mat-button>flat</button>
     <button mat-raised-button>raised</button>
     <button mat-fab>
-      <mat-icon>check</mat-icon>
+      <mat-icon ngClass="fa-check"></mat-icon>
     </button>
     <button mat-fab>Btn</button>
     <a mat-fab routerLink=".">Link</a>
-    <a mat-fab routerLink="."><mat-icon>check</mat-icon></a>
+    <a mat-fab routerLink="."><mat-icon ngClass="fa-check"></mat-icon></a>
     <button mat-mini-fab>
-      <mat-icon>check</mat-icon>
+      <mat-icon ngClass="fa-check"></mat-icon>
     </button>
     <button mat-mini-fab>Btn</button>
     <a mat-mini-fab routerLink=".">Link</a>
@@ -19,10 +19,10 @@
     <a href="http://www.google.com" mat-button color="primary">SEARCH</a>
     <a href="http://www.google.com" mat-raised-button>SEARCH</a>
     <a href="http://www.google.com" mat-fab>
-      <mat-icon>check</mat-icon>
+      <mat-icon ngClass="fa-check"></mat-icon>
     </a>
     <a href="http://www.google.com" mat-mini-fab>
-      <mat-icon>check</mat-icon>
+      <mat-icon ngClass="fa-check"></mat-icon>
     </a>
   </section>
 
@@ -40,27 +40,27 @@
 
   <section>
     <button mat-fab color="primary">
-      <mat-icon>home</mat-icon>
+      <mat-icon ngClass="fa-home"></mat-icon>
     </button>
     <button mat-fab color="accent">
-      <mat-icon>favorite</mat-icon>
+      <mat-icon ngClass="fa-heart"></mat-icon>
     </button>
     <button mat-fab color="warn">
-      <mat-icon>feedback</mat-icon>
+      <mat-icon ngClass="fa-comments"></mat-icon>
     </button>
   </section>
 
   <section>
     <button mat-icon-button color="primary">
-      <mat-icon>menu</mat-icon>
+      <mat-icon ngClass="fa-bars"></mat-icon>
     </button>
 
     <button mat-icon-button color="accent">
-      <mat-icon>favorite</mat-icon>
+      <mat-icon ngClass="fa-heart"></mat-icon>
     </button>
 
     <button mat-icon-button>
-      <mat-icon>more_vert</mat-icon>
+      <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
     </button>
   </section>
 
@@ -80,11 +80,11 @@
     <a href="http://www.google.com" #button3 mat-button color="accent" [disabled]="isDisabled">off</a>
     <button mat-raised-button #button4 color="primary" [disabled]="isDisabled">off</button>
     <button mat-mini-fab [disabled]="isDisabled">
-      <mat-icon>check</mat-icon>
+      <mat-icon ngClass="fa-check"></mat-icon>
     </button>
 
     <button mat-icon-button color="accent" [disabled]="isDisabled">
-      <mat-icon>favorite</mat-icon>
+      <mat-icon ngClass="fa-heart"></mat-icon>
     </button>
   </section>
   <section>
@@ -96,16 +96,16 @@
     <button mat-raised-button>DANCE</button>
   </section>
   <section>
-    <button mat-raised-button>More<mat-icon>more_vert</mat-icon></button>
-    <button mat-raised-button>Check<mat-icon>check</mat-icon></button>
-    <button mat-raised-button>Check<mat-icon>favorite</mat-icon></button>
-    <button mat-raised-button>Last<mat-icon>navigate_before</mat-icon></button>
+    <button mat-raised-button>More<mat-icon ngClass="fa-ellipsis-v"></mat-icon></button>
+    <button mat-raised-button>Check<mat-icon ngClass="fa-check"></mat-icon></button>
+    <button mat-raised-button>Check<mat-icon ngClass="fa-heart"></mat-icon></button>
+    <button mat-raised-button>Last<mat-icon ngClass="fa-angle-left"></mat-icon></button>
   </section>
   <section>
-    <button mat-button>More<mat-icon>more_vert</mat-icon></button>
-    <button mat-button>Check<mat-icon>check</mat-icon></button>
-    <button mat-button>Check<mat-icon>favorite</mat-icon></button>
-    <button mat-button>Last<mat-icon>navigate_before</mat-icon></button>
+    <button mat-button>More<mat-icon ngClass="fa-ellipsis-v"></mat-icon></button>
+    <button mat-button>Check<mat-icon ngClass="fa-check"></mat-icon></button>
+    <button mat-button>Check<mat-icon ngClass="fa-heart"></mat-icon></button>
+    <button mat-button>Last<mat-icon ngClass="fa-angle-left"></mat-icon></button>
   </section>
   <section>
     <button mat-raised-button [disabled]="toggleDisable" (click)="toggleDisable = true">Disable</button>
