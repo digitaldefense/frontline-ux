@@ -11,6 +11,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  // HostBinding,
   Input,
   OnChanges,
   OnInit,
@@ -78,11 +79,14 @@ export class MatIcon extends _MatIconMixinBase implements CanColor {
 
   @Input() ngClass: string[] | Set<string> | { [icn: string]: any };
 
+  // @HostBinding('class') weight: string;
+
   constructor(
       elementRef: ElementRef,
       renderer: Renderer2,
       themeSvc: FlxThemeService,
-      @Attribute('aria-hidden') ariaHidden: string) {
+      @Attribute('aria-hidden') ariaHidden: string,
+      @Attribute('regular') regWeight: string) {
     super(elementRef, renderer, themeSvc);
 
     // If the user has not explicitly set aria-hidden, mark the icon as hidden, as this is
@@ -90,5 +94,7 @@ export class MatIcon extends _MatIconMixinBase implements CanColor {
     if (!ariaHidden) {
       elementRef.nativeElement.setAttribute('aria-hidden', 'true');
     }
+
+    // this.weight = (regWeight == null) ? 'fas' : 'far';
   }
 }
