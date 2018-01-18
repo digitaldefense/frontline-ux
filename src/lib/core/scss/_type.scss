@@ -1,125 +1,6 @@
-// $text-color-light:                $black-87;
-// $text-color-light-secondary:      $black-54;
-// $text-color-light-disabled:       $black-38a;
-
-// $text-color-dark:                #FFFFFF;
-// $text-color-dark-secondary:      $white-70;
-// $text-color-dark-disabled:       $white-50;
-
-$headline-font-size: 1.2rem !default;
-$headline-font-weight: $headings-font-weight !default;
-
-// $title-font-size: 1.4rem !default;
-// $title-font-weight: 300 !default;
-
-// $subtitle-font-size: 0.8rem !default;
-// $subtitle-font-weight: $headings-font-weight !default;
-
 //
-// Headings
+// Text element rules, excluding header and header-like elements
 //
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  margin-bottom: $headings-margin-bottom;
-  font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
-  // color: $headings-color;
-  > small {
-    // color: $text-medium;
-    font-weight: 300;
-    letter-spacing: .05em;
-  }
-}
-
-h1, .h1 { font-size: $font-size-h1; }
-h2, .h2 { font-size: $font-size-h2; }
-h3, .h3 { font-size: $font-size-h3; }
-h4, .h4 { font-size: $font-size-h4; }
-h5, .h5 { font-size: $font-size-h5; }
-h6, .h6 { font-size: $font-size-h6; }
-
-.lead {
-  font-family: $headings-font-family;
-  font-size: $lead-font-size;
-  font-weight: $lead-font-weight;
-  letter-spacing: .05em;
-}
-
-// Type display classes
-.display-1 {
-  // font-family: $headings-font-family;
-  // font-size: $display1-size;
-  // font-weight: $display1-weight;
-  // line-height: $display-line-height;
-  @extend %type-display1;
-}
-.display-2 {
-  // font-family: $headings-font-family;
-  // font-size: $display2-size;
-  // font-weight: $display2-weight;
-  // line-height: $display-line-height;
-  @extend %type-display2;
-}
-.display-3 {
-  // font-family: $headings-font-family;
-  // font-size: $display3-size;
-  // font-weight: $display3-weight;
-  // line-height: $display-line-height;
-  @extend %type-display3;
-}
-.display-4 {
-  // font-family: $headings-font-family;
-  // font-size: $display4-size;
-  // font-weight: $display4-weight;
-  // line-height: $display-line-height;
-  @extend %type-display4;
-}
-
-.headline {
-  // font-size: $headline-font-size;
-  // font-weight: $headline-font-weight;
-  @extend %type-headline;
-}
-
-.title {
-  // display: block;
-  // font-family: $headings-font-family;
-  // font-size: 1.4rem;
-  // font-weight: 300;
-  // letter-spacing: .05em;
-  @extend %type-title;
-}
-
-.subheader {
-  @extend %type-subheader;
-}
-
-.subtitle {
-  // display: block;
-  // font-family: $headings-font-family;
-  // font-size: $font-size-sm;
-  // font-weight: $headings-font-weight;
-  // margin: $spacer 0;
-  @extend %type-subheader;
-}
-
-.caption {
-  @extend %type-caption;
-}
-
-
-
-// h1.title + .subtitle,
-// h2.title + .subtitle,
-// h3.title + .subtitle,
-// h4.title + .subtitle,
-// h5.title + .subtitle,
-// h6.title + .subtitle, {
-//   margin-top: -$headings-margin-bottom;
-// }
-
 
 //
 // Horizontal rules
@@ -129,19 +10,10 @@ hr,
 .flx-divider {
   display: block;
   margin-top: 0;
-  margin-bottom: $spacer-y;
+  margin-bottom: $spacer;
   border: 0;
   .flx-list & {
     margin-bottom: 0;
-  }
-}
-
-.flx-divider {
-  .flx-theme-light & {
-    border-top: $hr-border-width solid $light-divider;
-  }
-  .flx-theme-dark & {
-    border-top: $hr-border-width solid $dark-divider;
   }
 }
 
@@ -154,14 +26,11 @@ small,
 .small {
   // font-size: $small-font-size;
   font-size: 80%;
-  // font-weight: $font-weight-normal;
-  font-weight: $headline-font-weight;
 }
 
 mark,
 .mark {
   padding: $mark-padding;
-  // background-color: $mark-bg;
 }
 
 
@@ -234,18 +103,6 @@ mark,
   }
 }
 
-.fl-hint {
-  font-size: $font-size-sm;
-  font-style: italic;
-
-  .fl-theme-light & {
-    // color: $black-54a;
-  }
-  
-  .fl-theme-dark & {
-    // color: $white-30a;
-  }
-}
 
 // Transformation
 
@@ -265,13 +122,6 @@ kbd,
 .codeblock {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25) inset;
   padding: ($spacer * .5) $spacer;
-  
-  .flx-theme-light & {
-    background-color: $light-toolbar;
-  }
-  .flx-theme-dark & {
-    background-color: $dark-toolbar;
-  }
 }
 
 td.code {

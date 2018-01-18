@@ -3,6 +3,9 @@
 @import 'scss/mixins';
 @import 'scss/reboot';
 
+// Include Frontline core classes
+@import 'scss/type.scss';
+
 @import 'theming/all-theme';
 
 // Include non-theme styles for core.

@@ -1,18 +1,7 @@
-
-.demo-button {
-  button, a {
-    margin: 8px;
-    text-transform: uppercase;
-  }
-
-  section {
-    display: flex;
-    align-items: center;
-    margin: 8px;
-  }
-
-  p {
-    padding: 5px 15px;
-  }
+.palette-color {
+  line-height: 3em;
+  font-weight: bold;
+  padding: 0 1rem;
+  width: 100%;
+  height: 3em;
 }
-
