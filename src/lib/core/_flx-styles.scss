@@ -1,15 +1,25 @@
+@import 'scss/functions';
 @import 'scss/variables';
+@import 'scss/mixins';
 @import 'scss/reboot';
 
-@import 'core';
+@import 'theming/all-theme';
 
 // Include non-theme styles for core.
 @include mat-core();
 
+// Default colors. These will be overwritten by each component
+$primary: mat-palette($mat-blue);
+$accent:  mat-palette($mat-blue, A200, A100, A400);
 
-.demo-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+// Define the light and dark base themes
+$light-theme:   mat-light-theme($primary, $accent);
+$dark-theme:    mat-dark-theme($primary, $accent);
+
+// Base light and dark classes
+.fl-theme-light {
+  @include angular-material-theme($light-theme);
+}
+.fl-theme-dark {
+  @include angular-material-theme($dark-theme);
 }
