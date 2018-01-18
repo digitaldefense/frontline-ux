@@ -290,7 +290,9 @@ export class FlxTheme {
   accentLight: string;
   accentContrast: string;
   link: string;
-  highlight: string;
+  warning: string;
+  danger: string;
+  success: string;
 
   constructor(name: string) {
     this.name = name;
@@ -314,7 +316,9 @@ export class FlxTheme {
   private _generateBaseCoat(domain) {
     this.background = basecoats[domain].background;
     this.text = basecoats[domain].text;
-    this.highlight = basecoats[domain].highlight;
+    this.warning = flxPalette['amber']['800'];
+    this.danger = flxPalette['red']['800'];
+    this.success = flxPalette['green']['700'];
   }
 
   private _generateTopCoat(primary, accent) {
