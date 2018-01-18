@@ -1,3 +1,5 @@
+<h1 class="headline">Button Toggle</h1>
+<hr>
 <p>
   <mat-checkbox (change)="isVertical = $event.checked">Show Button Toggles Vertical</mat-checkbox>
 </p>
@@ -10,10 +12,10 @@
 
 <section class="demo-section">
   <mat-button-toggle-group name="alignment" [vertical]="isVertical">
-    <mat-button-toggle value="left"><mat-icon>format_align_left</mat-icon></mat-button-toggle>
-    <mat-button-toggle value="center"><mat-icon>format_align_center</mat-icon></mat-button-toggle>
-    <mat-button-toggle value="right"><mat-icon>format_align_right</mat-icon></mat-button-toggle>
-    <mat-button-toggle value="justify" [disabled]="isDisabled"><mat-icon>format_align_justify</mat-icon></mat-button-toggle>
+    <mat-button-toggle value="left"><mat-icon ngClass="fa-align-left"></mat-icon></mat-button-toggle>
+    <mat-button-toggle value="center"><mat-icon ngClass="fa-align-center"></mat-icon></mat-button-toggle>
+    <mat-button-toggle value="right"><mat-icon ngClass="fa-align-right"></mat-icon></mat-button-toggle>
+    <mat-button-toggle value="justify" [disabled]="isDisabled"><mat-icon ngClass="fa-align-justify"></mat-icon></mat-button-toggle>
   </mat-button-toggle-group>
 </section>
 
@@ -22,13 +24,13 @@
 <section class="demo-section">
   <mat-button-toggle-group name="checkbox" [vertical]="isVertical" [disabled]="isDisabled">
     <mat-button-toggle value="bold">
-      <mat-icon>format_bold</mat-icon>
+      <mat-icon ngClass="fa-bold"></mat-icon>
     </mat-button-toggle>
     <mat-button-toggle value="italic">
-      <mat-icon>format_italic</mat-icon>
+      <mat-icon ngClass="fa-italic"></mat-icon>
     </mat-button-toggle>
     <mat-button-toggle value="underline">
-      <mat-icon>format_underline</mat-icon>
+      <mat-icon ngClass="fa-underline"></mat-icon>
     </mat-button-toggle>
   </mat-button-toggle-group>
 </section>
