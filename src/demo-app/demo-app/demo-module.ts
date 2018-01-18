@@ -11,6 +11,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {AutocompleteDemo} from '../autocomplete/autocomplete-demo';
 import {BaselineDemo} from '../baseline/baseline-demo';
 import {ButtonToggleDemo} from '../button-toggle/button-toggle-demo';
@@ -66,6 +67,7 @@ import { ColorDemo } from 'color/color-demo';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(DEMO_APP_ROUTES),
+    FlexLayoutModule,
     DemoMaterialModule,
     LayoutModule,
     TableDemoModule,

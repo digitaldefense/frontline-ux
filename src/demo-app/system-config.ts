@@ -36,6 +36,9 @@ System.config({
     '@angular/platform-browser-dynamic':
       'node:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
 
+    // Flex Layout
+    '@angular/flex-layout': 'node:@angular/flex-layout/bundles/flex-layout.umd.js',
+
     // TODO(devversion): replace once the index.ts file for the Material package has been added.
     '@angular/material': 'dist/packages/material/public-api.js',
     '@angular/material-experimental': 'dist/packages/material-experimental/index.js',
