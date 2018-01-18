@@ -1,0 +1,18 @@
+<h1 class="mat-display-2">Frontline Material</h1>
+<h2 class="mat-display-1">Getting started</h2>
+<p>Include
+  <code>FlThemeService</code> in the app provider as a Component dependency. Use the
+  <code>set()</code> method to establish the theme colors.</p>
+<pre class="codeblock">import &#123; FlThemeService &#125; from './wui/theme2/theme.service';
+
+@Component(&#123;
+  selector: 'app-root',
+  ...
+  providers: [FlThemeService]
+&#125;)
+export class AppComponent &#123;
+
+  constructor(private _theme: FlThemeService) &#123;
+    this._theme.set('teal-lightBlue-light');
+  &#125;
+&#125;</pre>

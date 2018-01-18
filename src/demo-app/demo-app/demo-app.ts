@@ -30,6 +30,7 @@ export class EntryApp {}
  */
 @Component({
   selector: 'home',
+  // templateUrl: 'demo-getting-started.html',
   template: `
     <p>Welcome to the development demos for Angular Material!</p>
     <p>Open the sidenav to select a demo.</p>
