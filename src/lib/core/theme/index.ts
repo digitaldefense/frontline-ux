@@ -14,6 +14,5 @@ import { FlxThemeService } from './theme.service';
 })
 export class FlxThemeProviders {}
 
-export { FlxCanColor, mixinFlxColor, FlxColor } from './color';
 export { FlxTheme } from './theme';
 export { FlxThemeService } from './theme.service';
