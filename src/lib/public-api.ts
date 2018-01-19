@@ -7,7 +7,6 @@
  */
 
 export * from './version';
-export * from '@angular/material/ghost';
 export * from '@angular/material/autocomplete';
 export * from '@angular/material/button';
 export * from '@angular/material/button-toggle';
@@ -40,3 +39,5 @@ export * from '@angular/material/table';
 export * from '@angular/material/tabs';
 export * from '@angular/material/toolbar';
 export * from '@angular/material/tooltip';
+export * from '@angular/material/ghost';
+export * from '@angular/material/hue';

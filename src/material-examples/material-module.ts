@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 
 import {CdkTableModule} from '@angular/cdk/table';
 import {
-  FlxGhostModule,
+  FlxGhostModule, FlxHueModule,
   MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatPaginatorModule,
   MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule,
   MatDialogModule, MatDividerModule, MatGridListModule, MatIconModule, MatInputModule,
@@ -15,6 +15,7 @@ import {
 @NgModule({
   exports: [
     FlxGhostModule,
+    FlxHueModule,
     CdkTableModule,
     MatAutocompleteModule,
     MatButtonModule,
