@@ -16,8 +16,10 @@ import {
   Input,
   OnDestroy,
   Output,
+  Renderer2
 } from '@angular/core';
-import {CanColor, CanDisable, mixinColor, mixinDisabled} from '@angular/material/core';
+import {CanColor, CanDisable, mixinColor, mixinDisabled,
+  FlxThemeService} from '@angular/material/core';
 import {Subject} from 'rxjs/Subject';
 
 
@@ -42,10 +44,13 @@ export class MatChipSelectionChange {
 // Boilerplate for applying mixins to MatChip.
 /** @docs-private */
 export class MatChipBase {
-  constructor(public _elementRef: ElementRef) {}
+  constructor(
+    public _elementRef: ElementRef,
+    public _renderer: Renderer2,
+    public _themeSvc: FlxThemeService) {}
 }
 
-export const _MatChipMixinBase = mixinColor(mixinDisabled(MatChipBase), 'primary');
+export const _MatChipMixinBase = mixinColor(mixinDisabled(MatChipBase));
 
 
 /**
@@ -175,8 +180,11 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
     return this.selectable ? this.selected.toString() : null;
   }
 
-  constructor(public _elementRef: ElementRef) {
-    super(_elementRef);
+  constructor(
+    public _elementRef: ElementRef,
+    public _renderer: Renderer2,
+    public _themeSvc: FlxThemeService) {
+    super(_elementRef, _renderer, _themeSvc);
   }
 
   ngOnDestroy(): void {
