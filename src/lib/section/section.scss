@@ -1,0 +1,22 @@
+@import '../core/scss/variables';
+
+.flx-section {
+  display: block;
+  margin-bottom: $spacer;
+}
+
+.flx-section-header {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  display: block;
+  margin-bottom: $spacer;
+  position: relative;
+}
+
+.flx-section-header .mat-title {
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-image-slice: 1 !important;
+  margin: 0;
+  padding-bottom: .2em;
+}

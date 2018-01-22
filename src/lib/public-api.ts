@@ -40,4 +40,4 @@ export * from '@angular/material/tabs';
 export * from '@angular/material/toolbar';
 export * from '@angular/material/tooltip';
 export * from '@angular/material/ghost';
-export * from '@angular/material/hue';
+export * from '@angular/material/section';
