@@ -8,7 +8,7 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "@angular/material/hue",
+    "flatModuleId": "@angular/material/color",
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true
   }

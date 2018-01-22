@@ -6,6 +6,6 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-export * from './hue-module';
-export * from './hue';
+export * from './color-module';
+export * from './color';
 

@@ -7,12 +7,12 @@
  */
 
 import {NgModule} from '@angular/core';
-import {FlxBackgroundColor} from './hue';
+import {FlxColor} from './color';
 
 
 @NgModule({
   imports: [],
-  exports: [FlxBackgroundColor],
-  declarations: [FlxBackgroundColor],
+  exports: [FlxColor],
+  declarations: [FlxColor],
 })
-export class FlxHueModule {}
+export class FlxColorModule {}

@@ -17,16 +17,16 @@ import { FlxThemeService, FlxTheme } from '@angular/material/core';
 // type ThemePalette = 'primary' | 'accent' | 'warning' | 'danger' | 'success';
 
 @Directive({
-  selector: '[background-color]',
+  selector: '[fcolor]',
 })
-export class FlxBackgroundColor {
+export class FlxColor {
   private _theme: FlxTheme;
 
   constructor(
     private _element: ElementRef,
     private _renderer: Renderer2,
     private _themeSvc: FlxThemeService,
-    @Attribute('background-color') color: string) {
+    @Attribute('fcolor') color: string) {
       this._theme = _themeSvc.theme.getValue();
       this._setElemColor(color);
     }

@@ -94,6 +94,7 @@ System.config({
     '@angular/material/toolbar': 'dist/packages/material/toolbar/index.js',
     '@angular/material/tooltip': 'dist/packages/material/tooltip/index.js',
     '@angular/material/ghost': 'dist/packages/material/ghost/index.js',
+    '@angular/material/color': 'dist/packages/material/color/index.js',
     '@angular/material/section': 'dist/packages/material/section/index.js',
   },
   packages: {
