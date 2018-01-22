@@ -39,8 +39,9 @@ export class FlxColor {
       this._color = color;
     } else {
       let contrast = color + 'Contrast';
+      let palette = ['danger', 'warning', 'success'];
       this._color = this._theme[color];
-      this._contrast = this._theme[contrast];
+      this._contrast = (palette.indexOf(color) !== -1) ? 'white' : this._theme[contrast];
     }
     this._renderElemColor();
   }
