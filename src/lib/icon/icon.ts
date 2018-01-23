@@ -69,7 +69,7 @@ export const _MatIconMixinBase = mixinColor(MatIconBase);
   inputs: ['color'],
   host: {
     'role': 'img',
-    'class': 'mat-icon fas fa-fw',
+    'class': 'mat-icon fas',
   },
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
