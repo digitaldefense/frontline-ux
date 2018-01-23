@@ -42,4 +42,5 @@ export * from '@angular/material/tooltip';
 export * from '@angular/material/ghost';
 export * from '@angular/material/avatar';
 export * from '@angular/material/color';
+export * from '@angular/material/page';
 export * from '@angular/material/section';

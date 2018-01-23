@@ -96,6 +96,7 @@ System.config({
     '@angular/material/ghost': 'dist/packages/material/ghost/index.js',
     '@angular/material/avatar': 'dist/packages/material/avatar/index.js',
     '@angular/material/color': 'dist/packages/material/color/index.js',
+    '@angular/material/page': 'dist/packages/material/page/index.js',
     '@angular/material/section': 'dist/packages/material/section/index.js',
   },
   packages: {
