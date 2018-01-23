@@ -1,0 +1,5 @@
+<img [src]="image" alt="" class="flx-avatar-image" *ngIf="hasImage">
+<mat-icon [ngClass]="icon" class="flx-avatar-icon" *ngIf="hasIcon"></mat-icon>
+<span class="flx-avatar-letter" *ngIf="!hasImage && !hasIcon">
+  <ng-content></ng-content>
+</span>

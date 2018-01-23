@@ -10,7 +10,6 @@ import {
   Attribute,
   Directive,
   ElementRef,
-  Input,
   Renderer2 } from '@angular/core';
 import { FlxThemeService, FlxTheme } from '@angular/material/core';
 

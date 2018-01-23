@@ -9,6 +9,7 @@
 import {NgModule} from '@angular/core';
 import {
   FlxGhostModule,
+  FlxAvatarModule,
   FlxColorModule,
   FlxSectionModule,
   MatAutocompleteModule,
@@ -60,6 +61,7 @@ import {PortalModule} from '@angular/cdk/portal';
   exports: [
     FlxThemeProviders,
     FlxGhostModule,
+    FlxAvatarModule,
     FlxColorModule,
     FlxSectionModule,
     MatAutocompleteModule,

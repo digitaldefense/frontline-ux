@@ -30,6 +30,7 @@
 @import '../../tooltip/tooltip-theme';
 @import '../../snack-bar/snack-bar-theme';
 @import '../../form-field/form-field-theme';
+@import '../../avatar/avatar-theme';
 
 
 // Create a theme.
@@ -65,4 +66,5 @@
   @include mat-toolbar-theme($theme);
   @include mat-tooltip-theme($theme);
   @include mat-snack-bar-theme($theme);
+  @include flx-avatar-theme($theme);
 }

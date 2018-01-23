@@ -60,6 +60,7 @@ import {DemoApp, Home} from './demo-app';
 import {DEMO_APP_ROUTES} from './routes';
 import {TableDemoModule} from '../table/table-demo-module';
 import { ColorDemo } from 'color/color-demo';
+import { AvatarDemo } from 'avatar/avatar-demo';
 
 @NgModule({
   imports: [
@@ -74,6 +75,7 @@ import { ColorDemo } from 'color/color-demo';
   ],
   declarations: [
     AutocompleteDemo,
+    AvatarDemo,
     BaselineDemo,
     ButtonDemo,
     ButtonToggleDemo,

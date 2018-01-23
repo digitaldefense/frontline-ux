@@ -63,6 +63,7 @@ export class DemoApp {
   dark = false;
   navItems = [
     {name: 'Autocomplete', route: '/autocomplete'},
+    {name: 'Avatar', route: '/avatar'},
     {name: 'Button Toggle', route: '/button-toggle'},
     {name: 'Button', route: '/button'},
     {name: 'Card', route: '/card'},
