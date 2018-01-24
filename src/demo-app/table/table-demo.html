@@ -223,7 +223,7 @@
                      (toggleColorColumn)="toggleColorColumn()" *ngIf="selection.isEmpty()">
 
     <button mat-menu-item (click)="progressSortingDisabled = !progressSortingDisabled">
-      <mat-icon>sort</mat-icon>
+      <mat-icon ngClass="fa-sort"></mat-icon>
       Toggle Progress Sorting
     </button>
   </table-header-demo>

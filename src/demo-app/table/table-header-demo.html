@@ -4,15 +4,15 @@
 
 <div class="actions">
   <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
+    <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="shiftColumns.next()">
-      <mat-icon>subdirectory_arrow_left</mat-icon>
+      <mat-icon ngClass="fa-arrow-alt-from-right"></mat-icon>
       Shift Columns Left
     </button>
     <button mat-menu-item (click)="toggleColorColumn.next()">
-      <mat-icon>color_lens</mat-icon>
+      <mat-icon ngClass="fa-paint-brush"></mat-icon>
       Toggle Color Column
     </button>
     <ng-content></ng-content>

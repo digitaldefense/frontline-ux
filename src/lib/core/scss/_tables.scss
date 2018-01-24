@@ -1,25 +1,25 @@
 // Tables
 
+$table-border-color-light: rgba(0,0,0,0.12);
 $table-border-color-dark: #696969;
 
 .table {
+  font-size: $font-size-sm;
   width: 100%;
   max-width: 100%;
-  margin-bottom: $spacer;
 
-  caption {
-    @extend %type-caption;
-    display: table-caption;
-    caption-side: top;
-    margin: 0;
-    padding: $spacer;
-  }
+  // caption {
+  //   @extend %type-caption;
+  //   display: table-caption;
+  //   caption-side: top;
+  //   margin: 0;
+  //   padding: $spacer;
+  // }
 
   th,
   td {
-    // font-size: $font-size-sm;
     padding: $table-cell-padding;
-    vertical-align: top;
+    // vertical-align: top;
   }
 
   td {
@@ -28,14 +28,14 @@ $table-border-color-dark: #696969;
   }
 
   thead th {
-    @extend %type-subheader;
-    // font-size: .75rem;
-    vertical-align: bottom;
+    // @extend %type-subheader;
+    // // font-size: .75rem;
+    // vertical-align: bottom;
   }
 
   tbody + tbody {
-    border-top-width: 2 * $table-border-width;
-    border-top-style: solid;
+    // border-top-width: 2 * $table-border-width;
+    // border-top-style: solid;
   }
 
   // .table {
@@ -52,7 +52,7 @@ $table-border-color-dark: #696969;
 
   .fl-theme-dark & {
     th {
-      color: $white-70;
+      // color: $white-70;
     }
     td,
     tbody + tbody {
@@ -69,7 +69,7 @@ $table-border-color-dark: #696969;
 .table-sm {
   th,
   td {
-    padding: $table-sm-cell-padding;
+    // padding: $table-sm-cell-padding;
   }
 }
 
@@ -79,19 +79,19 @@ $table-border-color-dark: #696969;
 // Add borders all around the table and between all the columns.
 
 .table-bordered {
-  border-width: $table-border-width;
-  border-style: solid;
+  // border-width: $table-border-width;
+  // border-style: solid;
 
   th,
   td {
-    border-width: $table-border-width;
-    border-style: solid;
+    // border-width: $table-border-width;
+    // border-style: solid;
   }
 
   thead {
     th,
     td {
-      border-bottom-width: (2 * $table-border-width);
+      // border-bottom-width: (2 * $table-border-width);
     }
   }
 }
@@ -129,82 +129,93 @@ $table-border-color-dark: #696969;
 // will display normally.
 
 .table-responsive {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
+  // display: block;
+  // width: 100%;
+  // overflow-x: auto;
+  // -ms-overflow-style: -ms-autohiding-scrollbar; // See https://github.com/twbs/bootstrap/pull/10057
 
-  // Prevent double border on horizontal scroll due to use of `display: block;`
-  &.table-bordered {
-    border: 0;
-  }
+  // // Prevent double border on horizontal scroll due to use of `display: block;`
+  // &.table-bordered {
+  //   border: 0;
+  // }
 }
 
-.ngx-datatable {
-    // background-color: #fafafa;
+// .ngx-datatable {
+//     // background-color: #fafafa;
 
-    text-align: left;
-    width: 75%;
-    margin: 0 auto;
+//     text-align: left;
+//     width: 75%;
+//     margin: 0 auto;
 
-    .datatable-header {
-        // background-color: #EEE;
-    }
+//     .datatable-header {
+//         // background-color: #EEE;
+//     }
 
-    .datatable-footer {
-        // background-color: #EaEaEa;
-    }
-}
+//     .datatable-footer {
+//         // background-color: #EaEaEa;
+//     }
+// }
 
-.ngx-datatable.fixed-height {
-    height: 50vh;
-}
+// .ngx-datatable.fixed-height {
+//     height: 50vh;
+// }
 
 
-$table-border-color-light: $light-divider;
-$table-border-color-dark: $dark-divider;
+// $table-border-color-light: $light-divider;
+// $table-border-color-dark: $dark-divider;
 
 // THEME APPLICATION
-.flx-theme-light {
-  .table {
-    th { color: $light-hint; }
-    td,
-    tbody + tbody {
-      border-top-color: $table-border-color-light;
-    }
-  }
-
-  .table-striped {
-    tbody tr:nth-of-type(odd) {
-      // background-color: $table-bg-accent;
-    }
-  }
-
-  .table-hover {
-    tbody tr {
-      @include hover {
-        background-color: $gray-100;
-      }
-    }
+.fl-theme-light {
+  .table td {
+    border-color: $table-border-color-light;
   }
 }
 
-.flx-theme-dark {
-  .table {
-    th {
-      color: $dark-hint;
-    }
-    td,
-    tbody + tbody {
-      border-top-color: $table-border-color-dark;
-    }
-  }
-
-  .table-hover {
-    tbody tr {
-      @include hover {
-        // background-color: #eee;
-      }
-    }
+.fl-theme-dark {
+  .table td {
+    border-color: $table-border-color-dark;
   }
 }
+// .flx-theme-light {
+//   .table {
+//     th { color: $light-hint; }
+//     td,
+//     tbody + tbody {
+//       border-top-color: $table-border-color-light;
+//     }
+//   }
+
+//   .table-striped {
+//     tbody tr:nth-of-type(odd) {
+//       // background-color: $table-bg-accent;
+//     }
+//   }
+
+//   .table-hover {
+//     tbody tr {
+//       @include hover {
+//         background-color: $gray-100;
+//       }
+//     }
+//   }
+// }
+
+// .flx-theme-dark {
+//   .table {
+//     th {
+//       color: $dark-hint;
+//     }
+//     td,
+//     tbody + tbody {
+//       border-top-color: $table-border-color-dark;
+//     }
+//   }
+
+//   .table-hover {
+//     tbody tr {
+//       @include hover {
+//         // background-color: #eee;
+//       }
+//     }
+//   }
+// }
