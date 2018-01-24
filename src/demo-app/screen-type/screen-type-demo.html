@@ -3,27 +3,27 @@
 <mat-grid-list cols="6" rowHeight="1:2">
   <mat-grid-tile [class.active]="(isHandset | async)?.matches"
                 colspan="2">
-    <mat-icon>smartphone</mat-icon>
+    <mat-icon ngClass="fa-mobile"></mat-icon>
     <p>Handset</p>
   </mat-grid-tile>
   <mat-grid-tile [class.active]="(isTablet | async)?.matches"
                 colspan="2">
-    <mat-icon>tablet_android</mat-icon>
+    <mat-icon ngClass="fa-tablet"></mat-icon>
     <p>Tablet</p>
   </mat-grid-tile>
   <mat-grid-tile [class.active]="(isWeb | async)?.matches"
                 colspan="2">
-    <mat-icon>laptop</mat-icon>
+    <mat-icon ngClass="fa-laptop"></mat-icon>
     <p>Web</p>
   </mat-grid-tile>
   <mat-grid-tile [class.active]="(isPortrait | async)?.matches"
                 colspan="3">
-    <mat-icon>stay_current_portrait</mat-icon>
+    <mat-icon ngClass="fa-rectangle-portrait"></mat-icon>
     <p>Portrait</p>
   </mat-grid-tile>
   <mat-grid-tile [class.active]="(isLandscape | async)?.matches"
                 colspan="3">
-    <mat-icon>stay_current_landscape</mat-icon>
+    <mat-icon ngClass="fa-rectangle-landscape"></mat-icon>
     <p>Landscape</p>
   </mat-grid-tile>
 </mat-grid-list>
