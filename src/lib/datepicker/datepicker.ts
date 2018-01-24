@@ -135,9 +135,7 @@ export class MatDatepicker<D> implements OnDestroy {
    * than a popup and elements have more padding to allow for bigger touch targets.
    */
   @Input()
-  get touchUi(): boolean {
-    return this._touchUi;
-  }
+  get touchUi(): boolean { return this._touchUi; }
   set touchUi(value: boolean) {
     this._touchUi = coerceBooleanProperty(value);
   }
@@ -163,7 +161,7 @@ export class MatDatepicker<D> implements OnDestroy {
    * Emits new selected date when selected date changes.
    * @deprecated Switch to the `dateChange` and `dateInput` binding on the input element.
    */
-  @Output() selectedChanged = new EventEmitter<D>();
+  @Output() selectedChanged: EventEmitter<D> = new EventEmitter<D>();
 
   /** Classes to be passed to the date picker panel. Supports the same syntax as `ngClass`. */
   @Input() panelClass: string | string[];
@@ -181,7 +179,7 @@ export class MatDatepicker<D> implements OnDestroy {
   private _opened = false;
 
   /** The id for the datepicker calendar. */
-  id = `mat-datepicker-${datepickerUid++}`;
+  id: string = `mat-datepicker-${datepickerUid++}`;
 
   /** The currently selected date. */
   get _selected(): D | null { return this._validSelected; }

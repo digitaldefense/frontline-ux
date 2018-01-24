@@ -149,7 +149,6 @@ export class MatRadioGroup extends _MatRadioGroupMixinBase
     // label relative to the checkbox. As such, they are inverted.
     return this.labelPosition == 'after' ? 'start' : 'end';
   }
-
   set align(v) {
     this.labelPosition = (v == 'start') ? 'after' : 'before';
   }
@@ -160,7 +159,6 @@ export class MatRadioGroup extends _MatRadioGroupMixinBase
   get labelPosition(): 'before' | 'after' {
     return this._labelPosition;
   }
-
   set labelPosition(v) {
     this._labelPosition = (v == 'before') ? 'before' : 'after';
     this._markRadiosForCheck();
@@ -323,7 +321,7 @@ export const _MatRadioButtonMixinBase =
     mixinColor(mixinDisableRipple(MatRadioButtonBase), 'accent');
 
 /**
- * A radio-button. May be inside of
+ * A Material design radio-button. Typically placed inside of `<mat-radio-group>` elements.
  */
 @Component({
   moduleId: module.id,
@@ -390,10 +388,7 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
 
   /** The value of this radio button. */
   @Input()
-  get value(): any {
-    return this._value;
-  }
-
+  get value(): any { return this._value; }
   set value(value: any) {
     if (this._value != value) {
       this._value = value;
@@ -419,7 +414,6 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
     // label relative to the checkbox. As such, they are inverted.
     return this.labelPosition == 'after' ? 'start' : 'end';
   }
-
   set align(v) {
     this.labelPosition = (v == 'start') ? 'after' : 'before';
   }
@@ -431,7 +425,6 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
   get labelPosition(): 'before' | 'after' {
     return this._labelPosition || (this.radioGroup && this.radioGroup.labelPosition) || 'after';
   }
-
   set labelPosition(value) {
     this._labelPosition = value;
   }
@@ -476,7 +469,7 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
   /** Whether this radio is required. */
   private _required: boolean;
 
-  /** Value assigned to this radio.*/
+  /** Value assigned to this radio. */
   private _value: any = null;
 
   /** The child ripple instance. */
@@ -488,7 +481,7 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
   /** Reference to the current focus ripple. */
   private _focusRipple: RippleRef | null;
 
-  /** Unregister function for _radioDispatcher **/
+  /** Unregister function for _radioDispatcher */
   private _removeUniqueSelectionListener: () => void = () => {};
 
   /** The native `<input type=radio>` element */
@@ -540,7 +533,7 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
 
   ngAfterViewInit() {
     this._focusMonitor
-      .monitor(this._inputElement.nativeElement, false)
+      .monitor(this._inputElement.nativeElement)
       .subscribe(focusOrigin => this._onInputFocusChange(focusOrigin));
   }
 

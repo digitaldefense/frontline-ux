@@ -95,7 +95,7 @@ export class CdkOverlayOrigin {
 })
 export class CdkConnectedOverlay implements OnDestroy, OnChanges {
   private _overlayRef: OverlayRef;
-  private _templatePortal: TemplatePortal<any>;
+  private _templatePortal: TemplatePortal;
   private _hasBackdrop = false;
   private _backdropSubscription = Subscription.EMPTY;
   private _positionSubscription = Subscription.EMPTY;
@@ -256,6 +256,14 @@ export class CdkConnectedOverlay implements OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if ((changes['origin'] || changes['_deprecatedOrigin']) && this._position) {
+      this._position.setOrigin(this.origin.elementRef);
+
+      if (this.open) {
+        this._position.apply();
+      }
+    }
+
     if (changes['open'] || changes['_deprecatedOpen']) {
       this.open ? this._attachOverlay() : this._detachOverlay();
     }

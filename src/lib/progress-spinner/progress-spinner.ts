@@ -99,7 +99,7 @@ export class MatProgressSpinner extends _MatProgressSpinnerMixinBase implements 
   private _strokeWidth: number;
   private _fallbackAnimation = false;
 
-  /** The width and height of the host element. Will grow with stroke width. **/
+  /** The width and height of the host element. Will grow with stroke width. */
   _elementSize = BASE_SIZE;
 
   /** Tracks diameters of existing instances to de-dupe generated styles (default d = 100) */
@@ -113,15 +113,14 @@ export class MatProgressSpinner extends _MatProgressSpinnerMixinBase implements 
 
   /** The diameter of the progress spinner (will set width and height of svg). */
   @Input()
-  get diameter(): number {
-    return this._diameter;
-  }
+  get diameter(): number { return this._diameter; }
   set diameter(size: number) {
     this._diameter = coerceNumberProperty(size);
 
     if (!this._fallbackAnimation && !MatProgressSpinner.diameters.has(this._diameter)) {
       this._attachStyleNode();
     }
+    this._updateElementSize();
   }
   private _diameter = BASE_SIZE;
 
@@ -130,7 +129,6 @@ export class MatProgressSpinner extends _MatProgressSpinnerMixinBase implements 
   get strokeWidth(): number {
     return this._strokeWidth || this.diameter / 10;
   }
-
   set strokeWidth(value: number) {
     this._strokeWidth = coerceNumberProperty(value);
   }
@@ -165,7 +163,7 @@ export class MatProgressSpinner extends _MatProgressSpinnerMixinBase implements 
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.strokeWidth || changes.diameter) {
-      this._elementSize = this._diameter + Math.max(this.strokeWidth - BASE_STROKE_WIDTH, 0);
+      this._updateElementSize();
     }
   }
 
@@ -228,6 +226,11 @@ export class MatProgressSpinner extends _MatProgressSpinnerMixinBase implements 
         .replace(/START_VALUE/g, `${0.95 * this._strokeCircumference}`)
         .replace(/END_VALUE/g, `${0.2 * this._strokeCircumference}`)
         .replace(/DIAMETER/g, `${this.diameter}`);
+  }
+
+  /** Updates the spinner element size based on its diameter. */
+  private _updateElementSize() {
+    this._elementSize = this._diameter + Math.max(this.strokeWidth - BASE_STROKE_WIDTH, 0);
   }
 }
 

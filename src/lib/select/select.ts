@@ -215,7 +215,7 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
   /** Whether or not the overlay panel is open. */
   private _panelOpen = false;
 
-  /** Whether filling out the select is required in the form.  */
+  /** Whether filling out the select is required in the form. */
   private _required: boolean = false;
 
   /** The scroll position of the overlay panel, calculated to center the selected option. */
@@ -298,7 +298,7 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
   ];
 
   /** Whether the select is focused. */
-  focused = false;
+  focused: boolean = false;
 
   /** A name for this control that can be used by `mat-form-field`. */
   controlType = 'mat-select';
@@ -326,7 +326,7 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
 
   /** Placeholder to be shown if no value has been selected. */
   @Input()
-  get placeholder() { return this._placeholder; }
+  get placeholder(): string { return this._placeholder; }
   set placeholder(value: string) {
     this._placeholder = value;
     this.stateChanges.next();
@@ -334,8 +334,8 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
 
   /** Whether the component is required. */
   @Input()
-  get required() { return this._required; }
-  set required(value: any) {
+  get required(): boolean { return this._required; }
+  set required(value: boolean) {
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
@@ -371,7 +371,7 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
 
   /** Value of the select control. */
   @Input()
-  get value() { return this._value; }
+  get value(): any { return this._value; }
   set value(newValue: any) {
     if (newValue !== this._value) {
       this.writeValue(newValue);
@@ -391,7 +391,7 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
 
   /** Unique id of the element. */
   @Input()
-  get id() { return this._id; }
+  get id(): string { return this._id; }
   set id(value: string) {
     this._id = value || this._uid;
     this.stateChanges.next();
@@ -450,7 +450,7 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
    * to facilitate the two-way binding for the `value` input.
    * @docs-private
    */
-  @Output() valueChange = new EventEmitter<any>();
+  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private _viewportRuler: ViewportRuler,
@@ -469,6 +469,8 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
           _parentFormGroup, ngControl);
 
     if (this.ngControl) {
+      // Note: we provide the value accessor through here, instead of
+      // the `providers` to avoid running into a circular import.
       this.ngControl.valueAccessor = this;
     }
 
@@ -548,7 +550,6 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
       this._panelOpen = false;
       this._changeDetectorRef.markForCheck();
       this._onTouched();
-      this.focus();
     }
   }
 
@@ -646,6 +647,7 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
     const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
     const isOpenKey = keyCode === ENTER || keyCode === SPACE;
 
+    // Open the select on ALT + arrow key to match the native <select>
     if (isOpenKey || ((this.multiple || event.altKey) && isArrowKey)) {
       event.preventDefault(); // prevents the page from scrolling down when pressing space
       this.open();
@@ -657,23 +659,27 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
   /** Handles keyboard events when the selected is open. */
   private _handleOpenKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
+    const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
+    const manager = this._keyManager;
 
     if (keyCode === HOME || keyCode === END) {
       event.preventDefault();
-      keyCode === HOME ? this._keyManager.setFirstItemActive() :
-                         this._keyManager.setLastItemActive();
-    } else if ((keyCode === ENTER || keyCode === SPACE) && this._keyManager.activeItem) {
+      keyCode === HOME ? manager.setFirstItemActive() : manager.setLastItemActive();
+    } else if (isArrowKey && event.altKey) {
+      // Close the select on ALT + arrow key to match the native <select>
       event.preventDefault();
-      this._keyManager.activeItem._selectViaInteraction();
+      this.close();
+    } else if ((keyCode === ENTER || keyCode === SPACE) && manager.activeItem) {
+      event.preventDefault();
+      manager.activeItem._selectViaInteraction();
     } else {
-      const isArrowKey = keyCode === DOWN_ARROW || keyCode === UP_ARROW;
-      const previouslyFocusedIndex = this._keyManager.activeItemIndex;
+      const previouslyFocusedIndex = manager.activeItemIndex;
 
-      this._keyManager.onKeydown(event);
+      manager.onKeydown(event);
 
-      if (this._multiple && isArrowKey && event.shiftKey && this._keyManager.activeItem &&
-          this._keyManager.activeItemIndex !== previouslyFocusedIndex) {
-        this._keyManager.activeItem._selectViaInteraction();
+      if (this._multiple && isArrowKey && event.shiftKey && manager.activeItem &&
+          manager.activeItemIndex !== previouslyFocusedIndex) {
+        manager.activeItem._selectViaInteraction();
       }
     }
   }
@@ -715,8 +721,9 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
    * "blur" to the panel when it opens, causing a false positive.
    */
   _onBlur() {
+    this.focused = false;
+
     if (!this.disabled && !this.panelOpen) {
-      this.focused = false;
       this._onTouched();
       this._changeDetectorRef.markForCheck();
       this.stateChanges.next();
@@ -844,8 +851,9 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
     ).subscribe(event => {
       this._onSelect(event.source);
 
-      if (!this.multiple) {
+      if (!this.multiple && this._panelOpen) {
         this.close();
+        this.focus();
       }
     });
 
@@ -1201,19 +1209,28 @@ export class MatSelect extends _MatSelectMixinBase implements AfterContentInit, 
     return this._triggerFontSize * SELECT_ITEM_HEIGHT_EM;
   }
 
-  // Implemented as part of MatFormFieldControl.
+  /**
+   * Implemented as part of MatFormFieldControl.
+   * @docs-private
+   */
   setDescribedByIds(ids: string[]) {
     this._ariaDescribedby = ids.join(' ');
   }
 
-  // Implemented as part of MatFormFieldControl.
+  /**
+   * Implemented as part of MatFormFieldControl.
+   * @docs-private
+   */
   onContainerClick() {
     this.focus();
     this.open();
   }
 
-  // Implemented as part of MatFormFieldControl.
-  get shouldLabelFloat(): boolean {
+  /**
+   * Implemented as part of MatFormFieldControl.
+   * @docs-private
+   */
+  get shouldPlaceholderFloat(): boolean {
     return this._panelOpen || !this.empty;
   }
 }

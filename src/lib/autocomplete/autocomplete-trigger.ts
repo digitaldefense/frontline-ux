@@ -41,6 +41,7 @@ import {MatFormField} from '@angular/material/form-field';
 import {DOCUMENT} from '@angular/common';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import {defer} from 'rxjs/observable/defer';
 import {fromEvent} from 'rxjs/observable/fromEvent';
 import {merge} from 'rxjs/observable/merge';
 import {of as observableOf} from 'rxjs/observable/of';
@@ -116,7 +117,7 @@ export function getMatAutocompleteMissingPanelError(): Error {
 })
 export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   private _overlayRef: OverlayRef | null;
-  private _portal: TemplatePortal<any>;
+  private _portal: TemplatePortal;
   private _panelOpen: boolean = false;
 
   /** Strategy that is used to position the panel. */
@@ -128,8 +129,8 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   /** The subscription for closing actions (some are bound to document). */
   private _closingActionsSubscription: Subscription;
 
-  /** Stream of escape keyboard events. */
-  private _escapeEventStream = new Subject<void>();
+  /** Stream of keyboard events that can close the panel. */
+  private _closeKeyEventStream = new Subject<void>();
 
   /** View -> model callback called when value changes */
   _onChange: (value: any) => void = () => {};
@@ -137,7 +138,7 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   /** View -> model callback called when autocomplete has been touched */
   _onTouched = () => {};
 
-  /* The autocomplete panel to be attached to this trigger. */
+  /** The autocomplete panel to be attached to this trigger. */
   @Input('matAutocomplete') autocomplete: MatAutocomplete;
 
   constructor(private _element: ElementRef, private _overlay: Overlay,
@@ -151,10 +152,10 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
 
   ngOnDestroy() {
     this._destroyPanel();
-    this._escapeEventStream.complete();
+    this._closeKeyEventStream.complete();
   }
 
-  /* Whether or not the autocomplete panel is open. */
+  /** Whether or not the autocomplete panel is open. */
   get panelOpen(): boolean {
     return this._panelOpen && this.autocomplete.showPanel;
   }
@@ -193,7 +194,7 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
     return merge(
       this.optionSelections,
       this.autocomplete._keyManager.tabOut.pipe(filter(() => this._panelOpen)),
-      this._escapeEventStream,
+      this._closeKeyEventStream,
       this._outsideClickStream,
       this._overlayRef ?
           this._overlayRef.detachments().pipe(filter(() => this._panelOpen)) :
@@ -202,9 +203,17 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   }
 
   /** Stream of autocomplete option selections. */
-  get optionSelections(): Observable<MatOptionSelectionChange> {
-    return merge(...this.autocomplete.options.map(option => option.onSelectionChange));
-  }
+  optionSelections: Observable<MatOptionSelectionChange> = defer(() => {
+    if (this.autocomplete && this.autocomplete.options) {
+     return merge(...this.autocomplete.options.map(option => option.onSelectionChange));
+    }
+
+    // If there are any subscribers before `ngAfterViewInit`, the `autocomplete` will be undefined.
+    // Return a stream that we'll replace with the real one once everything is in place.
+    return this._zone.onStable
+        .asObservable()
+        .pipe(take(1), switchMap(() => this.optionSelections));
+  });
 
   /** The currently active option, coerced to MatOption type. */
   get activeOption(): MatOption | null {
@@ -280,9 +289,11 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   _handleKeydown(event: KeyboardEvent): void {
     const keyCode = event.keyCode;
 
-    if (keyCode === ESCAPE && this.panelOpen) {
+    // Close when pressing ESCAPE or ALT + UP_ARROW, based on the a11y guidelines.
+    // See: https://www.w3.org/TR/wai-aria-practices-1.1/#textbox-keyboard-interaction
+    if (this.panelOpen && (keyCode === ESCAPE || (keyCode === UP_ARROW && event.altKey))) {
       this._resetActiveItem();
-      this._escapeEventStream.next();
+      this._closeKeyEventStream.next();
       event.stopPropagation();
     } else if (this.activeOption && keyCode === ENTER && this.panelOpen) {
       this.activeOption._selectViaInteraction();
@@ -430,7 +441,7 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
     }
   }
 
-   /**
+  /**
    * This method closes the panel, and if a value is specified, also sets the associated
    * control to that value. It will also mark the control as dirty if this interaction
    * stemmed from the user.
@@ -490,7 +501,7 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   }
 
   private _getOverlayPosition(): PositionStrategy {
-    this._positionStrategy =  this._overlay.position().connectedTo(
+    this._positionStrategy = this._overlay.position().connectedTo(
         this._getConnectedElement(),
         {originX: 'start', originY: 'bottom'}, {overlayX: 'start', overlayY: 'top'})
         .withFallbackPosition(
@@ -508,7 +519,7 @@ export class MatAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
     return this._getConnectedElement().nativeElement.getBoundingClientRect().width;
   }
 
-  /** Reset active item to -1 so arrow events will activate the correct options.*/
+  /** Reset active item to -1 so arrow events will activate the correct options. */
   private _resetActiveItem(): void {
     this.autocomplete._keyManager.setActiveItem(-1);
   }

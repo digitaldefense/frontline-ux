@@ -57,13 +57,14 @@ export const _MatExpansionPanelMixinBase = mixinDisabled(MatExpansionPanelBase);
 /** MatExpansionPanel's states. */
 export type MatExpansionPanelState = 'expanded' | 'collapsed';
 
+/** Counter for generating unique element ids. */
+let uniqueId = 0;
+
 /**
- * <mat-expansion-panel> component.
+ * <mat-expansion-panel>
  *
  * This component can be used as a single element to show expandable content, or as one of
- * multiple children of an element with the MatAccordion directive attached.
- *
- * Please refer to README.md for examples on how to use it.
+ * multiple children of an element with the MdAccordion directive attached.
  */
 @Component({
   moduleId: module.id,
@@ -75,7 +76,7 @@ export type MatExpansionPanelState = 'expanded' | 'collapsed';
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   inputs: ['disabled', 'expanded'],
-  outputs: ['opened', 'closed'],
+  outputs: ['opened', 'closed', 'expandedChange'],
   animations: [matExpansionAnimations.bodyExpansion],
   host: {
     'class': 'mat-expansion-panel',
@@ -91,9 +92,7 @@ export class MatExpansionPanel extends _MatExpansionPanelMixinBase
 
   /** Whether the toggle indicator should be hidden. */
   @Input()
-  get hideToggle(): boolean {
-    return this._hideToggle;
-  }
+  get hideToggle(): boolean { return this._hideToggle; }
   set hideToggle(value: boolean) {
     this._hideToggle = coerceBooleanProperty(value);
   }
@@ -109,7 +108,10 @@ export class MatExpansionPanel extends _MatExpansionPanelMixinBase
   @ContentChild(MatExpansionPanelContent) _lazyContent: MatExpansionPanelContent;
 
   /** Portal holding the user's content. */
-  _portal: TemplatePortal<any>;
+  _portal: TemplatePortal;
+
+  /** ID for the associated header element. Used for a11y labelling. */
+  _headerId = `mat-expansion-panel-header-${uniqueId++}`;
 
   constructor(@Optional() @Host() accordion: MatAccordion,
               _changeDetectorRef: ChangeDetectorRef,
@@ -148,7 +150,7 @@ export class MatExpansionPanel extends _MatExpansionPanelMixinBase
         filter(() => this.expanded && !this._portal),
         take(1)
       ).subscribe(() => {
-        this._portal = new TemplatePortal<any>(this._lazyContent._template, this._viewContainerRef);
+        this._portal = new TemplatePortal(this._lazyContent._template, this._viewContainerRef);
       });
     }
   }

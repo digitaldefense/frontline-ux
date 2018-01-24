@@ -102,9 +102,7 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
 
   /** Whether the chip is selected. */
   @Input()
-  get selected(): boolean {
-    return this._selected;
-  }
+  get selected(): boolean { return this._selected; }
   set selected(value: boolean) {
     this._selected = coerceBooleanProperty(value);
     this.selectionChange.emit({
@@ -128,11 +126,8 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
    * Whether or not the chips are selectable. When a chip is not selectable,
    * changes to it's selected state are always ignored.
    */
-  @Input() get selectable(): boolean {
-    return this._selectable;
-  }
-
-
+  @Input()
+  get selectable(): boolean { return this._selectable; }
   set selectable(value: boolean) {
     this._selectable = coerceBooleanProperty(value);
   }
@@ -140,11 +135,8 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
   /**
    * Determines whether or not the chip displays the remove styling and emits (remove) events.
    */
-  @Input() get removable(): boolean {
-    return this._removable;
-  }
-
-
+  @Input()
+  get removable(): boolean { return this._removable; }
   set removable(value: boolean) {
     this._removable = coerceBooleanProperty(value);
   }
@@ -156,7 +148,8 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
   _onBlur = new Subject<MatChipEvent>();
 
   /** Emitted when the chip is selected or deselected. */
-  @Output() selectionChange = new EventEmitter<MatChipSelectionChange>();
+  @Output() selectionChange: EventEmitter<MatChipSelectionChange>
+      = new EventEmitter<MatChipSelectionChange>();
 
   /** Emitted when the chip is destroyed. */
   @Output() destroyed = new EventEmitter<MatChipEvent>();
@@ -165,16 +158,16 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
    * Emitted when the chip is destroyed.
    * @deprecated Use 'destroyed' instead.
    */
-  @Output() destroy = this.destroyed;
+  @Output() destroy: EventEmitter<MatChipEvent> = this.destroyed;
 
   /** Emitted when a chip is to be removed. */
-  @Output() removed = new EventEmitter<MatChipEvent>();
+  @Output() removed: EventEmitter<MatChipEvent> = new EventEmitter<MatChipEvent>();
 
   /**
    * Emitted when a chip is to be removed.
    * @deprecated Use `removed` instead.
    */
-  @Output('remove') onRemove = this.removed;
+  @Output('remove') onRemove: EventEmitter<MatChipEvent> = this.removed;
 
   get ariaSelected(): string | null {
     return this.selectable ? this.selected.toString() : null;
