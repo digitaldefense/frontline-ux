@@ -6,7 +6,7 @@
 // Flat and raised button standards
 $mat-button-padding: 0 16px !default;
 $mat-button-min-width: 88px !default;
-$mat-button-margin: 0 !default;
+$mat-button-margin: 8px !default;
 $mat-button-line-height: 36px !default;
 $mat-button-border-radius: 2px !default;
 $mat-button-focus-transition: opacity 200ms $swift-ease-in-out-timing-function,
@@ -16,6 +16,7 @@ $mat-button-focus-transition: opacity 200ms $swift-ease-in-out-timing-function,
 $mat-icon-button-size: 40px !default;
 $mat-icon-button-border-radius: 50% !default;
 $mat-icon-button-line-height: 24px !default;
+$mat-icon-button-margin: 4px !default;
 
 // Fab standards
 $mat-fab-border-radius: 50% !default;

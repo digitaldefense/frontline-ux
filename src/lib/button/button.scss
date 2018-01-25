@@ -37,6 +37,7 @@
 }
 
 .mat-icon-button {
+  margin: $mat-icon-button-margin;
   padding: 0;
 
   // Reset the min-width from the button base.
@@ -61,6 +62,15 @@
   .mat-button-wrapper > * {
     vertical-align: middle;
   }
+}
+
+// Sibling buttons should collapse their margins
+.mat-button + .mat-button,
+.mat-raised-button + .mat-raised-button,
+.mat-raised-button + .mat-button,
+.mat-button + .mat-raised-button,
+.mat-icon-button + .mat-icon-button {
+  margin-left: 0;
 }
 
 // The ripple container should match the bounds of the entire button.
