@@ -98,6 +98,7 @@ System.config({
     '@angular/material/color': 'dist/packages/material/color/index.js',
     '@angular/material/page': 'dist/packages/material/page/index.js',
     '@angular/material/section': 'dist/packages/material/section/index.js',
+    '@angular/material/spacer': 'dist/packages/material/spacer/index.js',
   },
   packages: {
     // Thirdparty barrels.
