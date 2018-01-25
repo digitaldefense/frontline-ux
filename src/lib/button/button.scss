@@ -86,7 +86,7 @@
 .mat-button-focus-overlay {
   // The button spec calls for focus on raised buttons (and FABs) to be indicated with a
   // black, 12% opacity shade over the normal color (for both light and dark themes).
-  background-color: rgba(black, 0.16);
+  background-color: rgba(black, 0.12);
   border-radius: inherit;
   opacity: 0;
 

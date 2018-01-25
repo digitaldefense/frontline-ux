@@ -29,7 +29,7 @@ export type ThemePalette = string | undefined;
 
 const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'];
 
-const accentElements = ['A', 'BUTTON'];
+const accentElements = ['A'];
 
 /** Mixin to augment a directive with a `color` property. */
 export function mixinColor<T extends Constructor<HasElementRef>>(base: T,

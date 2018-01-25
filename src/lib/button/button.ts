@@ -97,7 +97,7 @@ export class MatButtonBase {
   ) {}
 }
 export const _MatButtonMixinBase = mixinColor(
-  mixinDisabled(mixinDisableRipple(MatButtonBase)), 'accent');
+  mixinDisabled(mixinDisableRipple(MatButtonBase)));
 
 
 /**
