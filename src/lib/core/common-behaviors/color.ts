@@ -41,7 +41,7 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
     private _theme: FlxTheme;
 
-    get color(): ThemePalette { return this._color; }
+    get color(): ThemePalette { console.log('get color', this._color); return this._color; }
     set color(value: ThemePalette) {
       const colorPalette = value || defaultColor;
 
@@ -65,15 +65,17 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
       if (this._themeSvc !== undefined) { this._theme = this._themeSvc.theme.getValue(); }
 
       // Set the default color that can be specified from the mixin.
-      this._setColor();
+      this._setDefaultColor();
     }
 
-    private _setColor() {
+    private _setDefaultColor() {
       const elem = this._elementRef.nativeElement;
-      if (accentElements.indexOf(elem.tagName) !== -1) {
-        defaultColor = 'accent';
+      if (elem.tagName === 'A') {
+        this.color = defaultColor;
       }
-      this.color = defaultColor;
+      if (defaultColor !== undefined) {
+        this.color = defaultColor;
+      }
     }
 
     private _applyThemeColors(theme) {
@@ -97,6 +99,15 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
         return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button'));
       }
       return textNodes.indexOf(element.tagName) !== -1;
+    }
+
+    private _isButton(element: HTMLElement): Boolean {
+      if (element.tagName === 'BUTTON' || element.tagName === 'A') {
+        const classList = element.classList;
+        return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button' ||
+          classList.contains('mat-raised-button') || classList.contains('mat-fab')));
+      }
+      return false;
     }
   };
 }
