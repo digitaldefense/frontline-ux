@@ -30,6 +30,7 @@ $mat-mini-fab-padding: 8px !default;
 %mat-button-base {
   box-sizing: border-box;
   position: relative;
+  text-transform: uppercase;
 
   // Reset browser <button> styles.
   @include mat-button-reset();
