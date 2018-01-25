@@ -1,15 +1,149 @@
-<div class="demo-card-container">
-  <mat-card>
-    Hello
-  </mat-card>
+<flx-page _title="Card">
+  <h2 class="mat-headline">A card is a sheet of material that serves as an entry point to more detailed information.</h2>
+  <p>Cards are a convenient means of displaying content composed of different elements. They’re also well-suited for showcasing elements whose size or supported actions vary, like photos with captions of variable length.</p>
+  <p>Cards may contain a photo, text, and a link about a single subject. They may display content containing elements of varying size, such as photos with captions of variable length.</p>
 
   <mat-card>
-    <mat-card-title-group>
-        <mat-card-title>Card with title</mat-card-title>
-        <mat-card-subtitle>Subtitle</mat-card-subtitle>
-        <img mat-card-md-image>
-    </mat-card-title-group>
+    <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+    <mat-card-title>Lena Lake</mat-card-title>
+    <mat-card-content>Dominated by a shoulder of The Brothers, this forest lake was formed thousands of years ago by a massive rock slide that dammed the valley.</mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Share</button>
+      <button mat-button>Explore</button>
+    </mat-card-actions>
   </mat-card>
+
+  <flx-section title="Content block combinations">
+    <div fxLayout="row" fxLayoutGap="32px">
+      <div fxFlex="33%">
+        <mat-card>
+          <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+          <mat-card-content>Dominated by a shoulder of The Brothers, this forest lake was formed thousands of years ago by a massive rock slide that dammed the valley.</mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex="33%">
+        <mat-card>
+          <mat-card-title-group>
+            <flx-avatar icon="fa-tree"></flx-avatar>
+            <mat-card-title>Lena Lake</mat-card-title>
+            <mat-card-subtitle>Washington, USA</mat-card-subtitle>
+          </mat-card-title-group>
+          <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+          <mat-card-content>Dominated by a shoulder of The Brothers, this forest lake was formed thousands of years ago by a massive rock slide that dammed the valley.</mat-card-content>
+          <mat-card-actions>
+            <button mat-button>Share</button>
+            <button mat-button>Explore</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div fxFlex="33%">
+        <mat-card>
+          <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+          <mat-card-title>Lena Lake</mat-card-title>
+          <mat-card-subtitle>Washington, USA</mat-card-subtitle>
+          <mat-card-actions>
+            <button mat-button>Share</button>
+            <button mat-button>Explore</button>
+            <flx-spacer></flx-spacer>
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-chevron-up"></mat-icon>
+            </button>
+          </mat-card-actions>
+          <mat-card-content>Dominated by a shoulder of The Brothers, this forest lake was formed thousands of years ago by a massive rock slide that dammed the valley.</mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="32px">
+      <div fxFlex="33%">
+        <mat-card>
+          <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+          <mat-card-actions align="end">
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-heart"></mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-bookmark"></mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-reply"></mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div fxFlex="33%">
+        <mat-card>
+          <mat-card-media-group>
+            <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+            <mat-card-title>Lena Lake</mat-card-title>
+            <mat-card-subtitle>Washington, USA</mat-card-subtitle>
+            <mat-card-actions>
+              <button mat-button>Share</button>
+              <button mat-button>Explore</button>
+            </mat-card-actions>
+          </mat-card-media-group>
+        </mat-card>
+      </div>
+      <div fxFlex="33%">
+        <mat-card>
+          <mat-card-media-group>
+            <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+            <mat-card-title>Lena Lake</mat-card-title>
+          </mat-card-media-group>
+          <mat-card-actions>
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-heart"></mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-bookmark"></mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-reply"></mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </flx-section>
+
+  <flx-section title="Dividers in cards">
+    <div fxLayout="row" fxLayoutGap="32px">
+      <div fxFlex="33%">
+      </div>
+      <div fxFlex="33%">
+        <mat-card>
+          <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+          <mat-card-title>Lena Lake</mat-card-title>
+          <mat-card-subtitle>Washington, USA</mat-card-subtitle>
+          <mat-divider></mat-divider>
+          <mat-card-actions>
+            <button mat-button>Share</button>
+            <button mat-button>Explore</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div fxFlex="33%">
+        <mat-card>
+          <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
+          <mat-card-title>Lena Lake</mat-card-title>
+          <mat-card-subtitle>Washington, USA</mat-card-subtitle>
+          <mat-card-content>
+            <p>Dominated by a shoulder of The Brothers, this forest lake was formed thousands of years ago by a massive rock slide that dammed the valley.</p>
+            <mat-divider [inset]="true"></mat-divider>
+            <p><strong>Tonight's availability</strong></p>
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <mat-icon ngClass="fa-clock"></mat-icon>
+              <button mat-button>5:30PM</button>
+              <button mat-button>7:30PM</button>
+              <button mat-button>9:00PM</button>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="primary">Reserve</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </flx-section>
 
   <mat-card>
     <mat-card-subtitle>Subtitle</mat-card-subtitle>
@@ -43,36 +177,4 @@
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </mat-card-footer>
   </mat-card>
-
-  <mat-card>
-    <img mat-card-image src="https://material.angularjs.org/latest/img/washedout.png">
-    <mat-card-title>Content Title</mat-card-title>
-    <mat-card-content>
-      <p>Here is some content</p>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-
-  <mat-card>
-    <mat-card-header>
-      <img mat-card-avatar>
-      <mat-card-title>Header title</mat-card-title>
-      <mat-card-subtitle>Header subtitle</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angularjs.org/latest/img/washedout.png">
-    <mat-card-content>
-      <p>Here is some content</p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="demo-card-blue mat-card-flat">
-    <mat-card-title>Easily customizable</mat-card-title>
-    <mat-card-actions>
-      <button mat-button>First</button>
-      <button mat-button>Second</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+</flx-page>

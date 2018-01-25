@@ -194,3 +194,23 @@ export class MatCardHeader {}
   host: {'class': 'mat-card-title-group'}
 })
 export class MatCardTitleGroup {}
+
+
+/**
+ * Component to encapsulate card media and provide a space for title/action overlays
+ * @docs-private
+ */
+@Component({
+  moduleId: module.id,
+  selector: 'mat-card-media-group',
+  templateUrl: 'card-media-group.html',
+  encapsulation: ViewEncapsulation.None,
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {'class': 'mat-card-media-group'}
+})
+export class MatCardMediaGroup {
+  @Input('src') media: string;
+  @Input() size: string;
+  @Input() align: string;
+}

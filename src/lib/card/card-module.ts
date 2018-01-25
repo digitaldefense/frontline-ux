@@ -23,6 +23,7 @@ import {
   MatCardImage,
   MatCardXlImage,
   MatCardAvatar,
+  MatCardMediaGroup
 } from './card';
 
 
@@ -44,11 +45,12 @@ import {
     MatCardXlImage,
     MatCardAvatar,
     MatCommonModule,
+    MatCardMediaGroup
   ],
   declarations: [
-    MatCard, MatCardHeader, MatCardTitleGroup, MatCardContent, MatCardTitle, MatCardSubtitle,
-    MatCardActions, MatCardFooter, MatCardSmImage, MatCardMdImage, MatCardLgImage, MatCardImage,
-    MatCardXlImage, MatCardAvatar,
+    MatCard, MatCardHeader, MatCardTitleGroup, MatCardContent, MatCardTitle,
+    MatCardSubtitle, MatCardActions, MatCardFooter, MatCardSmImage, MatCardMdImage, MatCardLgImage,
+    MatCardImage, MatCardXlImage, MatCardAvatar, MatCardMediaGroup
   ],
 })
 export class MatCardModule {}

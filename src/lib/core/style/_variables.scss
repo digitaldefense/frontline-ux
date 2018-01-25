@@ -15,6 +15,9 @@ $z-index-drawer: 100 !default;
 // Global constants
 $pi: 3.14159265;
 
+// Duplicate $spacer variable
+$mat-spacer: 16px !default;
+
 // Padding between input toggles and their labels
 $mat-toggle-padding: 8px !default;
 // Width and height of input toggles
