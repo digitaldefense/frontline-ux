@@ -41,7 +41,7 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
     private _theme: FlxTheme;
 
-    get color(): ThemePalette { console.log('get color', this._color); return this._color; }
+    get color(): ThemePalette { return this._color; }
     set color(value: ThemePalette) {
       const colorPalette = value || defaultColor;
 
