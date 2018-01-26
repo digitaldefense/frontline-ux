@@ -14,6 +14,7 @@ import {
   Directive,
   ElementRef,
   OnDestroy,
+  OnInit,
   Optional,
   Self,
   Renderer2,
@@ -26,6 +27,7 @@ import {
   mixinColor,
   mixinDisabled,
   mixinDisableRipple,
+  FlxTheme,
   FlxThemeService
 } from '@angular/material/core';
 
@@ -119,13 +121,17 @@ export const _MatButtonMixinBase = mixinColor(
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatButton extends _MatButtonMixinBase
-    implements OnDestroy, CanDisable, CanColor, CanDisableRipple {
+    implements OnDestroy, CanDisable, CanColor, CanDisableRipple, OnInit {
 
   /** Whether the button is round. */
   _isRoundButton: boolean = this._hasHostAttributes('mat-fab', 'mat-mini-fab');
 
   /** Whether the button is icon button. */
   _isIconButton: boolean = this._hasHostAttributes('mat-icon-button');
+
+  // Need the color value for the overlay state
+  overlay: string;
+  private _theme: FlxTheme;
 
   constructor(elementRef: ElementRef,
               renderer: Renderer2,
@@ -134,10 +140,23 @@ export class MatButton extends _MatButtonMixinBase
               private _focusMonitor: FocusMonitor) {
     super(elementRef, renderer, themeSvc);
 
+    this._theme = this._themeSvc.theme.getValue();
+
     this._focusMonitor.monitor(this._elementRef.nativeElement, true);
 
     if (this._isRoundButton) {
       this.color = DEFAULT_ROUND_BUTTON_COLOR;
+    }
+  }
+
+  ngOnInit() {
+    // Apply the icon color to the background overlay.
+    // Just realized this should only apply to icon toggles -- not buttons et al
+    const elem = this._elementRef.nativeElement;
+    if (this.color === undefined && elem.classList.contains('mat-icon-button')) {
+      this.overlay = (this._theme.domain === 'light') ? '#000' : '#fff';
+    } else if (this.color !== undefined && elem.classList.contains('mat-icon-button')) {
+      this.overlay = this._theme[this.color];
     }
   }
 

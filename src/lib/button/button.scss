@@ -24,6 +24,29 @@
   }
 }
 
+// .mat-button.mat-primary:hover,
+// .mat-button.mat-accent:hover,
+// .mat-button.mat-success:hover,
+// .mat-button.mat-danger:hover,
+// .mat-button.mat-warning:hover,
+.mat-icon-button.mat-primary:hover,
+.mat-icon-button.mat-accent:hover,
+.mat-icon-button.mat-success:hover,
+.mat-icon-button.mat-danger:hover,
+.mat-icon-button.mat-warning:hover {
+  .mat-button-focus-overlay {
+    opacity: .26;
+  }
+}
+
+.fl-theme-light .mat-icon-button:hover {
+  .mat-button-focus-overlay { opacity: .12; }
+}
+
+.fl-theme-dark .mat-icon-button:hover {
+  .mat-button-focus-overlay { opacity: .2; }
+}
+
 .mat-raised-button {
   @extend %mat-raised-button;
 }
