@@ -1,3 +1,30 @@
+<flx-page _title="Button">
+  <flx-section title="Button types">
+    <div fxLayout="row" fxLayoutGap="32px">
+      <div fxFlex>
+        <mat-card style="text-align: center">
+          <button mat-fab color="accent">
+            <mat-icon ngClass="fa-plus"></mat-icon>
+          </button>
+        </mat-card>
+        <p>Floating action button</p>
+      </div>
+      <div fxFlex>
+        <mat-card style="text-align: center">
+          <button mat-raised-button color="accent">Button</button>
+        </mat-card>
+        <p>Raised button</p>
+      </div>
+      <div fxFlex>
+        <mat-card style="text-align: center">
+          <button mat-button color="accent">Button</button>
+        </mat-card>
+        <p>Flat button</p>
+      </div>
+    </div>
+  </flx-section>
+</flx-page>
+
 <div class="demo-button">
   <flx-section title="Button types">
     <button mat-button>flat</button>
