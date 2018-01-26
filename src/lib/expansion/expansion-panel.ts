@@ -11,7 +11,6 @@ import {
   ChangeDetectorRef,
   Component,
   Directive,
-  forwardRef,
   Host,
   Input,
   OnChanges,
@@ -25,7 +24,6 @@ import {
 } from '@angular/core';
 import {CdkAccordionItem} from '@angular/cdk/accordion';
 import {UniqueSelectionDispatcher} from '@angular/cdk/collections';
-import {CanDisable, mixinDisabled} from '@angular/material/core';
 import {TemplatePortal} from '@angular/cdk/portal';
 import {Subject} from 'rxjs/Subject';
 import {take} from 'rxjs/operators/take';
@@ -36,24 +34,6 @@ import {coerceBooleanProperty} from '@angular/cdk/coercion';
 import {MatExpansionPanelContent} from './expansion-panel-content';
 import {matExpansionAnimations} from './expansion-animations';
 
-// Boilerplate for applying mixins to MatExpansionPanel.
-/** @docs-private */
-@Component({
-  template: '',
-  moduleId: module.id,
-  encapsulation: ViewEncapsulation.None,
-  preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class MatExpansionPanelBase extends CdkAccordionItem {
-  constructor(accordion: MatAccordion,
-              _changeDetectorRef: ChangeDetectorRef,
-              _uniqueSelectionDispatcher: UniqueSelectionDispatcher) {
-    super(accordion, _changeDetectorRef, _uniqueSelectionDispatcher);
-  }
-}
-export const _MatExpansionPanelMixinBase = mixinDisabled(MatExpansionPanelBase);
-
 /** MatExpansionPanel's states. */
 export type MatExpansionPanelState = 'expanded' | 'collapsed';
 
@@ -61,7 +41,7 @@ export type MatExpansionPanelState = 'expanded' | 'collapsed';
 let uniqueId = 0;
 
 /**
- * <mat-expansion-panel>
+ * `<mat-expansion-panel>`
  *
  * This component can be used as a single element to show expandable content, or as one of
  * multiple children of an element with the MdAccordion directive attached.
@@ -82,14 +62,10 @@ let uniqueId = 0;
     'class': 'mat-expansion-panel',
     '[class.mat-expanded]': 'expanded',
     '[class.mat-expansion-panel-spacing]': '_hasSpacing()',
-  },
-  providers: [
-    {provide: _MatExpansionPanelMixinBase, useExisting: forwardRef(() => MatExpansionPanel)}
-  ],
+  }
 })
-export class MatExpansionPanel extends _MatExpansionPanelMixinBase
-    implements CanDisable, AfterContentInit, OnChanges, OnDestroy {
-
+export class MatExpansionPanel extends CdkAccordionItem
+    implements AfterContentInit, OnChanges, OnDestroy {
   /** Whether the toggle indicator should be hidden. */
   @Input()
   get hideToggle(): boolean { return this._hideToggle; }
@@ -99,7 +75,7 @@ export class MatExpansionPanel extends _MatExpansionPanelMixinBase
   private _hideToggle = false;
 
   /** Stream that emits for changes in `@Input` properties. */
-  _inputChanges = new Subject<SimpleChanges>();
+  readonly _inputChanges = new Subject<SimpleChanges>();
 
   /** Optionally defined accordion the expansion panel belongs to. */
   accordion: MatAccordion;

@@ -18,7 +18,7 @@ import {
 } from '@angular/core';
 import {coerceBooleanProperty} from '@angular/cdk/coercion';
 import {take} from 'rxjs/operators/take';
-import {InteractivityChecker} from './interactivity-checker';
+import {InteractivityChecker} from '../interactivity-checker/interactivity-checker';
 import {DOCUMENT} from '@angular/common';
 
 
@@ -27,7 +27,7 @@ import {DOCUMENT} from '@angular/common';
  *
  * This class currently uses a relatively simple approach to focus trapping.
  * It assumes that the tab order is the same as DOM order, which is not necessarily true.
- * Things like tabIndex > 0, flex `order`, and shadow roots can cause to two to misalign.
+ * Things like `tabIndex > 0`, flex `order`, and shadow roots can cause to two to misalign.
  */
 export class FocusTrap {
   private _startAnchor: HTMLElement | null;
@@ -308,6 +308,7 @@ export class FocusTrapFactory {
  * Directive for trapping focus within a region.
  * @docs-private
  * @deprecated
+ * @deletion-target 6.0.0
  */
 @Directive({
   selector: 'cdk-focus-trap',

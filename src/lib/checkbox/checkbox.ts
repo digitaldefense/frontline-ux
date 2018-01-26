@@ -36,7 +36,6 @@ import {
   mixinDisabled,
   mixinDisableRipple,
   mixinTabIndex,
-  RippleConfig,
   RippleRef,
 } from '@angular/material/core';
 import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxClickAction} from './checkbox-config';
@@ -148,6 +147,7 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
   /**
    * Whether or not the checkbox should appear before or after the label.
    * @deprecated
+   * @deletion-target 6.0.0
    */
   @Input()
   get align(): 'start' | 'end' {
@@ -166,22 +166,20 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
   @Input() name: string | null = null;
 
   /** Event emitted when the checkbox's `checked` value changes. */
-  @Output() change: EventEmitter<MatCheckboxChange> = new EventEmitter<MatCheckboxChange>();
+  @Output() readonly change: EventEmitter<MatCheckboxChange> =
+      new EventEmitter<MatCheckboxChange>();
 
   /** Event emitted when the checkbox's `indeterminate` value changes. */
-  @Output() indeterminateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() readonly indeterminateChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /** The value attribute of the native input element */
   @Input() value: string;
 
-  /** The native `<input type="checkbox"> element */
+  /** The native `<input type="checkbox">` element */
   @ViewChild('input') _inputElement: ElementRef;
 
   /** Reference to the ripple instance of the checkbox. */
   @ViewChild(MatRipple) ripple: MatRipple;
-
-  /** Ripple configuration for the mouse ripples and focus indicators. */
-  _rippleConfig: RippleConfig = {centered: true, radius: 25, speedFactor: 1.5};
 
   /**
    * Called when the checkbox is blurred. Needed to properly implement ControlValueAccessor.
@@ -341,7 +339,7 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
   /** Function is called whenever the focus changes for the input element. */
   private _onInputFocusChange(focusOrigin: FocusOrigin) {
     if (!this._focusRipple && focusOrigin === 'keyboard') {
-      this._focusRipple = this.ripple.launch(0, 0, {persistent: true, ...this._rippleConfig});
+      this._focusRipple = this.ripple.launch(0, 0, {persistent: true});
     } else if (!focusOrigin) {
       this._removeFocusRipple();
       this.onTouched();

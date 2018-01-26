@@ -17,6 +17,7 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   ContentChildren,
   ElementRef,
   EventEmitter,
@@ -38,6 +39,7 @@ import {matMenuAnimations} from './menu-animations';
 import {throwMatMenuInvalidPositionX, throwMatMenuInvalidPositionY} from './menu-errors';
 import {MatMenuItem} from './menu-item';
 import {MatMenuPanel} from './menu-panel';
+import {MatMenuContent} from './menu-content';
 import {MenuPositionX, MenuPositionY} from './menu-positions';
 import {coerceBooleanProperty} from '@angular/cdk/coercion';
 import {FocusOrigin} from '@angular/cdk/a11y';
@@ -129,6 +131,12 @@ export class MatMenu implements AfterContentInit, MatMenuPanel, OnDestroy {
   /** List of the items inside of a menu. */
   @ContentChildren(MatMenuItem) items: QueryList<MatMenuItem>;
 
+  /**
+   * Menu content that will be rendered lazily.
+   * @docs-private
+   */
+  @ContentChild(MatMenuContent) lazyContent: MatMenuContent;
+
   /** Whether the menu should overlap its trigger. */
   @Input()
   get overlapTrigger(): boolean { return this._overlapTrigger; }
@@ -161,18 +169,20 @@ export class MatMenu implements AfterContentInit, MatMenuPanel, OnDestroy {
    * menu template that displays in the overlay container.  Otherwise, it's difficult
    * to style the containing menu from outside the component.
    * @deprecated Use `panelClass` instead.
+   * @deletion-target 6.0.0
    */
   @Input()
   get classList(): string { return this.panelClass; }
   set classList(classes: string) { this.panelClass = classes; }
 
   /** Event emitted when the menu is closed. */
-  @Output() closed: EventEmitter<void | 'click' | 'keydown'>
-      = new EventEmitter<void | 'click' | 'keydown'>();
+  @Output() readonly closed: EventEmitter<void | 'click' | 'keydown'> =
+      new EventEmitter<void | 'click' | 'keydown'>();
 
   /**
    * Event emitted when the menu is closed.
    * @deprecated Switch to `closed` instead
+   * @deletion-target 6.0.0
    */
   @Output() close = this.closed;
 
@@ -232,8 +242,14 @@ export class MatMenu implements AfterContentInit, MatMenuPanel, OnDestroy {
    * @param origin Action from which the focus originated. Used to set the correct styling.
    */
   focusFirstItem(origin: FocusOrigin = 'program'): void {
-    // TODO(crisbeto): make the origin required when doing breaking changes.
-    this._keyManager.setFocusOrigin(origin).setFirstItemActive();
+    // When the content is rendered lazily, it takes a bit before the items are inside the DOM.
+    if (this.lazyContent) {
+      this._ngZone.onStable.asObservable()
+        .pipe(take(1))
+        .subscribe(() => this._keyManager.setFocusOrigin(origin).setFirstItemActive());
+    } else {
+      this._keyManager.setFocusOrigin(origin).setFirstItemActive();
+    }
   }
 
   /**

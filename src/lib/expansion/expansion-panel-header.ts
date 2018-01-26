@@ -27,9 +27,9 @@ import {matExpansionAnimations} from './expansion-animations';
 
 
 /**
- * <mat-expansion-panel-header>
+ * `<mat-expansion-panel-header>`
  *
- * This component corresponds to the header element of an <mat-expansion-panel>.
+ * This component corresponds to the header element of an `<mat-expansion-panel>`.
  */
 @Component({
   moduleId: module.id,
@@ -92,9 +92,7 @@ export class MatExpansionPanelHeader implements OnDestroy {
 
   /** Toggles the expanded state of the panel. */
   _toggle(): void {
-    if (!this.panel.disabled) {
-      this.panel.toggle();
-    }
+    this.panel.toggle();
   }
 
   /** Gets whether the panel is expanded. */
@@ -138,7 +136,7 @@ export class MatExpansionPanelHeader implements OnDestroy {
 }
 
 /**
- * <mat-panel-description>
+ * `<mat-panel-description>`
  *
  * This direction is to be used inside of the MatExpansionPanelHeader component.
  */
@@ -151,7 +149,7 @@ export class MatExpansionPanelHeader implements OnDestroy {
 export class MatExpansionPanelDescription {}
 
 /**
- * <mat-panel-title>
+ * `<mat-panel-title>`
  *
  * This direction is to be used inside of the MatExpansionPanelHeader component.
  */

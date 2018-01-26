@@ -13,6 +13,7 @@ import {
   ContentChildren,
   Directive,
   ElementRef,
+  Inject,
   isDevMode,
   QueryList,
   Renderer2,
@@ -21,7 +22,7 @@ import {
 import {CanColor, mixinColor, FlxThemeService, FlxTheme} from '@angular/material/core';
 import { MatButton } from '@angular/material/button';
 import {Platform} from '@angular/cdk/platform';
-import { Subscription } from 'rxjs/Subscription';
+import {DOCUMENT} from '@angular/common';
 
 // Boilerplate for applying mixins to MatToolbar.
 /** @docs-private */
@@ -57,7 +58,7 @@ export class MatToolbarRow {}
   preserveWhitespaces: false,
 })
 export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterViewInit {
-  // private _subscription: Subscription;
+  private _document: Document;
 
   /** Reference to all toolbar row elements that have been projected. */
   @ContentChildren(MatToolbarRow) _toolbarRows: QueryList<MatToolbarRow>;
@@ -70,8 +71,11 @@ export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterV
     renderer: Renderer2,
     themeSvc: FlxThemeService,
     private _platform: Platform,
-  ) {
+    @Inject(DOCUMENT) document?: any) {
     super(elementRef, renderer, themeSvc);
+
+    // TODO: make the document a required param when doing breaking changes.
+    this._document = document;
   }
 
   ngAfterViewInit() {
@@ -99,7 +103,7 @@ export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterV
     // a <mat-toolbar-row> element.
     const isCombinedUsage = [].slice.call(this._elementRef.nativeElement.childNodes)
       .filter(node => !(node.classList && node.classList.contains('mat-toolbar-row')))
-      .filter(node => node.nodeType !== Node.COMMENT_NODE)
+      .filter(node => node.nodeType !== (this._document ? this._document.COMMENT_NODE : 8))
       .some(node => node.textContent.trim());
 
     if (isCombinedUsage) {

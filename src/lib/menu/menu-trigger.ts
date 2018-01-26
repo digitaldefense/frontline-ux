@@ -94,7 +94,10 @@ export class MatMenuTrigger implements AfterContentInit, OnDestroy {
   // the first item of the list when the menu is opened via the keyboard
   private _openedByMouse: boolean = false;
 
-  /** @deprecated */
+  /**
+   * @deprecated
+   * @deletion-target 6.0.0
+   */
   @Input('mat-menu-trigger-for')
   get _deprecatedMatMenuTriggerFor(): MatMenuPanel {
     return this.menu;
@@ -107,23 +110,28 @@ export class MatMenuTrigger implements AfterContentInit, OnDestroy {
   /** References the menu instance that the trigger is associated with. */
   @Input('matMenuTriggerFor') menu: MatMenuPanel;
 
+  /** Data to be passed along to any lazily-rendered content. */
+  @Input('matMenuTriggerData') menuData: any;
+
   /** Event emitted when the associated menu is opened. */
-  @Output() menuOpened: EventEmitter<void> = new EventEmitter<void>();
+  @Output() readonly menuOpened: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Event emitted when the associated menu is opened.
    * @deprecated Switch to `menuOpened` instead
+   * @deletion-target 6.0.0
    */
-  @Output() onMenuOpen: EventEmitter<void> = this.menuOpened;
+  @Output() readonly onMenuOpen: EventEmitter<void> = this.menuOpened;
 
   /** Event emitted when the associated menu is closed. */
-  @Output() menuClosed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() readonly menuClosed: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * Event emitted when the associated menu is closed.
    * @deprecated Switch to `menuClosed` instead
+   * @deletion-target 6.0.0
    */
-  @Output() onMenuClose: EventEmitter<void> = this.menuClosed;
+  @Output() readonly onMenuClose: EventEmitter<void> = this.menuClosed;
 
   constructor(private _overlay: Overlay,
               private _element: ElementRef,
@@ -194,14 +202,21 @@ export class MatMenuTrigger implements AfterContentInit, OnDestroy {
 
   /** Opens the menu. */
   openMenu(): void {
-    if (!this._menuOpen) {
-      this._createOverlay().attach(this._portal);
-      this._closeSubscription = this._menuClosingActions().subscribe(() => this.closeMenu());
-      this._initMenu();
+    if (this._menuOpen) {
+      return;
+    }
 
-      if (this.menu instanceof MatMenu) {
-        this.menu._startAnimation();
-      }
+    this._createOverlay().attach(this._portal);
+
+    if (this.menu.lazyContent) {
+      this.menu.lazyContent.attach(this.menuData);
+    }
+
+    this._closeSubscription = this._menuClosingActions().subscribe(() => this.closeMenu());
+    this._initMenu();
+
+    if (this.menu instanceof MatMenu) {
+      this.menu._startAnimation();
     }
   }
 

@@ -77,7 +77,7 @@ export class MatTabNav extends _MatTabNavMixinBase implements AfterContentInit, 
     OnDestroy {
 
   /** Subject that emits when the component has been destroyed. */
-  private _onDestroy = new Subject<void>();
+  private readonly _onDestroy = new Subject<void>();
 
   _activeLinkChanged: boolean;
   _activeLinkElement: ElementRef;
@@ -239,7 +239,10 @@ export class MatTabLink extends _MatTabLinkMixinBase
     this.tabIndex = parseInt(tabIndex) || 0;
 
     if (globalOptions) {
-      this.rippleConfig = {speedFactor: globalOptions.baseSpeedFactor};
+      this.rippleConfig = {
+        speedFactor: globalOptions.baseSpeedFactor,
+        animation: globalOptions.animation,
+      };
     }
   }
 

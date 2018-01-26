@@ -18,12 +18,14 @@ import {
   Optional,
   Self,
   Renderer2,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   CanColor,
   CanDisable,
   CanDisableRipple,
+  MatRipple,
   mixinColor,
   mixinDisabled,
   mixinDisableRipple,
@@ -132,6 +134,9 @@ export class MatButton extends _MatButtonMixinBase
   // Need the color value for the overlay state
   overlay: string;
   private _theme: FlxTheme;
+
+  /** Reference to the MatRipple instance of the button. */
+  @ViewChild(MatRipple) ripple: MatRipple;
 
   constructor(elementRef: ElementRef,
               renderer: Renderer2,

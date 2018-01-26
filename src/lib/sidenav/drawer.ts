@@ -56,6 +56,7 @@ export function throwMatDuplicatedDrawerError(position: string) {
 /**
  * Drawer toggle promise result.
  * @deprecated
+ * @deletion-target 6.0.0
  */
 export class MatDrawerToggleResult {
   constructor(
@@ -152,7 +153,10 @@ export class MatDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   }
   private _position: 'start' | 'end' = 'start';
 
-  /** @deprecated */
+  /**
+   * @deprecated
+   * @deletion-target 6.0.0
+   */
   @Input()
   get align(): 'start' | 'end' { return this.position; }
   set align(value: 'start' | 'end') { this.position = value; }
@@ -185,7 +189,7 @@ export class MatDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   _animationState: 'open-instant' | 'open' | 'void' = 'void';
 
   /** Event emitted when the drawer open state is changed. */
-  @Output() openedChange: EventEmitter<boolean> =
+  @Output() readonly openedChange: EventEmitter<boolean> =
       // Note this has to be async in order to avoid some issues with two-bindings (see #8872).
       new EventEmitter<boolean>(/* isAsync */true);
 
@@ -222,26 +226,31 @@ export class MatDrawer implements AfterContentInit, AfterContentChecked, OnDestr
   /**
    * Event emitted when the drawer is fully opened.
    * @deprecated Use `opened` instead.
+   * @deletion-target 6.0.0
    */
-  @Output('open') onOpen: Observable<void> = this._openedStream;
+  @Output('open') readonly onOpen: Observable<void> = this._openedStream;
 
   /**
    * Event emitted when the drawer is fully closed.
    * @deprecated Use `closed` instead.
+   * @deletion-target 6.0.0
    */
-  @Output('close') onClose: Observable<void> = this._closedStream;
+  @Output('close') readonly onClose: Observable<void> = this._closedStream;
 
   /** Event emitted when the drawer's position changes. */
   @Output('positionChanged') onPositionChanged: EventEmitter<void> = new EventEmitter<void>();
 
-  /** @deprecated */
+  /**
+   * @deprecated
+   * @deletion-target 6.0.0
+   */
   @Output('align-changed') onAlignChanged: EventEmitter<void> = new EventEmitter<void>();
 
   /**
    * An observable that emits when the drawer mode changes. This is used by the drawer container to
    * to know when to when the mode changes so it can adapt the margins on the content.
    */
-  _modeChanged = new Subject();
+  readonly _modeChanged = new Subject();
 
   get _isFocusTrapEnabled(): boolean {
     // The focus trap is only enabled when the drawer is open in any mode other than side.
@@ -367,6 +376,7 @@ export class MatDrawer implements AfterContentInit, AfterContentChecked, OnDestr
 
     // TODO(crisbeto): This promise is here for backwards-compatibility.
     // It should be removed next time we do breaking changes in the drawer.
+    // @deletion-target 6.0.0
     return new Promise<any>(resolve => {
       this.openedChange.pipe(take(1)).subscribe(open => {
         resolve(new MatDrawerToggleResult(open ? 'open' : 'close', true));
@@ -405,9 +415,9 @@ export class MatDrawer implements AfterContentInit, AfterContentChecked, OnDestr
 
 
 /**
- * <mat-drawer-container> component.
+ * `<mat-drawer-container>` component.
  *
- * This is the parent component to one or two <mat-drawer>s that validates the state internally
+ * This is the parent component to one or two `<mat-drawer>`s that validates the state internally
  * and coordinates the backdrop and content styling.
  */
 @Component({
@@ -447,7 +457,7 @@ export class MatDrawerContainer implements AfterContentInit, OnDestroy {
   private _autosize: boolean;
 
   /** Event emitted when the drawer backdrop is clicked. */
-  @Output() backdropClick = new EventEmitter<void>();
+  @Output() readonly backdropClick = new EventEmitter<void>();
 
   /** The drawer at the start/end position, independent of direction. */
   private _start: MatDrawer | null;
@@ -463,12 +473,12 @@ export class MatDrawerContainer implements AfterContentInit, OnDestroy {
   private _right: MatDrawer | null;
 
   /** Emits when the component is destroyed. */
-  private _destroyed = new Subject<void>();
+  private readonly _destroyed = new Subject<void>();
 
   /** Emits on every ngDoCheck. Used for debouncing reflows. */
-  private _doCheckSubject = new Subject<void>();
+  private readonly _doCheckSubject = new Subject<void>();
 
-  _contentMargins = new Subject<{left: number|null, right: number|null}>();
+  readonly _contentMargins = new Subject<{left: number|null, right: number|null}>();
 
   /** Reference to the CdkScrollable instance that wraps the scrollable content. */
   @ViewChild(CdkScrollable) scrollable: CdkScrollable;

@@ -111,7 +111,7 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
       selected: value
     });
   }
-  /** The value of the chip. Defaults to the content inside <mat-chip> tags. */
+  /** The value of the chip. Defaults to the content inside `<mat-chip>` tags. */
   @Input()
   get value(): any {
     return this._value != undefined
@@ -142,30 +142,32 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
   }
 
   /** Emits when the chip is focused. */
-  _onFocus = new Subject<MatChipEvent>();
+  readonly _onFocus = new Subject<MatChipEvent>();
 
   /** Emits when the chip is blured. */
-  _onBlur = new Subject<MatChipEvent>();
+  readonly _onBlur = new Subject<MatChipEvent>();
 
   /** Emitted when the chip is selected or deselected. */
-  @Output() selectionChange: EventEmitter<MatChipSelectionChange>
-      = new EventEmitter<MatChipSelectionChange>();
+  @Output() readonly selectionChange: EventEmitter<MatChipSelectionChange> =
+      new EventEmitter<MatChipSelectionChange>();
 
   /** Emitted when the chip is destroyed. */
-  @Output() destroyed = new EventEmitter<MatChipEvent>();
+  @Output() readonly destroyed = new EventEmitter<MatChipEvent>();
 
   /**
    * Emitted when the chip is destroyed.
    * @deprecated Use 'destroyed' instead.
+   * @deletion-target 6.0.0
    */
-  @Output() destroy: EventEmitter<MatChipEvent> = this.destroyed;
+  @Output() readonly destroy: EventEmitter<MatChipEvent> = this.destroyed;
 
   /** Emitted when a chip is to be removed. */
-  @Output() removed: EventEmitter<MatChipEvent> = new EventEmitter<MatChipEvent>();
+  @Output() readonly removed: EventEmitter<MatChipEvent> = new EventEmitter<MatChipEvent>();
 
   /**
    * Emitted when a chip is to be removed.
    * @deprecated Use `removed` instead.
+   * @deletion-target 6.0.0
    */
   @Output('remove') onRemove: EventEmitter<MatChipEvent> = this.removed;
 
@@ -298,9 +300,9 @@ export class MatChip extends _MatChipMixinBase implements FocusableOption, OnDes
  *
  * Example:
  *
- *     <mat-chip>
+ *     `<mat-chip>
  *       <mat-icon matChipRemove>cancel</mat-icon>
- *     </mat-chip>
+ *     </mat-chip>`
  *
  * You *may* use a custom icon, but you may need to override the `mat-chip-remove` positioning
  * styles to properly center the icon within the chip.

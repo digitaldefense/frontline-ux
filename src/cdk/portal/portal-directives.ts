@@ -48,7 +48,7 @@ export type CdkPortalOutletAttachedRef = ComponentRef<any> | EmbeddedViewRef<any
  * directly attached to it, enabling declarative use.
  *
  * Usage:
- * <ng-template [cdkPortalOutlet]="greeting"></ng-template>
+ * `<ng-template [cdkPortalOutlet]="greeting"></ng-template>`
  */
 @Directive({
   selector: '[cdkPortalOutlet], [cdkPortalHost], [portalHost]',
@@ -68,12 +68,18 @@ export class CdkPortalOutlet extends BasePortalOutlet implements OnInit, OnDestr
     super();
   }
 
-  /** @deprecated */
+  /**
+   * @deprecated
+   * @deletion-target 6.0.0
+   */
   @Input('portalHost')
   get _deprecatedPortal() { return this.portal; }
   set _deprecatedPortal(v) { this.portal = v; }
 
-  /** @deprecated */
+  /**
+   * @deprecated
+   * @deletion-target 6.0.0
+   */
   @Input('cdkPortalHost')
   get _deprecatedPortalHost() { return this.portal; }
   set _deprecatedPortalHost(v) { this.portal = v; }

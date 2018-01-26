@@ -62,7 +62,7 @@ export class MatSort extends _MatSortMixinBase implements CanDisable, OnChanges,
   sortables = new Map<string, MatSortable>();
 
   /** Used to notify any child components listening to state changes. */
-  _stateChanges = new Subject<void>();
+  readonly _stateChanges = new Subject<void>();
 
   /** The id of the most recently sorted MatSortable. */
   @Input('matSortActive') active: string;
@@ -128,7 +128,7 @@ export class MatSort extends _MatSortMixinBase implements CanDisable, OnChanges,
       this.direction = this.getNextSortDirection(sortable);
     }
 
-    this.sortChange.next({active: this.active, direction: this.direction});
+    this.sortChange.emit({active: this.active, direction: this.direction});
   }
 
   /** Returns the next sort direction of the active sortable, checking for potential overrides. */

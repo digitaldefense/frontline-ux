@@ -194,7 +194,10 @@ export class MatSlider extends _MatSliderMixinBase
   set thumbLabel(value: boolean) { this._thumbLabel = coerceBooleanProperty(value); }
   private _thumbLabel: boolean = false;
 
-  /** @deprecated */
+  /**
+   * @deprecated
+   * @deletion-target 6.0.0
+   */
   @Input('thumb-label')
   get _thumbLabelDeprecated(): boolean { return this._thumbLabel; }
   set _thumbLabelDeprecated(value) { this._thumbLabel = value; }
@@ -216,7 +219,10 @@ export class MatSlider extends _MatSliderMixinBase
   }
   private _tickInterval: 'auto' | number = 0;
 
-  /** @deprecated */
+  /**
+   * @deprecated
+   * @deletion-target 6.0.0
+   */
   @Input('tick-interval')
   get _tickIntervalDeprecated() { return this.tickInterval; }
   set _tickIntervalDeprecated(v) { this.tickInterval = v; }
@@ -250,10 +256,10 @@ export class MatSlider extends _MatSliderMixinBase
   private _vertical = false;
 
   /** Event emitted when the slider value has changed. */
-  @Output() change: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
+  @Output() readonly change: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
 
   /** Event emitted when the slider thumb moves. */
-  @Output() input: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
+  @Output() readonly input: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
 
   /** The value to be used for display purposes. */
   get displayValue(): string | number {
@@ -528,7 +534,7 @@ export class MatSlider extends _MatSliderMixinBase
   _onSlideEnd() {
     this._isSliding = false;
 
-    if (this._valueOnSlideStart != this.value) {
+    if (this._valueOnSlideStart != this.value && !this.disabled) {
       this._emitChangeEvent();
     }
     this._valueOnSlideStart = null;

@@ -22,8 +22,8 @@ export interface MatChipInputEvent {
 }
 
 /**
- * Directive that adds chip-specific behaviors to an input element inside <mat-form-field>.
- * May be placed inside or outside of an <mat-chip-list>.
+ * Directive that adds chip-specific behaviors to an input element inside `<mat-form-field>`.
+ * May be placed inside or outside of an `<mat-chip-list>`.
  */
 @Directive({
   selector: 'input[matChipInputFor]',
