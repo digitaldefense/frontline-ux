@@ -10,13 +10,13 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'flx-page',
+  selector: 'fx-page',
   templateUrl: 'page.html',
   styleUrls: ['page.css'],
-  host: { 'class': 'flx-page' },
+  host: { 'class': 'fx-page' },
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class FlxPage {
-  @Input() _title: string;
+export class FxPage {
+  @Input('page-title') title: string;
 }

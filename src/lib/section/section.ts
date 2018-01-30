@@ -22,21 +22,21 @@ import { FlxTheme, FlxThemeService } from '@angular/material/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'flx-section',
+  selector: 'fx-section',
   templateUrl: 'section.html',
   styleUrls: ['section.css'],
   host: {
-    class: 'flx-section'
+    class: 'fx-section'
   },
   encapsulation: ViewEncapsulation.None
 })
-export class FlxSection implements AfterViewInit {
+export class FxSection implements AfterViewInit {
   private _theme: FlxTheme;
 
-  @Input() title: string;
+  @Input('section-title') title: string;
 
-  @ViewChild('sectionHeader') _header: ElementRef;
-  @ViewChild('sectionTitle') _title: ElementRef;
+  @ViewChild('sectionHeader') private _headerElem: ElementRef;
+  @ViewChild('sectionTitle') private _titleElem: ElementRef;
 
   constructor(
     private _renderer: Renderer2,
@@ -47,11 +47,11 @@ export class FlxSection implements AfterViewInit {
 
   ngAfterViewInit() {
     const color = this._theme.primary;
-    const titleElem = this._title.nativeElement;
+    const titleElem = this._titleElem.nativeElement;
     const styleValue = `linear-gradient(to right, ${color}, ${color} 50px, rgba(0, 0, 0, 0) 50px)`;
     this._renderer.setStyle(titleElem, 'border-image', styleValue);
 
-    const headerElem = this._header.nativeElement;
+    const headerElem = this._headerElem.nativeElement;
     this._renderer.setStyle(headerElem, 'border-bottom-color', color);
   }
 }

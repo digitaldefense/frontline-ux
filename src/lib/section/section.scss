@@ -1,12 +1,12 @@
 @import '../core/scss/variables';
 
-.flx-section {
+.fx-section {
   display: block;
   margin-top: $spacer*2;
   margin-bottom: $spacer;
 }
 
-.flx-section-header {
+.fx-section-header {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   display: block;
@@ -14,7 +14,7 @@
   position: relative;
 }
 
-.flx-section-header .mat-title {
+.fx-section-header .mat-title {
   border-bottom-width: 3px;
   border-bottom-style: solid;
   border-image-slice: 1 !important;

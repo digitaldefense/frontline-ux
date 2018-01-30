@@ -1,206 +1,206 @@
-<h1 class="mat-display-1">Color</h1>
-<p class="lead">Element colors can be customized by specifying Primary and Accent colors.</p>
-<br>
-<flx-section title="Hues">
-  <div fxLayout="rows" fxLayoutGap="16px">
-    <div fxFlex="33%">
-      <ul class="list-unstyled palette-list">
-        <li class="palette-color" fcolor="primary">Primary</li>
-        <li class="palette-color" fcolor="primaryLight">Primary light</li>
-        <li class="palette-color" fcolor="primaryDark">Primary Dark</li>
-      </ul>
+<fx-page page-title="Color">
+  <p class="mat-headline">Element colors can be customized by specifying Primary and Accent colors.</p>
+  <fx-section section-title="Hues">
+    <div fxLayout="rows" fxLayoutGap="16px">
+      <div fxFlex="33%">
+        <ul class="list-unstyled palette-list">
+          <li class="palette-color" fcolor="primary">Primary</li>
+          <li class="palette-color" fcolor="primaryLight">Primary light</li>
+          <li class="palette-color" fcolor="primaryDark">Primary Dark</li>
+        </ul>
+      </div>
+      <div fxFlex="33%">
+        <ul class="list-unstyled palette-list">
+          <li class="palette-color" fcolor="accent">Accent</li>
+          <li class="palette-color" fcolor="accentLight">Accent light</li>
+          <li class="palette-color" fcolor="accentDark">Accent dark</li>
+        </ul>
+      </div>
+      <div fxFlex="33%">
+        <ul class="list-unstyled palette-list">
+          <li class="palette-color" fcolor="accent">Links</li>
+          <li class="palette-color"></li>
+          <li class="palette-color"></li>
+        </ul>
+      </div>
     </div>
-    <div fxFlex="33%">
-      <ul class="list-unstyled palette-list">
-        <li class="palette-color" fcolor="accent">Accent</li>
-        <li class="palette-color" fcolor="accentLight">Accent light</li>
-        <li class="palette-color" fcolor="accentDark">Accent dark</li>
-      </ul>
+    <div fxLayout="rows" fxLayoutGap="16px">
+      <div fxFlex="33%">
+        <ul class="list-unstyled palette-list">
+          <li class="palette-color" fcolor="success">Success</li>
+        </ul>
+      </div>
+      <div fxFlex="33%">
+        <ul class="list-unstyled palette-list">
+          <li class="palette-color" fcolor="warning">Warning</li>
+        </ul>
+      </div>
+      <div fxFlex="33%">
+        <ul class="list-unstyled palette-list">
+          <li class="palette-color" fcolor="danger">Danger</li>
+        </ul>
+      </div>
     </div>
-    <div fxFlex="33%">
-      <ul class="list-unstyled palette-list">
-        <li class="palette-color" fcolor="accent">Links</li>
-        <li class="palette-color"></li>
-        <li class="palette-color"></li>
-      </ul>
+  </fx-section>
+  
+  <fx-section section-title="Text">
+    <div fxLayout="rows" fxLayoutGap="16px">
+      <div fxFlex="33%">
+        <h3>Dark text on light backgrounds</h3>
+        <p>The level of opacity used for text depends on whether your background is dark or light. For dark text on light backgrounds,
+          apply the following opacity levels:</p>
+      </div>
+      <div fxFlex="66%">
+        <table class="table" fcolor="#FAFAFA">
+          <thead>
+            <tr>
+              <th>Dark text</th>
+              <th>Color / Opacity</th>
+              <th>Hex color</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr flColor="#202020">
+              <td>Primary text</td>
+              <td>#000000 / 87%</td>
+              <td>#202020</td>
+            </tr>
+            <tr flColor="#737373">
+              <td>Secondary text</td>
+              <td>#000000 / 54%</td>
+              <td>#737373</td>
+            </tr>
+            <tr flColor="#9B9B9B">
+              <td>Disabled / Hint text</td>
+              <td>#000000 / 38%</td>
+              <td>#9B9B9B</td>
+            </tr>
+            <tr flColor="#9B9B9B">
+              <td>Dividers</td>
+              <td>#000000 / 12%</td>
+              <td>#9B9B9B</td>
+            </tr>
+  
+            <tr fcolor="primary">
+              <td>Primary color</td>
+              <td>#FFFFFF / 100%</td>
+              <td></td>
+            </tr>
+            <tr fcolor="accent">
+              <td>Accent color</td>
+              <td>#FFFFFF / 100%</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-  <div fxLayout="rows" fxLayoutGap="16px">
-    <div fxFlex="33%">
-      <ul class="list-unstyled palette-list">
-        <li class="palette-color" fcolor="success">Success</li>
-      </ul>
+    <br>
+  
+    <div fxLayout="rows" fxLayoutGap="16px">
+      <div fxFlex="33%">
+        <h3>White text on dark backgrounds</h3>
+        <p>White text appearing on colored backgrounds should do so at an opacity of 100%.</p>
+      </div>
+      <div fxFlex="33%">
+        <table class="table" fcolor="#303030">
+          <tbody>
+            <tr flColor="#FFFFFF">
+              <td>Primary text</td>
+              <td>#FFFFFF</td>
+              <td>100%</td>
+            </tr>
+            <tr flColor="#737373">
+              <td>Secondary text</td>
+              <td>#FFFFFF</td>
+              <td>70%</td>
+            </tr>
+            <tr flColor="#9B9B9B">
+              <td>Disabled / Hint text</td>
+              <td>#FFFFFF</td>
+              <td>50%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div fxFlex="33%">
+        <table class="table" fcolor="#303030">
+          <tbody>
+            <tr>
+              <td>Primary text</td>
+              <td>#202020</td>
+            </tr>
+            <tr flColor="#737373">
+              <td>Secondary text</td>
+              <td>#737373</td>
+            </tr>
+            <tr flColor="#9B9B9B">
+              <td>Disabled / Hint text</td>
+              <td>#9B9B9B</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div fxFlex="33%">
-      <ul class="list-unstyled palette-list">
-        <li class="palette-color" fcolor="warning">Warning</li>
-      </ul>
-    </div>
-    <div fxFlex="33%">
-      <ul class="list-unstyled palette-list">
-        <li class="palette-color" fcolor="danger">Danger</li>
-      </ul>
-    </div>
-  </div>
-</flx-section>
-
-<flx-section title="Text">
-  <div fxLayout="rows" fxLayoutGap="16px">
-    <div fxFlex="33%">
-      <h3>Dark text on light backgrounds</h3>
-      <p>The level of opacity used for text depends on whether your background is dark or light. For dark text on light backgrounds,
-        apply the following opacity levels:</p>
-    </div>
-    <div fxFlex="66%">
-      <table class="table" fcolor="#FAFAFA">
-        <thead>
-          <tr>
-            <th>Dark text</th>
-            <th>Color / Opacity</th>
-            <th>Hex color</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr flColor="#202020">
-            <td>Primary text</td>
-            <td>#000000 / 87%</td>
-            <td>#202020</td>
-          </tr>
-          <tr flColor="#737373">
-            <td>Secondary text</td>
-            <td>#000000 / 54%</td>
-            <td>#737373</td>
-          </tr>
-          <tr flColor="#9B9B9B">
-            <td>Disabled / Hint text</td>
-            <td>#000000 / 38%</td>
-            <td>#9B9B9B</td>
-          </tr>
-          <tr flColor="#9B9B9B">
-            <td>Dividers</td>
-            <td>#000000 / 12%</td>
-            <td>#9B9B9B</td>
-          </tr>
-
-          <tr fcolor="primary">
-            <td>Primary color</td>
-            <td>#FFFFFF / 100%</td>
-            <td></td>
-          </tr>
-          <tr fcolor="accent">
-            <td>Accent color</td>
-            <td>#FFFFFF / 100%</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  </fx-section>
   <br>
-
-  <div fxLayout="rows" fxLayoutGap="16px">
-    <div fxFlex="33%">
-      <h3>White text on dark backgrounds</h3>
-      <p>White text appearing on colored backgrounds should do so at an opacity of 100%.</p>
+  
+  <fx-section section-title="Backgrounds">
+    <p>Themes let you apply a consistent tone to an app. The theme specifies the darkness of the surfaces, level of shadow,
+      and appropriate opacity of ink elements. Themes are dynamic based on chosen Primary and Accent colors as well as then
+      further segmented by "light" or "dark."</p>
+  
+    <div fxLayout="row">
+      <div fxFlex="33%">
+        <h3>Light theme</h3>
+      </div>
+      <div fxFlex="66%">
+        <!-- <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
+          <fl-grid-tile flBgColor="#E0E0E0" flColor="#737373">
+            Status bar
+            <code>#E0E0E0</code>
+          </fl-grid-tile>
+          <fl-grid-tile flBgColor="#F5F5F5" flColor="#737373">
+            App bar
+            <code>#F5F5F5</code>
+          </fl-grid-tile>
+          <fl-grid-tile flBgColor="#FAFAFA" flColor="#737373">
+            Background
+            <code>#FAFAFA</code>
+          </fl-grid-tile>
+          <fl-grid-tile flBgColor="#FFFFFF" flColor="#737373">
+            Cards/Dialogs
+            <code>#FFFFFF</code>
+          </fl-grid-tile>
+        </fl-grid-list> -->
+      </div>
     </div>
-    <div fxFlex="33%">
-      <table class="table" fcolor="#303030">
-        <tbody>
-          <tr flColor="#FFFFFF">
-            <td>Primary text</td>
-            <td>#FFFFFF</td>
-            <td>100%</td>
-          </tr>
-          <tr flColor="#737373">
-            <td>Secondary text</td>
-            <td>#FFFFFF</td>
-            <td>70%</td>
-          </tr>
-          <tr flColor="#9B9B9B">
-            <td>Disabled / Hint text</td>
-            <td>#FFFFFF</td>
-            <td>50%</td>
-          </tr>
-        </tbody>
-      </table>
+    <br>
+  
+    <div fxLayout="row">
+      <div fxFlex="33%">
+        <h3>Dark theme</h3>
+      </div>
+      <div fxFlex="66%">
+        <!-- <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
+          <fl-grid-tile flBgColor="#000000">
+            Status bar
+            <code>#000000</code>
+          </fl-grid-tile>
+          <fl-grid-tile flBgColor="#212121">
+            App bar
+            <code>#212121</code>
+          </fl-grid-tile>
+          <fl-grid-tile flBgColor="#303030">
+            Background
+            <code>#303030</code>
+          </fl-grid-tile>
+          <fl-grid-tile flBgColor="#424242">
+            Cards/Dialogs
+            <code>#424242</code>
+          </fl-grid-tile>
+        </fl-grid-list> -->
+      </div>
     </div>
-    <div fxFlex="33%">
-      <table class="table" fcolor="#303030">
-        <tbody>
-          <tr>
-            <td>Primary text</td>
-            <td>#202020</td>
-          </tr>
-          <tr flColor="#737373">
-            <td>Secondary text</td>
-            <td>#737373</td>
-          </tr>
-          <tr flColor="#9B9B9B">
-            <td>Disabled / Hint text</td>
-            <td>#9B9B9B</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</flx-section>
-<br>
-
-<flx-section title="Backgrounds">
-  <p>Themes let you apply a consistent tone to an app. The theme specifies the darkness of the surfaces, level of shadow,
-    and appropriate opacity of ink elements. Themes are dynamic based on chosen Primary and Accent colors as well as then
-    further segmented by "light" or "dark."</p>
-
-  <div fxLayout="row">
-    <div fxFlex="33%">
-      <h3>Light theme</h3>
-    </div>
-    <div fxFlex="66%">
-      <!-- <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
-        <fl-grid-tile flBgColor="#E0E0E0" flColor="#737373">
-          Status bar
-          <code>#E0E0E0</code>
-        </fl-grid-tile>
-        <fl-grid-tile flBgColor="#F5F5F5" flColor="#737373">
-          App bar
-          <code>#F5F5F5</code>
-        </fl-grid-tile>
-        <fl-grid-tile flBgColor="#FAFAFA" flColor="#737373">
-          Background
-          <code>#FAFAFA</code>
-        </fl-grid-tile>
-        <fl-grid-tile flBgColor="#FFFFFF" flColor="#737373">
-          Cards/Dialogs
-          <code>#FFFFFF</code>
-        </fl-grid-tile>
-      </fl-grid-list> -->
-    </div>
-  </div>
-  <br>
-
-  <div fxLayout="row">
-    <div fxFlex="33%">
-      <h3>Dark theme</h3>
-    </div>
-    <div fxFlex="66%">
-      <!-- <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
-        <fl-grid-tile flBgColor="#000000">
-          Status bar
-          <code>#000000</code>
-        </fl-grid-tile>
-        <fl-grid-tile flBgColor="#212121">
-          App bar
-          <code>#212121</code>
-        </fl-grid-tile>
-        <fl-grid-tile flBgColor="#303030">
-          Background
-          <code>#303030</code>
-        </fl-grid-tile>
-        <fl-grid-tile flBgColor="#424242">
-          Cards/Dialogs
-          <code>#424242</code>
-        </fl-grid-tile>
-      </fl-grid-list> -->
-    </div>
-  </div>
-</flx-section>
+  </fx-section>
+</fx-page>

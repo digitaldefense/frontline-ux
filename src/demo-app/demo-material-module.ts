@@ -11,8 +11,8 @@ import {
   FlxGhostModule,
   FlxAvatarModule,
   FlxColorModule,
-  FlxPageModule,
-  FlxSectionModule,
+  FxPageModule,
+  FxSectionModule,
   FlxSpacerModule,
   MatAutocompleteModule,
   MatButtonModule,
@@ -45,6 +45,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatStepperModule,
+  MatCollapseModule,
 } from '@angular/material';
 import {MatNativeDateModule, MatRippleModule, FlxThemeProviders} from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -64,9 +65,10 @@ import {PortalModule} from '@angular/cdk/portal';
     FlxThemeProviders,
     FlxGhostModule,
     FlxAvatarModule,
+    MatCollapseModule,
     FlxColorModule,
-    FlxPageModule,
-    FlxSectionModule,
+    FxPageModule,
+    FxSectionModule,
     FlxSpacerModule,
     MatAutocompleteModule,
     MatButtonModule,

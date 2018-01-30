@@ -1,4 +1,4 @@
-<flx-page _title="Toolbars" ref="https://material.io/guidelines/components/toolbars.html">
+<fx-page page-title="Toolbars" ref="https://material.io/guidelines/components/toolbars.html">
   <h2 class="mat-headline">Toolbar actions appear above the view affected by their actions.</h2>
   <p>Toolbars appear a step above the content they affect. They may constrain their width to accommodate material passing over them.</p>
   <p>Do not separate a toolbar’s actions by another sheet of material, unless it is transient, such as a menu or dialog.</p>
@@ -81,4 +81,29 @@
       </mat-toolbar-row>
     </mat-toolbar>
   </p>
-</flx-page>
+
+  <fx-section section-title="Toolbar properties">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">color</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td></td>
+          <td>Theme color to apply. Accepted values are: <code>primary</code>, <code>accent</code>, <code>warning</code>, <code>danger</code>, or <code>success</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+  </fx-section>
+</fx-page>
