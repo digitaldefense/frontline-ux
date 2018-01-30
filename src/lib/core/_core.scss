@@ -35,12 +35,12 @@
   @include mat-optgroup-theme($theme);
   @include mat-pseudo-checkbox-theme($theme);
 
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
   // Wrapper element that provides the theme background when the
   // user's content isn't inside of a `mat-sidenav-container`.
   .mat-app-background {
-    $background: map-get($theme, background);
-    $foreground: map-get($theme, foreground);
-
     background-color: mat-color($background, background);
     color: mat-color($foreground, text);
   }
@@ -48,5 +48,12 @@
   // Marker that is used to determine whether the user has added a theme to their page.
   .mat-theme-loaded-marker {
     display: none;
+  }
+
+  // Misc text elements. Need to move these to a dedicated file
+  pre,
+  code,
+  samp {
+    background-color: mat-color($background, status-bar);
   }
 }

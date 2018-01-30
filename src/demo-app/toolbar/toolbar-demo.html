@@ -1,35 +1,46 @@
-<div class="demo-toolbar">
+<flx-page _title="Toolbars" ref="https://material.io/guidelines/components/toolbars.html">
+  <h2 class="mat-headline">Toolbar actions appear above the view affected by their actions.</h2>
+  <p>Toolbars appear a step above the content they affect. They may constrain their width to accommodate material passing over them.</p>
+  <p>Do not separate a toolbar’s actions by another sheet of material, unless it is transient, such as a menu or dialog.</p>
 
   <p>
     <mat-toolbar>
-      <mat-icon class="demo-toolbar-icon">menu</mat-icon>
+      <button mat-icon-button><mat-icon ngClass="fa-bars"></mat-icon></button>
       <span>Default Toolbar</span>
 
-      <span class="demo-fill-remaining"></span>
+      <flx-spacer></flx-spacer>
 
-      <mat-icon>code</mat-icon>
+      <button mat-icon-button>
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
     </mat-toolbar>
   </p>
 
   <p>
     <mat-toolbar color="primary">
-      <mat-icon class="demo-toolbar-icon">menu</mat-icon>
+      <button mat-icon-button>
+        <mat-icon ngClass="fa-bars"></mat-icon>
+      </button>
       <span>Primary Toolbar</span>
 
-      <span class="demo-fill-remaining"></span>
+      <flx-spacer></flx-spacer>
 
-      <mat-icon>code</mat-icon>
+      <button mat-icon-button>
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
     </mat-toolbar>
   </p>
 
   <p>
     <mat-toolbar color="accent">
-      <mat-icon class="demo-toolbar-icon">menu</mat-icon>
+      <button mat-icon-button>
+        <mat-icon ngClass="fa-bars"></mat-icon>
+      </button>
       <span>Accent Toolbar</span>
 
-      <span class="demo-fill-remaining"></span>
+      <flx-spacer></flx-spacer>
 
-      <mat-icon>code</mat-icon>
+      <button mat-icon-button><mat-icon ngClass="fa-code"></mat-icon></button>
     </mat-toolbar>
   </p>
 
@@ -49,19 +60,25 @@
       <mat-toolbar-row>
         <span>Second Row</span>
 
-        <span class="demo-fill-remaining"></span>
+        <flx-spacer></flx-spacer>
 
-        <mat-icon class="demo-toolbar-icon">verified_user</mat-icon>
+        <button mat-icon-button>
+          <mat-icon ngClass="fa-user"></mat-icon>
+        </button>
       </mat-toolbar-row>
 
       <mat-toolbar-row>
         <span>Third Row</span>
 
-        <span class="demo-fill-remaining"></span>
+        <flx-spacer></flx-spacer>
 
-        <mat-icon class="demo-toolbar-icon">favorite</mat-icon>
-        <mat-icon class="demo-toolbar-icon">delete</mat-icon>
+        <button mat-icon-button>
+          <mat-icon ngClass="fa-heart"></mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon ngClass="fa-trash"></mat-icon>
+        </button>
       </mat-toolbar-row>
     </mat-toolbar>
   </p>
-</div>
+</flx-page>
