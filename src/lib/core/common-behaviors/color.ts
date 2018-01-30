@@ -27,7 +27,8 @@ export interface HasElementRef {
 /** Possible color palette values.  */
 export type ThemePalette = string | undefined;
 
-const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON'];
+const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON',
+          'VAR', 'KBD'];
 
 const accentElements = ['A'];
 

@@ -1,6 +1,50 @@
-<flx-page _title="Avatar">
-  <flx-section title="Examples">
-    <flx-avatar icon="fa-plane"></flx-avatar>
-    <flx-avatar icon="fa-bug" fcolor="success"></flx-avatar>
+<flx-page _title="Avatars and thumbnails" ref="">
+  <p class="lead">Avatars and thumbnails represent entities or content, either literally through photography or conceptually through illustration.</p>
+
+  <mat-card>
+    <mat-toolbar>
+      Example usage
+      <flx-spacer></flx-spacer>
+      <button mat-icon-button>
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <!-- <mat-card-collapse>
+      <pre class="codeblock">&lt;flx-avatar icon="fa-plane"&gt;&lt;/flx-avatar&gt;
+&lt;flx-avatar icon="fa-bug" fcolor="success"&gt;&lt;/flx-avatar&gt;</pre>
+    </mat-card-collapse> -->
+    <mat-card-content>
+      <flx-avatar icon="fa-plane"></flx-avatar>
+      <flx-avatar icon="fa-bug" fcolor="success"></flx-avatar>
+      <flx-avatar fcolor="accent">DW</flx-avatar>
+    </mat-card-content>
+  </mat-card>
+  <br>
+
+  <flx-section title="Avatar properties">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="property-name" fcolor="accentDark">icon</span></td>
+          <td><span class="property-type" fcolor="primary">@Input</span></td>
+          <td></td>
+          <td>Font Awesome icon to use</td>
+        </tr>
+        <tr>
+          <td><span class="property-name" fcolor="accentDark">img</span></td>
+          <td><span class="property-type" fcolor="primary">@Input</span></td>
+          <td></td>
+          <td>Source path of the image to use</td>
+        </tr>
+      </tbody>
+    </table>
   </flx-section>
 </flx-page>

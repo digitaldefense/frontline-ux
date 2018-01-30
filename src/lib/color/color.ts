@@ -13,7 +13,8 @@ import {
   Renderer2 } from '@angular/core';
 import { FlxThemeService, FlxTheme } from '@angular/material/core';
 
-const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM', 'B'];
+const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'KBD',
+        'VAR'];
 
 @Directive({
   selector: '[fcolor]',
