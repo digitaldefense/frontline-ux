@@ -1,25 +1,25 @@
-<fx-page page-title="Avatars and thumbnails" ref="">
-  <p class="lead">Avatars and thumbnails represent entities or content, either literally through photography or conceptually through illustration.</p>
+<fx-page page-title="Avatars and thumbnails" ref="https://material.io/guidelines/style/imagery.html#imagery-ui-integration">
+  <p class="mat-headline">Avatars and thumbnails represent entities or content, either literally through photography or conceptually through illustration.</p>
 
   <mat-card>
-    <mat-toolbar>
+    <mat-toolbar color="primary">
       Example usage
       <flx-spacer></flx-spacer>
-      <button mat-icon-button>
+      <button mat-icon-button [collapseTrigger]="collapse">
         <mat-icon ngClass="fa-code"></mat-icon>
       </button>
     </mat-toolbar>
-    <!-- <mat-card-collapse>
+    <mat-card-content collapsed #collapse>
       <pre class="codeblock">&lt;flx-avatar icon="fa-plane"&gt;&lt;/flx-avatar&gt;
-&lt;flx-avatar icon="fa-bug" fcolor="success"&gt;&lt;/flx-avatar&gt;</pre>
-    </mat-card-collapse> -->
+&lt;flx-avatar icon="fa-bug" fcolor="success"&gt;&lt;/flx-avatar&gt;
+&lt;flx-avatar fcolor="accent"&gt;DW&lt;/flx-avatar&gt;</pre>
+    </mat-card-content>
     <mat-card-content>
       <flx-avatar icon="fa-plane"></flx-avatar>
       <flx-avatar icon="fa-bug" fcolor="success"></flx-avatar>
       <flx-avatar fcolor="accent">DW</flx-avatar>
     </mat-card-content>
   </mat-card>
-  <br>
 
   <fx-section section-title="Avatar properties">
     <table class="table">
