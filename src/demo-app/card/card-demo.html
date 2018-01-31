@@ -37,7 +37,7 @@
         </mat-card>
       </div>
       <div fxFlex="33%">
-        <mat-card canCollapse>
+        <mat-card>
           <img mat-card-image src="https://farm5.staticflickr.com/4622/39594612911_f52fef89a4_z.jpg">
           <mat-card-title>Lena Lake</mat-card-title>
           <mat-card-subtitle>Washington, USA</mat-card-subtitle>
@@ -45,11 +45,11 @@
             <button mat-button>Share</button>
             <button mat-button>Explore</button>
             <flx-spacer></flx-spacer>
-            <button mat-icon-button [trigger]="collapse">
+            <button mat-icon-button [collapseTrigger]="collapse">
               <mat-icon ngClass="fa-chevron-up"></mat-icon>
             </button>
           </mat-card-actions>
-          <mat-card-collapse #collapse>Dominated by a shoulder of The Brothers, this forest lake was formed thousands of years ago by a massive rock slide that dammed the valley.</mat-card-collapse>
+          <mat-card-content collapsed #collapse>Dominated by a shoulder of The Brothers, this forest lake was formed thousands of years ago by a massive rock slide that dammed the valley.</mat-card-content>
         </mat-card>
       </div>
     </div>

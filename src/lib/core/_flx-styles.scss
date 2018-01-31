@@ -5,6 +5,9 @@
 @import 'scss/mixins';
 @import 'scss/reboot';
 
+// Mixins
+@import 'scss/mixins/breakpoints';
+
 // Include Frontline core classes
 @import 'scss/type';
 @import 'scss/code';

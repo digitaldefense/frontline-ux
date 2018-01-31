@@ -8,10 +8,11 @@
 
 import {
   Component,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
   Directive,
   Input,
+  OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
 
 
@@ -21,9 +22,22 @@ import {
  */
 @Directive({
   selector: 'mat-card-content',
-  host: {'class': 'mat-card-content'}
+  host: {
+    'class': 'mat-card-content',
+    '[class.d-none]': 'this._isCollapsed',
+  },
 })
-export class MatCardContent {}
+export class MatCardContent implements OnInit {
+  private _isCollapsed = false;
+
+  @Input() collapsed: any;
+
+  ngOnInit() {
+    if (this.collapsed !== undefined) {
+      this._isCollapsed = true;
+    }
+  }
+}
 
 /**
  * Title of a card, needed as it's used as a selector in the API.
