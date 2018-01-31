@@ -240,6 +240,7 @@ export const flxPalette = {
 const white = '#fff';
 const black = '#000';
 
+// Each color tuple consists of the threshold values for primary and accent colors
 const contrastMap = {
   red: ['400', 'A200'],
   pink: ['400', 'A200'],
@@ -252,7 +253,7 @@ const contrastMap = {
   teal: ['500', '0'],
   green: ['600', '0'],
   lightGreen: ['800', '0'],
-  lime: ['500', '0'],
+  lime: ['900', '0'],
   yellow: ['0', '0'],
   amber: ['0', '0'],
   orange: ['900', '0'],
@@ -344,7 +345,7 @@ export class FlxTheme {
       val = contrastMap[color][1];
       threshold = 200;
     }
-    return (this._parseColorValue(val) >= threshold) ? white : black;
+    return (threshold >= this._parseColorValue(val)) ? white : black;
   }
 
   private _parseColorValue(color: string): number {
