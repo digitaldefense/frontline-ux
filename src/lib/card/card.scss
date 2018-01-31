@@ -247,7 +247,8 @@ $mat-card-large-padding: $mat-spacer*1.5 !default;
 // if main image is on top, need to place it flush against top
 // (by stripping card's default 24px padding)
 .mat-card-image:first-child,
-.mat-card > .mat-card-media-group:first-child {
+.mat-card > .mat-card-media-group:first-child,
+.mat-card > .mat-toolbar:first-child {
   margin-top: -$mat-card-large-padding;
 }
 
