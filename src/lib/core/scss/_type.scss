@@ -3,6 +3,30 @@
 //
 
 //
+// Headings
+//
+
+// h1, h2, h3, h4, h5, h6,
+// .h1, .h2, .h3, .h4, .h5, .h6 {
+//   margin-bottom: $headings-margin-bottom;
+//   font-family: $headings-font-family;
+//   font-weight: $headings-font-weight;
+//   line-height: $headings-line-height;
+// }
+
+// h1, .h1 { font-size: $h1-font-size; }
+// h2, .h2 { font-size: $h2-font-size; }
+// h3, .h3 { font-size: $h3-font-size; }
+// h4, .h4 { font-size: $h4-font-size; }
+// h5, .h5 { font-size: $h5-font-size; }
+// h6, .h6 { font-size: $h6-font-size; }
+
+.lead {
+  font-size: $lead-font-size;
+  font-weight: $lead-font-weight;
+}
+
+//
 // Horizontal rules
 //
 
@@ -24,8 +48,7 @@ hr,
 
 small,
 .small {
-  // font-size: $small-font-size;
-  font-size: 80%;
+  font-size: $small-font-size;
 }
 
 mark,
@@ -39,14 +62,12 @@ mark,
 //
 
 .list-unstyled {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  @include list-unstyled;
 }
 
 // Inline turns list items into inline-block
 .list-inline {
-  @extend .list-unstyled;
+  @include list-unstyled;
 }
 .list-inline-item {
   display: inline-block;
@@ -69,7 +90,6 @@ mark,
 
 // Blockquotes
 .blockquote {
-  padding: ($spacer / 2) $spacer;
   margin-bottom: $spacer;
   font-size: $blockquote-font-size;
   // border-left: $blockquote-border-width solid $blockquote-border-color;
@@ -85,23 +105,12 @@ mark,
   }
 }
 
-// Opposite alignment of blockquote
-.blockquote-reverse {
-  padding-right: $spacer;
-  padding-left: 0;
-  text-align: right;
-  // border-right: $blockquote-border-width solid $blockquote-border-color;
-  border-left: 0;
-}
 
-.blockquote-reverse .blockquote-footer {
-  &::before {
-    content: "";
-  }
-  &::after {
-    content: "\00A0 \2014"; // nbsp, em dash
-  }
-}
+// Alignment
+
+.text-justify  { text-align: justify !important; }
+.text-nowrap   { white-space: nowrap !important; }
+.text-truncate { @include text-truncate; }
 
 
 // Transformation
@@ -110,34 +119,28 @@ mark,
 .text-uppercase  { text-transform: uppercase !important; }
 .text-capitalize { text-transform: capitalize !important; }
 
-code,
-samp,
-.codeblock {
-  border-radius: .25rem;
-  font-family: $font-family-monospace;
-  font-size: .75rem;
-  padding: .2rem .3rem;
-  word-break: keep-all;
-}
 
-.codeblock {
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25) inset;
-  padding: ($spacer * .5) $spacer;
-}
+// Weight and italics
 
-kbd,
-var,
-.code,
-.pre {
-  font-family: $font-family-monospace;
-  font-size: .75rem;
-  font-style: normal;
-}
+.font-weight-light  { font-weight: $font-weight-light !important; }
+.font-weight-normal { font-weight: $font-weight-normal !important; }
+.font-weight-bold   { font-weight: $font-weight-bold !important; }
+.font-italic        { font-style: italic !important; }
 
-//
-// Lead
-//
-.lead {
-  font-size: $font-size-lg;
-  font-weight: $font-weight-light;
+
+// Contextual colors
+
+.text-white { color: #fff !important; }
+
+// @each $color, $value in $theme-colors {
+//   @include text-emphasis-variant(".text-#{$color}", $value);
+// }
+
+.text-muted { color: $text-muted !important; }
+
+
+// Misc
+
+.text-hide {
+  @include text-hide();
 }

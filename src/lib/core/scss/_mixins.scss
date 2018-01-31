@@ -75,6 +75,15 @@
 }
 
 
+// Lists
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+
 // Menus
 //
 @mixin flx-menu-base($default-elevation) {
@@ -88,4 +97,26 @@
 
   overflow: auto;
   -webkit-overflow-scrolling: touch;   // for momentum scroll on mobile
+}
+
+
+// Text hide
+
+// CSS image replacement
+@mixin text-hide() {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+
+// Text truncate
+// Requires inline-block or block for proper styling
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
