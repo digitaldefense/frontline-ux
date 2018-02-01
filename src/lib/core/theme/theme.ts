@@ -354,7 +354,7 @@ export class FlxTheme {
   private _generateContrastLayer(theme: string, hue: string, lum: string): string {
     const threshold: number = this._parseColorValue(lum);
     const val: string = (theme === 'primary') ? contrastMap[hue][0] : contrastMap[hue][1];
-    return (threshold >= this._parseColorValue(val)) ? white : black;
+    return (threshold >= this._parseColorValue(val)) ? basecoats.dark.text : basecoats.light.text;
   }
 
   /**
