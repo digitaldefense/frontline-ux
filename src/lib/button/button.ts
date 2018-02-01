@@ -6,11 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {FocusMonitor} from '@angular/cdk/a11y';
-import {Platform} from '@angular/cdk/platform';
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { Platform } from '@angular/cdk/platform';
 import {
+  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   Directive,
   ElementRef,
   OnDestroy,
@@ -32,6 +34,7 @@ import {
   FlxTheme,
   FlxThemeService
 } from '@angular/material/core';
+import { MatIcon } from '@angular/material/icon';
 
 
 // TODO(kara): Convert attribute selectors to classes when attr maps become available
@@ -46,9 +49,9 @@ const DEFAULT_ROUND_BUTTON_COLOR = 'accent';
  */
 @Directive({
   selector: 'button[mat-button], a[mat-button]',
-  host: {'class': 'mat-button'}
+  host: { 'class': 'mat-button' }
 })
-export class MatButtonCssMatStyler {}
+export class MatButtonCssMatStyler { }
 
 /**
  * Directive whose purpose is to add the mat- CSS styling to this selector.
@@ -56,9 +59,9 @@ export class MatButtonCssMatStyler {}
  */
 @Directive({
   selector: 'button[mat-raised-button], a[mat-raised-button]',
-  host: {'class': 'mat-raised-button'}
+  host: { 'class': 'mat-raised-button' }
 })
-export class MatRaisedButtonCssMatStyler {}
+export class MatRaisedButtonCssMatStyler { }
 
 /**
  * Directive whose purpose is to add the mat- CSS styling to this selector.
@@ -66,9 +69,9 @@ export class MatRaisedButtonCssMatStyler {}
  */
 @Directive({
   selector: 'button[mat-icon-button], a[mat-icon-button]',
-  host: {'class': 'mat-icon-button'}
+  host: { 'class': 'mat-icon-button' }
 })
-export class MatIconButtonCssMatStyler {}
+export class MatIconButtonCssMatStyler { }
 
 /**
  * Directive whose purpose is to add the mat- CSS styling to this selector.
@@ -76,9 +79,9 @@ export class MatIconButtonCssMatStyler {}
  */
 @Directive({
   selector: 'button[mat-fab], a[mat-fab]',
-  host: {'class': 'mat-fab'}
+  host: { 'class': 'mat-fab' }
 })
-export class MatFab {}
+export class MatFab { }
 
 /**
  * Directive whose purpose is to add the mat- CSS styling to this selector.
@@ -86,9 +89,9 @@ export class MatFab {}
  */
 @Directive({
   selector: 'button[mat-mini-fab], a[mat-mini-fab]',
-  host: {'class': 'mat-mini-fab'}
+  host: { 'class': 'mat-mini-fab' }
 })
-export class MatMiniFab {}
+export class MatMiniFab { }
 
 
 // Boilerplate for applying mixins to MatButton.
@@ -98,7 +101,7 @@ export class MatButtonBase {
     public _elementRef: ElementRef,
     public _renderer: Renderer2,
     public _themeSvc: FlxThemeService
-  ) {}
+  ) { }
 }
 export const _MatButtonMixinBase = mixinColor(
   mixinDisabled(mixinDisableRipple(MatButtonBase)));
@@ -123,7 +126,7 @@ export const _MatButtonMixinBase = mixinColor(
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatButton extends _MatButtonMixinBase
-    implements OnDestroy, CanDisable, CanColor, CanDisableRipple, OnInit {
+  implements OnDestroy, CanDisable, CanColor, CanDisableRipple, OnInit, AfterContentInit {
 
   /** Whether the button is round. */
   _isRoundButton: boolean = this._hasHostAttributes('mat-fab', 'mat-mini-fab');
@@ -138,11 +141,14 @@ export class MatButton extends _MatButtonMixinBase
   /** Reference to the MatRipple instance of the button. */
   @ViewChild(MatRipple) ripple: MatRipple;
 
+  // Check for mat-icons to override css rule
+  @ContentChild(MatIcon) private _icon: MatIcon;
+
   constructor(elementRef: ElementRef,
-              renderer: Renderer2,
-              themeSvc: FlxThemeService,
-              private _platform: Platform,
-              private _focusMonitor: FocusMonitor) {
+    renderer: Renderer2,
+    themeSvc: FlxThemeService,
+    private _platform: Platform,
+    private _focusMonitor: FocusMonitor) {
     super(elementRef, renderer, themeSvc);
 
     this._theme = this._themeSvc.theme.getValue();
@@ -162,6 +168,14 @@ export class MatButton extends _MatButtonMixinBase
       this.overlay = (this._theme.domain === 'light') ? '#000' : '#fff';
     } else if (this.color !== undefined && elem.classList.contains('mat-icon-button')) {
       this.overlay = this._theme[this.color];
+    }
+  }
+
+  ngAfterContentInit() {
+    // console.log(this._icon);
+    if (this._icon !== undefined && this.color !== undefined) {
+      // this._icon.color = `${this.color}Contrast`;
+      this._icon._elementRef.nativeElement.classList.remove('default');
     }
   }
 
@@ -217,11 +231,11 @@ export class MatButton extends _MatButtonMixinBase
 })
 export class MatAnchor extends MatButton {
   constructor(
-      platform: Platform,
-      focusMonitor: FocusMonitor,
-      elementRef: ElementRef,
-      renderer: Renderer2,
-      themeSvc: FlxThemeService) {
+    platform: Platform,
+    focusMonitor: FocusMonitor,
+    elementRef: ElementRef,
+    renderer: Renderer2,
+    themeSvc: FlxThemeService) {
     super(elementRef, renderer, themeSvc, platform, focusMonitor);
   }
 

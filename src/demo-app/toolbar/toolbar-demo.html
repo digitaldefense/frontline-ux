@@ -25,8 +25,16 @@
 
       <flx-spacer></flx-spacer>
 
-      <button mat-icon-button>
-        <mat-icon ngClass="fa-code"></mat-icon>
+      <mat-menu #toolbarDemoMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon ngClass="fa-cog"></mat-icon>
+          Settings</button>
+        <button mat-menu-item>
+          <mat-icon ngClass="fa-life-ring" weight="regular"></mat-icon>
+          Help</button>
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="toolbarDemoMenu">
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
   </p>

@@ -7,6 +7,7 @@
  */
 
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
@@ -21,6 +22,7 @@ import {
 } from '@angular/core';
 import {CanColor, mixinColor, FlxThemeService, FlxTheme} from '@angular/material/core';
 import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import {Platform} from '@angular/cdk/platform';
 import {DOCUMENT} from '@angular/common';
 
@@ -57,14 +59,19 @@ export class MatToolbarRow {}
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterViewInit {
+export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterViewInit,
+        AfterContentInit {
   private _document: Document;
+  private _theme: FlxTheme;
 
   /** Reference to all toolbar row elements that have been projected. */
   @ContentChildren(MatToolbarRow) _toolbarRows: QueryList<MatToolbarRow>;
 
   /** Reference all toolbar controls */
   @ContentChildren(MatButton) _controls: QueryList<MatButton>;
+
+  /** Reference all toolbar icons */
+  @ContentChildren(MatIcon) _icons: QueryList<MatIcon>;
 
   constructor(
     elementRef: ElementRef,
@@ -76,6 +83,8 @@ export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterV
 
     // TODO: make the document a required param when doing breaking changes.
     this._document = document;
+
+    this._theme = this._themeSvc.theme.getValue();
   }
 
   ngAfterViewInit() {
@@ -86,8 +95,15 @@ export class MatToolbar extends _MatToolbarMixinBase implements CanColor, AfterV
     this._checkToolbarMixedModes();
     this._toolbarRows.changes.subscribe(() => this._checkToolbarMixedModes());
 
-    if (this._controls) {
-      this._controls.forEach(btn => { btn.color = 'primaryContrast'; });
+    // if (this._controls) {
+    //   this._controls.forEach(btn => { btn.color = 'primaryContrast'; });
+    // }
+
+  }
+
+  ngAfterContentInit() {
+    if (this.color !== undefined && this._controls) {
+      this._controls.forEach(btn => { btn.color = `${this.color}Contrast`; });
     }
   }
 

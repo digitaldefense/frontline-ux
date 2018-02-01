@@ -11,7 +11,7 @@
 
   // .mat-icon:not(.colored) {
   .mat-icon.default {
-    // color: mat-color($foreground, icon);
+    color: mat-color($foreground, icon);
     &.mat-primary {
       color: mat-color($primary);
     }
