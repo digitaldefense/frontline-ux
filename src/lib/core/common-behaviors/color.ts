@@ -54,13 +54,20 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
         this._color = colorPalette;
       }
 
-      if (this.color !== undefined) { this._setElemColors(this.color); }
+      if (this.color !== undefined) {
+        this._setElemColors(this.color);
+        this._elementRef.nativeElement.classList.remove('default');
+      }
     }
 
     constructor(...args: any[]) {
       super(...args);
 
       if (this._themeSvc !== undefined) { this._theme = this._themeSvc.theme.getValue(); }
+
+      if (this.color === undefined) {
+        this._elementRef.nativeElement.classList.add('default');
+      }
 
       // Set the default color that can be specified from the mixin.
       // this._setDefaultColor();
