@@ -37,7 +37,6 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
   return class extends base {
     private _theme: FlxTheme;
     private _color: ThemePalette;
-    private _colorVal: string;
     private _contrast: string;
 
     get color(): ThemePalette { return this._color; }

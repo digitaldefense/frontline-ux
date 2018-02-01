@@ -10,6 +10,7 @@ import {
   Attribute,
   Directive,
   ElementRef,
+  Input,
   Renderer2 } from '@angular/core';
 import { FlxThemeService, FlxTheme } from '@angular/material/core';
 
@@ -30,40 +31,41 @@ export class FlxColor {
     private _themeSvc: FlxThemeService,
     @Attribute('fcolor') color: string) {
       this._theme = _themeSvc.theme.getValue();
-      this._setElemColor(color);
+      this._setElemColors(color);
     }
 
-  private _setElemColor(color: string) {
+  private _setElemColors(color: string) {
+    let background = '';
+    let foreground = '';
+
     if (color.charAt(0) === '#') {
       // Support custom Hex colors
-      this._color = color;
+      background = color;
+      foreground = 'white';
     } else {
-      let contrast = color + 'Contrast';
-      let palette = ['danger', 'warning', 'success'];
-      this._color = this._theme[color];
-      this._contrast = (palette.indexOf(color) !== -1) ? 'white' : this._theme[contrast];
+      const contrast = color + 'Contrast';
+      const palette = ['danger', 'warning', 'success'];
+      background = this._theme[color];
+      foreground = (palette.indexOf(color) !== -1) ? 'white' : this._theme[contrast];
     }
-    this._renderElemColor();
+    this._applyThemeColors(background, foreground);
   }
 
-  /** Applies the color to either the background or text based on element type */
-  private _renderElemColor() {
+  private _applyThemeColors(background: string, foreground: string) {
+    if (this._renderer === undefined) { return; }
     const elem = this._element.nativeElement;
-    if (this._isTextNode(this._element.nativeElement)) {
-      this._renderer.setStyle(elem, 'color', this._color);
+
+    if (this._isTextNode(elem)) {
+      this._renderer.setStyle(elem, 'color', background);
     } else {
-      this._renderer.setStyle(elem, 'background-color', this._color);
-      if (this._contrast != null) {
-        this._renderer.setStyle(elem, 'color', this._contrast);
-      }
+      this._renderer.setStyle(elem, 'background-color', background);
+      this._renderer.setStyle(elem, 'color', foreground);
     }
   }
 
+  // Anchor and Button elements need to be handled by their class name since their appearances
+  // can vary depending on button style
   private _isTextNode(element: HTMLElement): Boolean {
-    if (element.tagName === 'BUTTON' || element.tagName === 'A') {
-      const classList = element.classList;
-      return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button'));
-    }
     return textNodes.indexOf(element.tagName) !== -1;
   }
 }
