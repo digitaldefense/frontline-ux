@@ -8,7 +8,6 @@
 
 import {Constructor} from './constructor';
 import {ElementRef, Renderer2} from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
 import { FlxThemeService, FlxTheme } from '../theme/index';
 
 /** @docs-private */
@@ -36,11 +35,10 @@ const accentElements = ['A'];
 export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
     defaultColor?: ThemePalette): Constructor<CanColor> & T {
   return class extends base {
-    private _color: ThemePalette;
-
-    private _subscription: Subscription;
-
     private _theme: FlxTheme;
+    private _color: ThemePalette;
+    private _colorVal: string;
+    private _contrast: string;
 
     get color(): ThemePalette { return this._color; }
     set color(value: ThemePalette) {
@@ -57,7 +55,7 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
         this._color = colorPalette;
       }
 
-      this._applyThemeColors(this._theme);
+      if (this.color !== undefined) { this._setElemColors(this.color); }
     }
 
     constructor(...args: any[]) {
@@ -66,28 +64,45 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
       if (this._themeSvc !== undefined) { this._theme = this._themeSvc.theme.getValue(); }
 
       // Set the default color that can be specified from the mixin.
-      this._setDefaultColor();
+      // this._setDefaultColor();
     }
 
-    private _setDefaultColor() {
-      const elem = this._elementRef.nativeElement;
-      if (elem.tagName === 'A') {
-        this.color = defaultColor;
-      }
-      if (defaultColor !== undefined) {
-        this.color = defaultColor;
-      }
-    }
+    // private _setDefaultColor() {
+    //   const elem = this._elementRef.nativeElement;
+    //   if (elem.tagName === 'A') {
+    //     this.color = defaultColor;
+    //   }
+    //   if (defaultColor !== undefined) {
+    //     this.color = defaultColor;
+    //   }
+    // }
 
-    private _applyThemeColors(theme) {
-      if (this._renderer === undefined || this._color === undefined) { return; }
+    private _setElemColors(color: string) {
+      let background = '';
+      let foreground = '';
 
-      const elem = this._elementRef.nativeElement;
-      if (this._isTextNode(elem)) {
-        this._renderer.setStyle(elem, 'color', theme[this._color]);
+      if (color.charAt(0) === '#') {
+        // Support custom Hex colors
+        background = color;
+        foreground = 'white';
       } else {
-        this._renderer.setStyle(elem, 'background-color', theme[this._color]);
-        this._renderer.setStyle(elem, 'color', this._theme[`${this.color}Contrast`]);
+        const contrast = color + 'Contrast';
+        const palette = ['danger', 'warning', 'success'];
+        background = this._theme[color];
+        foreground = (palette.indexOf(color) !== -1) ? 'white' : this._theme[contrast];
+      }
+      this._applyThemeColors(background, foreground);
+    }
+
+    private _applyThemeColors(background: string, foreground: string) {
+      if (this._renderer === undefined) { return; }
+      const elem = this._elementRef.nativeElement;
+
+      if (this._isTextNode(elem)) {
+        this._renderer.setStyle(elem, 'color', background);
+      } else {
+        this._renderer.setStyle(elem, 'background-color', background);
+        this._renderer.setStyle(elem, 'color', foreground);
       }
     }
 
@@ -99,15 +114,6 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
         return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button'));
       }
       return textNodes.indexOf(element.tagName) !== -1;
-    }
-
-    private _isButton(element: HTMLElement): Boolean {
-      if (element.tagName === 'BUTTON' || element.tagName === 'A') {
-        const classList = element.classList;
-        return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button' ||
-          classList.contains('mat-raised-button') || classList.contains('mat-fab')));
-      }
-      return false;
     }
   };
 }
