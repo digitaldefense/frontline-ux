@@ -13,3 +13,4 @@ export {CanDisableRipple, mixinDisableRipple} from './disable-ripple';
 export {HasTabIndex, mixinTabIndex} from './tabindex';
 export {CanUpdateErrorState, mixinErrorState} from './error-state';
 export { CanCollapse, mixinCollapse } from './collapse';
+export {HasInitialized, mixinInitialized} from './initialized';

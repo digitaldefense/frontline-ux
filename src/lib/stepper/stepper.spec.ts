@@ -30,7 +30,8 @@ describe('MatHorizontalStepper', () => {
         SimplePreselectedMatHorizontalStepperApp,
         LinearMatHorizontalStepperApp,
         SimpleStepperWithoutStepControl,
-        SimpleStepperWithStepControlAndCompletedBinding
+        SimpleStepperWithStepControlAndCompletedBinding,
+        IconOverridesStepper,
       ],
       providers: [
         {provide: Directionality, useFactory: () => ({value: dir})}
@@ -174,6 +175,41 @@ describe('MatHorizontalStepper', () => {
     });
   });
 
+  describe('icon overrides', () => {
+    let fixture: ComponentFixture<IconOverridesStepper>;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(IconOverridesStepper);
+      fixture.detectChanges();
+    });
+
+    it('should allow for the `edit` icon to be overridden', () => {
+      const stepperDebugElement = fixture.debugElement.query(By.directive(MatStepper));
+      const stepperComponent: MatStepper = stepperDebugElement.componentInstance;
+
+      stepperComponent._steps.toArray()[0].editable = true;
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      const header = stepperDebugElement.nativeElement.querySelector('mat-step-header');
+
+      expect(header.textContent).toContain('Custom edit');
+    });
+
+    it('should allow for the `done` icon to be overridden', () => {
+      const stepperDebugElement = fixture.debugElement.query(By.directive(MatStepper));
+      const stepperComponent: MatStepper = stepperDebugElement.componentInstance;
+
+      stepperComponent._steps.toArray()[0].editable = false;
+      stepperComponent.next();
+      fixture.detectChanges();
+
+      const header = stepperDebugElement.nativeElement.querySelector('mat-step-header');
+
+      expect(header.textContent).toContain('Custom done');
+    });
+  });
+
   describe('linear horizontal stepper', () => {
     let fixture: ComponentFixture<LinearMatHorizontalStepperApp>;
     let testComponent: LinearMatHorizontalStepperApp;
@@ -281,6 +317,10 @@ describe('MatHorizontalStepper', () => {
 
     it('should be able to reset the stepper to its initial state', () => {
       assertLinearStepperResetable(fixture);
+    });
+
+    it('should not clobber the `complete` binding when resetting', () => {
+      assertLinearStepperResetComplete(fixture);
     });
   });
 });
@@ -456,6 +496,10 @@ describe('MatVerticalStepper', () => {
 
     it('should be able to reset the stepper to its initial state', () => {
       assertLinearStepperResetable(fixture);
+    });
+
+    it('should not clobber the `complete` binding when resetting', () => {
+      assertLinearStepperResetComplete(fixture);
     });
   });
 });
@@ -935,6 +979,38 @@ function assertLinearStepperResetable(
 }
 
 
+/** Asserts that the `complete` binding is being reset correctly. */
+function assertLinearStepperResetComplete(
+  fixture: ComponentFixture<LinearMatHorizontalStepperApp|LinearMatVerticalStepperApp>) {
+
+  const testComponent = fixture.componentInstance;
+  const stepperComponent = fixture.debugElement.query(By.directive(MatStepper)).componentInstance;
+  const steps: MatStep[] = stepperComponent._steps.toArray();
+  const fillOutStepper = () => {
+    testComponent.oneGroup.get('oneCtrl')!.setValue('input');
+    testComponent.twoGroup.get('twoCtrl')!.setValue('input');
+    testComponent.threeGroup.get('threeCtrl')!.setValue('valid');
+    testComponent.validationTrigger.next();
+    stepperComponent.selectedIndex = 2;
+    fixture.detectChanges();
+    stepperComponent.selectedIndex = 3;
+    fixture.detectChanges();
+  };
+
+  fillOutStepper();
+
+  expect(steps[2].completed)
+      .toBe(true, 'Expected third step to be considered complete after the first run through.');
+
+  stepperComponent.reset();
+  fixture.detectChanges();
+  fillOutStepper();
+
+  expect(steps[2].completed)
+      .toBe(true, 'Expected third step to be considered complete when doing a run after a reset.');
+}
+
+
 @Component({
   template: `
     <mat-horizontal-stepper>
@@ -1168,3 +1244,17 @@ class SimpleStepperWithStepControlAndCompletedBinding {
     {label: 'Three', completed: false, control: new FormControl()}
   ];
 }
+
+@Component({
+  template: `
+    <mat-horizontal-stepper>
+      <ng-template matStepperIcon="edit">Custom edit</ng-template>
+      <ng-template matStepperIcon="done">Custom done</ng-template>
+
+      <mat-step>Content 1</mat-step>
+      <mat-step>Content 2</mat-step>
+      <mat-step>Content 3</mat-step>
+    </mat-horizontal-stepper>
+`
+})
+class IconOverridesStepper {}
