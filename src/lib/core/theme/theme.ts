@@ -282,18 +282,25 @@ export class FlxTheme {
   domain: 'light' | 'dark' | string;
   background: string;
   text: string;
-  primary: string;
-  primaryDark: string;
-  primaryLight: string;
-  primaryContrast: string;
-  accent: string;
-  accentDark: string;
-  accentLight: string;
-  accentContrast: string;
   link: string;
+  primary: string;
+  primaryContrast: string;
+  primaryLight: string;
+  primaryLightContrast: string;
+  primaryDark: string;
+  primaryDarkContrast: string;
+  accent: string;
+  accentContrast: string;
+  accentLight: string;
+  accentLightContrast: string;
+  accentDark: string;
+  accentDarkContrast: string;
   warning: string;
+  warningContrast: string;
   danger: string;
+  dangerContrast: string;
   success: string;
+  successContrast: string;
 
   constructor(name: string) {
     this.name = name;
@@ -324,30 +331,36 @@ export class FlxTheme {
 
   private _generateTopCoat(primary, accent) {
     this.primary = flxPalette[primary]['500'];
+    this.primaryContrast = this._generateContrastLayer('primary', primary, '500');
     this.primaryLight = flxPalette[primary]['300'];
+    this.primaryLightContrast = this._generateContrastLayer('primary', primary, '300');
     this.primaryDark = flxPalette[primary]['800'];
-    this.primaryContrast = this._generateContrastLayer('primary', primary);
+    this.primaryDarkContrast = this._generateContrastLayer('primary', primary, '300');
     this.accent = flxPalette[accent]['A200'];
+    this.accentContrast = this._generateContrastLayer('accent', accent, 'A200');
     this.accentLight = flxPalette[accent]['A100'];
+    this.accentLightContrast = this._generateContrastLayer('accent', accent, 'A200');
     this.accentDark = flxPalette[accent]['A400'];
-    this.accentContrast = this._generateContrastLayer('accent', accent);
+    this.accentDarkContrast = this._generateContrastLayer('accent', accent, 'A200');
     this.link = flxPalette[accent]['A200'];
   }
 
-  private _generateContrastLayer(theme: string, color: string): string {
-    let val: string;
-    let threshold: number;
-
-    if (theme === 'primary') {
-      val = contrastMap[color][0];
-      threshold = 500;
-    } else {
-      val = contrastMap[color][1];
-      threshold = 200;
-    }
+  /**
+   * Returns 'black' or 'white' depending on the input color in order to maintain legible contrast
+   * @param theme Thematic name of the color: 'primary', 'accent', etc
+   * @param hue Name of the color: 'red', 'blue', 'pink', etc
+   * @param lum Luminosity of the color: '300', '700', 'A200'
+   */
+  private _generateContrastLayer(theme: string, hue: string, lum: string): string {
+    const threshold: number = this._parseColorValue(lum);
+    const val: string = (theme === 'primary') ? contrastMap[hue][0] : contrastMap[hue][1];
     return (threshold >= this._parseColorValue(val)) ? white : black;
   }
 
+  /**
+   * Returns the luminance value as a number
+   * @param color number (as a named string) of the corresponding luminance value of the color
+   */
   private _parseColorValue(color: string): number {
     return (color.charAt(0) === 'A') ? parseInt(color.substr(1), 10) : parseInt(color, 10);
   }

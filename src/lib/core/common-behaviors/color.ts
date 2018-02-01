@@ -32,29 +32,6 @@ const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM
 
 const accentElements = ['A'];
 
-// Each color tuple consists of the threshold values for primary and accent colors
-const contrastMap = {
-  red: ['400', 'A200'],
-  pink: ['400', 'A200'],
-  purple: ['300', 'A200'],
-  deepPurple: ['300', 'A200'],
-  indigo: ['300', 'A200'],
-  blue: ['600', 'A200'],
-  lightBlue: ['700', 'A700'],
-  cyan: ['700', '0'],
-  teal: ['500', '0'],
-  green: ['600', '0'],
-  lightGreen: ['800', '0'],
-  lime: ['900', '0'],
-  yellow: ['0', '0'],
-  amber: ['0', '0'],
-  orange: ['900', '0'],
-  deepOrange: ['600', 'A400'],
-  brown: ['300', '0'],
-  gray: ['600', '0'],
-  blueGray: ['400', '0'],
-};
-
 /** Mixin to augment a directive with a `color` property. */
 export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
     defaultColor?: ThemePalette): Constructor<CanColor> & T {
@@ -109,54 +86,9 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
       if (this._isTextNode(elem)) {
         this._renderer.setStyle(elem, 'color', theme[this._color]);
       } else {
-        // const reverse = this._color + 'Contrast';
-        let reverse = this._setForeground();
         this._renderer.setStyle(elem, 'background-color', theme[this._color]);
-        this._renderer.setStyle(elem, 'color', reverse);
+        this._renderer.setStyle(elem, 'color', this._theme[`${this.color}Contrast`]);
       }
-    }
-
-    private _setForeground(): string {
-      const parts: string[] = this._theme.name.split('-');
-      const primary = parts[0];
-      const accent = parts[1];
-
-      let threshold: number;
-      let color: string;
-
-      switch (this._color) {
-        case 'primary':
-          color = this._getContrastColor('primary', parts[0], 500);
-          break;
-        case 'accent':
-          color = this._getContrastColor('accent', parts[0], 200);
-          break;
-        case 'warning':
-          color = 'black';
-          break;
-        default:
-          color = 'white';
-          break;
-      }
-
-      return color;
-    }
-
-    private _getContrastColor(theme: string, color: string, threshold: number): string {
-      let val: string;
-
-      if (theme === 'primary') {
-        val = contrastMap[color][0];
-        threshold = 500;
-      } else {
-        val = contrastMap[color][1];
-        threshold = 200;
-      }
-      return (threshold >= this._parseColorValue(val)) ? 'white' : 'black';
-    }
-
-    private _parseColorValue(color: string): number {
-      return (color.charAt(0) === 'A') ? parseInt(color.substr(1), 10) : parseInt(color, 10);
     }
 
     // Anchor and Button elements need to be handled by their class name since their appearances
