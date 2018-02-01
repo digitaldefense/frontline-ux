@@ -1,4 +1,72 @@
-<mat-card class="demo-card demo-basic">
+<fx-page page-title="Input">
+  <p><code>&lt;mat-form-field&gt;</code> is a wrapper for native <code>input</code> and <code>textarea</code> elements. This container applies Material Design styles and behavior while still allowing direct access to the underlying native element.</p>
+  <p>The native element wrapped by the <code>mat-form-field</code> must be marked with the <code>matInput</code> directive.</p>
+
+  <mat-card>
+    <mat-toolbar color="primary">
+      Basic
+      <flx-spacer></flx-spacer>
+      <button mat-icon-button>
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-card-content>
+      <form>
+        <mat-form-field class="demo-full-width">
+          <input matInput placeholder="Company (disabled)" disabled value="Google">
+        </mat-form-field>
+
+        <table style="width: 100%" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field style="width: 100%" floatLabel="never">
+                <input matInput placeholder="First name">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field style="width: 100%">
+                <input matInput placeholder="Long Last Name That Will Be Truncated">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+        <p>
+          <mat-form-field class="demo-full-width">
+            <textarea matInput placeholder="Address">1600 Amphitheatre Pkway</textarea>
+          </mat-form-field>
+          <mat-form-field class="demo-full-width">
+            <textarea matInput placeholder="Address 2"></textarea>
+          </mat-form-field>
+        </p>
+        <table style="width: 100%" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="demo-full-width">
+                <input matInput placeholder="City" value="Mountain View">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="demo-full-width">
+                <input matInput placeholder="State" maxLength="2" value="CA">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="demo-full-width">
+                <input matInput #postalCode maxLength="5" placeholder="Postal Code" value="94043" pattern="[0-9]{5}">
+                <mat-hint align="end">
+                  <mat-icon ngClass="fa-pencil"></mat-icon>
+                  <span aria-live="polite">{{postalCode.value.length}} / 5</span>
+                </mat-hint>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</fx-page>
+
+<!-- <mat-card class="demo-card demo-basic">
   <mat-toolbar color="primary">Basic</mat-toolbar>
   <mat-card-content>
     <form>
@@ -525,4 +593,4 @@
       <textarea matTextareaAutosize [(ngModel)]="textareaNgModelValue"></textarea>
     </label>
   </mat-card-content>
-</mat-card>
+</mat-card> -->
