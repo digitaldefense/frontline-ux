@@ -60,6 +60,9 @@ export const _MatIconMixinBase = mixinColor(MatIconBase);
  *   Example:
  *     `<mat-icon fontSet="fa" fontIcon="alarm"></mat-icon>`
  */
+
+export type IconSize = 'xs' | 'sm' | 'lg' | '2x' | '3x' | '5x' | '7x' | '10x';
+
 @Component({
   moduleId: module.id,
   template: '<ng-content></ng-content>',
@@ -69,14 +72,17 @@ export const _MatIconMixinBase = mixinColor(MatIconBase);
   inputs: ['color'],
   host: {
     'role': 'img',
-    'class': 'mat-icon fas',
+    'class': 'mat-icon',
   },
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class MatIcon extends _MatIconMixinBase implements CanColor {
+export class MatIcon extends _MatIconMixinBase implements CanColor, OnInit {
 
-  @Input() ngClass: string[] | Set<string> | { [icn: string]: any };
+  @Input() size: IconSize;
+  @Input() weight: 'solid' | 'regular' | 'light' | undefined;
+
+  // @Input() ngClass: string[] | Set<string> | { [icn: string]: any };
 
   constructor(
       elementRef: ElementRef,
@@ -89,6 +95,31 @@ export class MatIcon extends _MatIconMixinBase implements CanColor {
     // the right thing to do for the majority of icon use-cases.
     if (!ariaHidden) {
       elementRef.nativeElement.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  ngOnInit() {
+    let weight: string;
+    switch (this.weight) {
+      case 'regular':
+        weight = 'far';
+        break;
+      case 'light':
+        weight = 'fal';
+        break;
+      default:
+        weight = 'fas';
+        break;
+    }
+    this._renderer.addClass(this._elementRef.nativeElement, weight);
+
+    if (this.size !== undefined) {
+      let size = 'fa-' + this.size;
+      this._renderer.addClass(this._elementRef.nativeElement, size);
+    } else {
+      this._elementRef.nativeElement.style['font-size'] = '20px';
+      this._elementRef.nativeElement.style.height = '20px';
+      this._elementRef.nativeElement.style.width = '20px';
     }
   }
 }

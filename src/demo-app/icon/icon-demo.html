@@ -1,26 +1,26 @@
-<div class="demo-icon">
-  <h1 class="mat-display-1">Icons</h1>
-  <p class="lead"><code>mat-icon</code> applies vector based, SVG icons from FontAwesome 5.</p>
+<fx-page page-title="Icons" ref="https://material.io/guidelines/style/icons.html">
+  <p class="mat-headline">Material icons use geometric shapes to visually represent core ideas, capabilities, or topics.</p>
+  <p>A system icon, or UI icon, symbolizes a command, file, device, or directory. System icons are also used to represent common actions like trash, print, and save.</p>
   
   <div type="info">
     <h2 class="title">About Font Awesome</h2>
-    <p>The Frontline implementation of <code>mat-icon</code> allows for Font Awesome to be used exactly as it's presented in their documentation. Presented here is a small summary of basic options. For more advanced features, visit their <a href="https://fontawesome.com/how-to-use/svg-with-js">How To guide</a> .</p>
+    <p>The Frontline implementation of <code>&lt;mat-icon&gt;</code> allows for Font Awesome to be used exactly as it's presented in their documentation. Presented here is a small summary of basic options. For more advanced features, visit their <a href="https://fontawesome.com/how-to-use/svg-with-js">How To guide</a> .</p>
   </div>
 
-  <section>
+  <mat-card>
     <mat-toolbar color="primary">Basic Usage</mat-toolbar>
-    <mat-card>
-      <mat-card-content>
-        <mat-icon ngClass="fa-shield-alt"></mat-icon>
-      </mat-card-content>
-    </mat-card>
+    <mat-card-content>
+      <mat-icon ngClass="fa-shield-alt"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" color="primary"></mat-icon>
+    </mat-card-content>
+  </mat-card>
 
     <h3 class="title">Theming</h3>
     <p>By default, icons will use the current font color. This can be changed using the <code>color</code> attribute. Acceptable values are <code>primary</code> and <code>accent</code>.</p>
 
     <h3 class="title">Styles &amp; Prefixes</h3>
     <p>Frontline UX uses two of Font Awesome's four styles: <b>Solid</b> and <b>Regular</b>.</p>
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th>Style</th>
@@ -42,13 +42,20 @@
           <td>Regular</td>
           <td><code>far</code></td>
           <td>
-            <code>&lt;mat-icon ngClass="fa-plane"&gt;&lt;/mat-icon&gt;</code>
+            <code>&lt;mat-icon ngClass="fa-plane" weight="regular"&gt;&lt;/mat-icon&gt;</code>
           </td>
-          <td><mat-icon ngClass="fa-plane"></mat-icon></td>
+          <td><mat-icon ngClass="fa-plane" weight="regular"></mat-icon></td>
+        </tr>
+        <tr>
+          <td>Light</td>
+          <td><code>far</code></td>
+          <td>
+            <code>&lt;mat-icon ngClass="fa-plane" weight="light"&gt;&lt;/mat-icon&gt;</code>
+          </td>
+          <td><mat-icon ngClass="fa-plane" weight="light"></mat-icon></td>
         </tr>
       </tbody>
     </table>
-  </section>
 
   <fx-section section-title="Examples">
     <mat-icon ngClass="fa-tree"></mat-icon>
@@ -56,24 +63,28 @@
     <mat-icon ngClass="fa-user-circle"></mat-icon>
   </fx-section>
   
-  <section>
-    <h2 class="headline">Additional Styles</h2>
-    <!-- <mat-toolbar color="primary">Icon Sizes</mat-toolbar>
-    <mat-card>
-      <mat-card-content>
-        <mat-icon ngClass="fa-shield-alt fa-xs"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-sm"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-lg"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-2x"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-3x"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-4x"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-5x"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-7x"></mat-icon>
-        <mat-icon ngClass="fa-shield-alt fa-10x"></mat-icon>
-      </mat-card-content>
-    </mat-card> -->
+  <mat-card>
+    <mat-toolbar color="primary">
+      Sizes
+      <flx-spacer></flx-spacer>
+      <button mat-icon-button>
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-card-content>
+      <mat-icon ngClass="fa-shield-alt" size="xs"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="sm"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="lg"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="2x"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="3x"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="4x"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="5x"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="7x"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt" size="10x"></mat-icon>
+    </mat-card-content>
+  </mat-card>
     
-    <mat-toolbar color="primary">Animated Icons</mat-toolbar>
+  <fx-section section-title="Animated Icons">
     <mat-card>
       <mat-card-content>
         <mat-icon [ngClass]="['fa-spinner', 'fa-spin', 'fa-fw']"></mat-icon>
@@ -83,5 +94,5 @@
         <mat-icon [ngClass]="['fa-sync', 'fa-spin', 'fa-fw']"></mat-icon>
       </mat-card-content>
     </mat-card>
-  </section>
-</div>
+  </fx-section>
+</fx-page>
