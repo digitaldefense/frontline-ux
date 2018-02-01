@@ -26,7 +26,7 @@ import { FlxThemeService } from '@angular/material/core';
 })
 export class EntryApp {
   constructor(private _themeSvc: FlxThemeService) {
-    _themeSvc.setTheme('indigo-pink-light');
+    _themeSvc.setTheme('blue-pink-light');
   }
 }
 

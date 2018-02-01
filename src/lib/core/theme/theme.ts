@@ -335,13 +335,13 @@ export class FlxTheme {
     this.primaryLight = flxPalette[primary]['300'];
     this.primaryLightContrast = this._generateContrastLayer('primary', primary, '300');
     this.primaryDark = flxPalette[primary]['800'];
-    this.primaryDarkContrast = this._generateContrastLayer('primary', primary, '300');
+    this.primaryDarkContrast = this._generateContrastLayer('primary', primary, '800');
     this.accent = flxPalette[accent]['A200'];
     this.accentContrast = this._generateContrastLayer('accent', accent, 'A200');
     this.accentLight = flxPalette[accent]['A100'];
-    this.accentLightContrast = this._generateContrastLayer('accent', accent, 'A200');
+    this.accentLightContrast = this._generateContrastLayer('accent', accent, 'A100');
     this.accentDark = flxPalette[accent]['A400'];
-    this.accentDarkContrast = this._generateContrastLayer('accent', accent, 'A200');
+    this.accentDarkContrast = this._generateContrastLayer('accent', accent, 'A400');
     this.link = flxPalette[accent]['A200'];
   }
 
