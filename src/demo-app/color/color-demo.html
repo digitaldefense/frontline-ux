@@ -51,45 +51,29 @@
           apply the following opacity levels:</p>
       </div>
       <div fxFlex="66%">
-        <table class="table" fcolor="#FAFAFA">
+        <table class="table" style="background-color: #FAFAFA">
           <thead>
-            <tr>
-              <th>Dark text</th>
-              <th>Color / Opacity</th>
+            <tr style="color: rgba(0,0,0, .54)">
+              <th>Dark text (#000000)</th>
+              <th>Opacity</th>
               <th>Hex color</th>
             </tr>
           </thead>
           <tbody>
-            <tr flColor="#202020">
+            <tr style="color: rgba(0,0,0, .87)">
               <td>Primary text</td>
-              <td>#000000 / 87%</td>
+              <td>87%</td>
               <td>#202020</td>
             </tr>
-            <tr flColor="#737373">
+            <tr style="color: rgba(0,0,0, .54)">
               <td>Secondary text</td>
-              <td>#000000 / 54%</td>
+              <td>54%</td>
               <td>#737373</td>
             </tr>
-            <tr flColor="#9B9B9B">
+            <tr style="color: rgba(0,0,0, .38)">
               <td>Disabled / Hint text</td>
-              <td>#000000 / 38%</td>
+              <td>38%</td>
               <td>#9B9B9B</td>
-            </tr>
-            <tr flColor="#9B9B9B">
-              <td>Dividers</td>
-              <td>#000000 / 12%</td>
-              <td>#9B9B9B</td>
-            </tr>
-  
-            <tr fcolor="primary">
-              <td>Primary color</td>
-              <td>#FFFFFF / 100%</td>
-              <td></td>
-            </tr>
-            <tr fcolor="accent">
-              <td>Accent color</td>
-              <td>#FFFFFF / 100%</td>
-              <td></td>
             </tr>
           </tbody>
         </table>
@@ -102,40 +86,29 @@
         <h3>White text on dark backgrounds</h3>
         <p>White text appearing on colored backgrounds should do so at an opacity of 100%.</p>
       </div>
-      <div fxFlex="33%">
-        <table class="table" fcolor="#303030">
+      <div fxFlex="66%">
+        <table class="table" style="background-color: #303030">
+          <thead>
+            <tr style="color: rgba(255, 255, 255, .7)">
+              <th>Light text (#FFFFFF)</th>
+              <th>Opacity</th>
+              <th>Hex color</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr flColor="#FFFFFF">
+            <tr style="color: #FFFFFF">
               <td>Primary text</td>
-              <td>#FFFFFF</td>
               <td>100%</td>
-            </tr>
-            <tr flColor="#737373">
-              <td>Secondary text</td>
               <td>#FFFFFF</td>
+            </tr>
+            <tr style="color: rgba(255, 255, 255, .7)">
+              <td>Secondary text</td>
               <td>70%</td>
-            </tr>
-            <tr flColor="#9B9B9B">
-              <td>Disabled / Hint text</td>
-              <td>#FFFFFF</td>
-              <td>50%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div fxFlex="33%">
-        <table class="table" fcolor="#303030">
-          <tbody>
-            <tr>
-              <td>Primary text</td>
-              <td>#202020</td>
-            </tr>
-            <tr flColor="#737373">
-              <td>Secondary text</td>
               <td>#737373</td>
             </tr>
-            <tr flColor="#9B9B9B">
+            <tr style="color: rgba(255, 255, 255, 0.5)">
               <td>Disabled / Hint text</td>
+              <td>50%</td>
               <td>#9B9B9B</td>
             </tr>
           </tbody>
@@ -145,7 +118,7 @@
   </fx-section>
   <br>
   
-  <fx-section section-title="Backgrounds">
+  <!-- <fx-section section-title="Backgrounds">
     <p>Themes let you apply a consistent tone to an app. The theme specifies the darkness of the surfaces, level of shadow,
       and appropriate opacity of ink elements. Themes are dynamic based on chosen Primary and Accent colors as well as then
       further segmented by "light" or "dark."</p>
@@ -155,7 +128,7 @@
         <h3>Light theme</h3>
       </div>
       <div fxFlex="66%">
-        <!-- <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
+        <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
           <fl-grid-tile flBgColor="#E0E0E0" flColor="#737373">
             Status bar
             <code>#E0E0E0</code>
@@ -172,7 +145,7 @@
             Cards/Dialogs
             <code>#FFFFFF</code>
           </fl-grid-tile>
-        </fl-grid-list> -->
+        </fl-grid-list>
       </div>
     </div>
     <br>
@@ -182,7 +155,7 @@
         <h3>Dark theme</h3>
       </div>
       <div fxFlex="66%">
-        <!-- <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
+        <fl-grid-list cols="2" rowHeight="3:1" gutterSize="0">
           <fl-grid-tile flBgColor="#000000">
             Status bar
             <code>#000000</code>
@@ -199,8 +172,8 @@
             Cards/Dialogs
             <code>#424242</code>
           </fl-grid-tile>
-        </fl-grid-list> -->
+        </fl-grid-list>
       </div>
     </div>
-  </fx-section>
+  </fx-section> -->
 </fx-page>
