@@ -27,7 +27,7 @@ export interface HasElementRef {
 export type ThemePalette = string | undefined;
 
 const textNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'P', 'SPAN', 'I', 'STRONG', 'EM', 'B', 'MAT-ICON',
-          'VAR', 'KBD'];
+          'VAR', 'KBD', 'A'];
 
 const accentElements = ['A'];
 
@@ -65,8 +65,10 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
 
       if (this._themeSvc !== undefined) { this._theme = this._themeSvc.theme.getValue(); }
 
-      if (this.color === undefined) {
+      if (this.color === undefined && this._elementRef.nativeElement.tagName !== 'A') {
         this._elementRef.nativeElement.classList.add('default');
+      } else if (this._elementRef.nativeElement.tagName === 'A' && defaultColor !== undefined) {
+        this._setElemColors(defaultColor);
       }
 
       // Set the default color that can be specified from the mixin.
@@ -115,11 +117,18 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
     // Anchor and Button elements need to be handled by their class name since their appearances
     // can vary depending on button style
     private _isTextNode(element: HTMLElement): Boolean {
-      if (element.tagName === 'BUTTON' || element.tagName === 'A') {
-        const classList = element.classList;
-        return Boolean(classList.contains('mat-button') || classList.contains('mat-icon-button'));
+      if (textNodes.indexOf(element.tagName) !== -1) {
+        if (element.tagName === 'A' && element.classList.contains('mat-button')) {
+          return false;
+        } else {
+          return true;
+        }
+      } else if (element.tagName === 'BUTTON' && (element.classList.contains('mat-button') ||
+              element.classList.contains('mat-icon-button'))) {
+        return true;
+      } else {
+        return false;
       }
-      return textNodes.indexOf(element.tagName) !== -1;
     }
   };
 }

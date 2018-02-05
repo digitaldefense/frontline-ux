@@ -43,6 +43,7 @@ export * from '@angular/material/ghost';
 export * from '@angular/material/avatar';
 export * from '@angular/material/collapse';
 export * from '@angular/material/color';
+export * from '@angular/material/link';
 export * from '@angular/material/page';
 export * from '@angular/material/section';
 export * from '@angular/material/spacer';

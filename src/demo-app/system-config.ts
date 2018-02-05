@@ -97,6 +97,7 @@ System.config({
     '@angular/material/avatar': 'dist/packages/material/avatar/index.js',
     '@angular/material/collapse': 'dist/packages/material/collapse/index.js',
     '@angular/material/color': 'dist/packages/material/color/index.js',
+    '@angular/material/link': 'dist/packages/material/link/index.js',
     '@angular/material/page': 'dist/packages/material/page/index.js',
     '@angular/material/section': 'dist/packages/material/section/index.js',
     '@angular/material/spacer': 'dist/packages/material/spacer/index.js',
