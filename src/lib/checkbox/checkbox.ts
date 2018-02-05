@@ -39,6 +39,7 @@ import {
   RippleRef,
 } from '@angular/material/core';
 import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxClickAction} from './checkbox-config';
+import { FlxTheme, FlxThemeService } from '@angular/material/core';
 
 
 // Increasing integer for generating unique ids for checkbox components.
@@ -84,7 +85,7 @@ export class MatCheckboxBase {
   constructor(public _elementRef: ElementRef) {}
 }
 export const _MatCheckboxMixinBase =
-  mixinTabIndex(mixinColor(mixinDisableRipple(mixinDisabled(MatCheckboxBase)), 'accent'));
+  mixinTabIndex(mixinDisableRipple(mixinDisabled(MatCheckboxBase)));
 
 
 /**
@@ -108,6 +109,7 @@ export const _MatCheckboxMixinBase =
     '[class.mat-checkbox-checked]': 'checked',
     '[class.mat-checkbox-disabled]': 'disabled',
     '[class.mat-checkbox-label-before]': 'labelPosition == "before"',
+    // '[style.background-color]': 'checked ? boxcolor ? "transparent"'
   },
   providers: [MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR],
   inputs: ['disabled', 'disableRipple', 'color', 'tabIndex'],
@@ -116,7 +118,12 @@ export const _MatCheckboxMixinBase =
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAccessor,
-    AfterViewInit, OnDestroy, CanColor, CanDisable, HasTabIndex, CanDisableRipple {
+    AfterViewInit, OnDestroy, CanDisable, HasTabIndex, CanDisableRipple {
+
+  private _theme: FlxTheme;
+  private _color: string;
+
+  boxcolor: string;
 
   /**
    * Attached to the aria-label attribute of the host element. In most cases, arial-labelledby will
@@ -164,6 +171,13 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
   /** Name value will be applied to the input element if present */
   @Input() name: string | null = null;
 
+  @Input()
+  get color() { return this._color; }
+  set color(value) {
+    this._color = value;
+    this.boxcolor = this._theme[value];
+  }
+
   /** Event emitted when the checkbox's `checked` value changes. */
   @Output() readonly change: EventEmitter<MatCheckboxChange> =
       new EventEmitter<MatCheckboxChange>();
@@ -196,6 +210,7 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
   private _focusRipple: RippleRef | null;
 
   constructor(elementRef: ElementRef,
+              private _themeSvc: FlxThemeService,
               private _changeDetectorRef: ChangeDetectorRef,
               private _focusMonitor: FocusMonitor,
               @Attribute('tabindex') tabIndex: string,
@@ -204,6 +219,7 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
     super(elementRef);
 
     this.tabIndex = parseInt(tabIndex) || 0;
+    this._theme = _themeSvc.theme.getValue();
   }
 
   ngAfterViewInit() {

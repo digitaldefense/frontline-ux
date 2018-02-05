@@ -1,4 +1,185 @@
-<h1>mat-checkbox: Basic Example</h1>
+<fx-page page-title="Checkbox">
+  <h2 class="mat-headline">Checkboxes allow the selection of multiple options from a set.</h2>
+  <p>If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches.</p>
+  <p>If you have a single option, avoid using a checkbox and use an on/off switch instead.</p>
+  <mat-card>
+    <mat-toolbar color="primary">
+      Basic example
+      <flx-spacer></flx-spacer>
+      <button mat-icon-button [collapseTrigger]="collapse">
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-card-content collapsed #collapse>
+      <pre class="codeblock"><b>&lt;mat-checkbox</b> <span fcolor="accentDark">[(ngModel)]</span>="isChecked" 
+        <span fcolor="accentDark">name</span>="cb" 
+        <span fcolor="accentDark">value</span>="basic_checkbox" 
+        <span fcolor="accentDark">[color]</span>="checkboxColor()" 
+        <span fcolor="accentDark">(change)</span>="isIndeterminate = false"
+        <span fcolor="accentDark">[indeterminate]</span>="isIndeterminate" 
+        <span fcolor="accentDark">[disabled]</span>="isDisabled" 
+        <span fcolor="accentDark">[align]</span>="alignment">
+  Do you want to
+  &lt;em&gt;foobar&lt;/em&gt; the
+  &lt;em&gt;bazquux&lt;/em&gt;?
+&lt;/<b>mat-checkbox</b>&gt;</pre>
+    </mat-card-content>
+    <mat-card-content>
+      <div fxLayout="row">
+        <div fxFlex>
+          <ul class="list-unstyled">
+            <li>
+              <input id="indeterminate-toggle" type="checkbox" [(ngModel)]="isIndeterminate" [disabled]="isDisabled" [align]="alignment">
+              <label for="indeterminate-toggle">Toggle Indeterminate</label>
+            </li>
+            <li>
+              <input id="disabled-toggle" type="checkbox" [(ngModel)]="isDisabled">
+              <label for="disabled-toggle">Toggle Disabled</label>
+            </li>
+            <li>
+              <input #start type="radio" value="start" id="align-start" name="alignment" (click)="alignment = start.value" checked>
+              <label for="align-start">Start</label>&nbsp;&nbsp;
+              <input #end type="radio" value="end" id="align-end" name="alignment" (click)="alignment = end.value">
+              <label for="align-end">End</label>
+            </li>
+          </ul>
+
+        </div>
+        <div fxFlex>
+          <form>
+            <mat-checkbox [(ngModel)]="isChecked" name="cb" value="basic_checkbox" [color]="checkboxColor()" (change)="isIndeterminate = false"
+              [indeterminate]="isIndeterminate" [disabled]="isDisabled" [align]="alignment">
+              Do you want to
+              <em>foobar</em> the
+              <em>bazquux</em>?
+            </mat-checkbox> -
+            <strong>{{printResult()}}</strong>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <fx-section section-title="Checkbox properties">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">align</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td><kbd>start</kbd></td>
+          <td>Whether or not the checkbox should appear before or after the label.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">aria-label</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td></td>
+          <td>Attached to the aria-label attribute of the host element. In most cases, arial-labelledby will take precedence so this may
+          be omitted.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">aria-labelledby</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td></td>
+          <td>Users can specify the <code>aria-labelledby</code> attribute which will be forwarded to the input element</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">id</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td></td>
+          <td>A unique id for the checkbox input. If none is supplied, it will be auto-generated.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">name</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td></td>
+          <td>Name value will be applied to the input element if present.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">required</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td></td>
+          <td>Whether the checkbox is required.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">value</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Input</span>
+          </td>
+          <td></td>
+          <td>The value attribute of the native input element.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">checked</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Attribute</span>
+          </td>
+          <td></td>
+          <td>Whether the checkbox is checked.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">indeterminate</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Attribute</span>
+          </td>
+          <td></td>
+          <td>Whether the checkbox is indeterminate. This is also known as "mixed" mode and can be used to represent a checkbox with three
+          states, e.g. a checkbox that represents a nested list of checkable items. Note that whenever checkbox is manually clicked,
+          indeterminate is immediately set to false.</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">change</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">@Output</span>
+          </td>
+          <td></td>
+          <td>Event emitted when the checkbox's <code>checked</code> value changes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </fx-section>
+</fx-page>
+
+<!-- <h1>mat-checkbox: Basic Example</h1>
 <form>
 <mat-checkbox [(ngModel)]="isChecked"
              name="cb"
@@ -55,4 +236,4 @@
 <mat-pseudo-checkbox state="indeterminate" [disabled]="true"></mat-pseudo-checkbox>
 
 <h1>Nested Checklist</h1>
-<mat-checkbox-demo-nested-checklist></mat-checkbox-demo-nested-checklist>
+<mat-checkbox-demo-nested-checklist></mat-checkbox-demo-nested-checklist> -->

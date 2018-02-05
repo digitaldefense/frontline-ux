@@ -239,6 +239,7 @@ $_mat-checkbox-mark-stroke-size: 2 / 15 * $mat-checkbox-size !default;
 .mat-checkbox-background {
   @extend %mat-checkbox-outer-box;
 
+  visibility: hidden;
   align-items: center;
   display: inline-flex;
   justify-content: center;
@@ -299,6 +300,10 @@ $_mat-checkbox-mark-stroke-size: 2 / 15 * $mat-checkbox-size !default;
   .mat-checkbox-mixedmark {
     transform: scaleX(1) rotate(-45deg);
   }
+
+  .mat-checkbox-background {
+    visibility: visible;
+  }
 }
 
 .mat-checkbox-indeterminate {
@@ -315,12 +320,17 @@ $_mat-checkbox-mark-stroke-size: 2 / 15 * $mat-checkbox-size !default;
     opacity: 1;
     transform: scaleX(1) rotate(0deg);
   }
+
+  .mat-checkbox-background {
+    visibility: visible;
+  }
 }
 
 
 .mat-checkbox-unchecked {
   .mat-checkbox-background {
     background-color: transparent;
+    visibility: hidden;
   }
 }
 
