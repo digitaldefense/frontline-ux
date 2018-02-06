@@ -1,64 +1,63 @@
 <fm-page page-title="Checkbox">
+  <fm-page-subtitle><code>&lt;mat-checkbox&gt;</code></fm-page-subtitle>
   <h2 class="mat-headline">Checkboxes allow the selection of multiple options from a set.</h2>
   <p>If you have multiple options appearing in a list, you can preserve space by using checkboxes instead of on/off switches.</p>
   <p>If you have a single option, avoid using a checkbox and use an on/off switch instead.</p>
-  <mat-card>
-    <mat-toolbar color="primary">
-      Basic example
-      <fm-spacer></fm-spacer>
-      <button mat-icon-button [collapseTrigger]="collapse">
-        <mat-icon ngClass="fa-code"></mat-icon>
-      </button>
-    </mat-toolbar>
-    <mat-card-content collapsed #collapse>
-      <pre class="codeblock"><b>&lt;mat-checkbox</b> <span fcolor="accentDark">[(ngModel)]</span>="isChecked" 
+  <fm-section section-title="Examples">
+    <mat-card>
+      <mat-toolbar color="primary">
+        Basic usage
+        <fm-spacer></fm-spacer>
+        <button mat-icon-button [collapseTrigger]="collapse">
+          <mat-icon ngClass="fa-code"></mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-card-content collapsed #collapse>
+        <pre class="codeblock"><b>&lt;mat-checkbox</b> [(<span fcolor="accentDark">ngModel</span>)]="isChecked" 
         <span fcolor="accentDark">name</span>="cb" 
         <span fcolor="accentDark">value</span>="basic_checkbox" 
-        <span fcolor="accentDark">[color]</span>="checkboxColor()" 
-        <span fcolor="accentDark">(change)</span>="isIndeterminate = false"
-        <span fcolor="accentDark">[indeterminate]</span>="isIndeterminate" 
-        <span fcolor="accentDark">[disabled]</span>="isDisabled" 
-        <span fcolor="accentDark">[align]</span>="alignment">
-  Do you want to
-  &lt;em&gt;foobar&lt;/em&gt; the
-  &lt;em&gt;bazquux&lt;/em&gt;?
+        [<span fcolor="accentDark">color</span>]="checkboxColor()" 
+        (<span fcolor="accentDark">change</span>)="isIndeterminate = false"
+        [<span fcolor="accentDark">indeterminate</span>]="isIndeterminate" 
+        [<span fcolor="accentDark">disabled</span>]="isDisabled" 
+        [<span fcolor="accentDark">align</span>]="alignment">
+  Do you want to &lt;<b>em</b>&gt;foobar&lt;/<b>em</b>&gt; the &lt;<b>em</b>&gt;bazquux&lt;/<b>em</b>&gt;?
 &lt;/<b>mat-checkbox</b>&gt;</pre>
-    </mat-card-content>
-    <mat-card-content>
-      <div fxLayout="row">
-        <div fxFlex>
-          <ul class="list-unstyled">
-            <li>
-              <input id="indeterminate-toggle" type="checkbox" [(ngModel)]="isIndeterminate" [disabled]="isDisabled" [align]="alignment">
-              <label for="indeterminate-toggle">Toggle Indeterminate</label>
-            </li>
-            <li>
-              <input id="disabled-toggle" type="checkbox" [(ngModel)]="isDisabled">
-              <label for="disabled-toggle">Toggle Disabled</label>
-            </li>
-            <li>
-              <input #start type="radio" value="start" id="align-start" name="alignment" (click)="alignment = start.value" checked>
-              <label for="align-start">Start</label>&nbsp;&nbsp;
-              <input #end type="radio" value="end" id="align-end" name="alignment" (click)="alignment = end.value">
-              <label for="align-end">End</label>
-            </li>
-          </ul>
+      </mat-card-content>
+      <mat-card-content>
+        <div fxLayout="row">
+          <div fxFlex>
+            <ul class="list-unstyled">
+              <li>
+                <input id="indeterminate-toggle" type="checkbox" [(ngModel)]="isIndeterminate" [disabled]="isDisabled" [align]="alignment">
+                <label for="indeterminate-toggle">Toggle Indeterminate</label>
+              </li>
+              <li>
+                <input id="disabled-toggle" type="checkbox" [(ngModel)]="isDisabled">
+                <label for="disabled-toggle">Toggle Disabled</label>
+              </li>
+              <li>
+                <input #start type="radio" value="start" id="align-start" name="alignment" (click)="alignment = start.value" checked>
+                <label for="align-start">Start</label>&nbsp;&nbsp;
+                <input #end type="radio" value="end" id="align-end" name="alignment" (click)="alignment = end.value">
+                <label for="align-end">End</label>
+              </li>
+            </ul>
 
+          </div>
+          <div fxFlex>
+            <form>
+              <mat-checkbox [(ngModel)]="isChecked" name="cb" value="basic_checkbox" [color]="checkboxColor()" (change)="isIndeterminate = false"
+                [indeterminate]="isIndeterminate" [disabled]="isDisabled" [align]="alignment">
+                Do you want to <em>foobar</em> the <em>bazquux</em>?
+              </mat-checkbox> -
+              <strong>{{printResult()}}</strong>
+            </form>
+          </div>
         </div>
-        <div fxFlex>
-          <form>
-            <mat-checkbox [(ngModel)]="isChecked" name="cb" value="basic_checkbox" [color]="checkboxColor()" (change)="isIndeterminate = false"
-              [indeterminate]="isIndeterminate" [disabled]="isDisabled" [align]="alignment">
-              Do you want to
-              <em>foobar</em> the
-              <em>bazquux</em>?
-            </mat-checkbox> -
-            <strong>{{printResult()}}</strong>
-          </form>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </fm-section>
 
   <fm-section section-title="Checkbox properties">
     <table class="table">
