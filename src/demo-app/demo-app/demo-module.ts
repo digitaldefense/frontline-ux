@@ -61,6 +61,7 @@ import {DEMO_APP_ROUTES} from './routes';
 import {TableDemoModule} from '../table/table-demo-module';
 import { ColorDemo } from 'color/color-demo';
 import { AvatarDemo } from 'avatar/avatar-demo';
+import { PageDemo } from 'page/page-demo';
 
 @NgModule({
   imports: [
@@ -104,6 +105,7 @@ import { AvatarDemo } from 'avatar/avatar-demo';
     MatCheckboxDemoNestedChecklist,
     MenuDemo,
     OverlayDemo,
+    PageDemo,
     PlatformDemo,
     PortalDemo,
     ProgressBarDemo,

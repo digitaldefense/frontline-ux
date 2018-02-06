@@ -1,0 +1,118 @@
+<fm-page page-title="Page">
+  <fm-page-subtitle>
+    <code>&lt;fm-page&gt;</code>
+  </fm-page-subtitle>
+  <h2 class="mat-headline">The Page component is the root element of any Frontline page.</h2>
+  <p>The component provides a consistent page title, subtitle, and area for additional page-related controls.</p>
+  <p>It may be used with only the <code>page-title</code> and <code>page-subtitle</code> properties or with their respective components to allow further control over their appearance.</p>
+
+  <fm-section section-title="Examples">
+    <mat-card>
+      <mat-toolbar color="primary">
+        Basic usage
+        <fm-spacer></fm-spacer>
+        <button mat-icon-button [collapseTrigger]="exampleCode">
+          <mat-icon ngClass="fa-code"></mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-card-content collapsed #exampleCode>
+        <pre class="codeblock">
+  &lt;fm-page page-title="Page title"&gt;
+    ...
+    &lt; page content here &gt;
+    ...
+  &lt;/fm-page&gt;</pre>
+      </mat-card-content>
+      <mat-card-content>
+        <fm-page page-title="Page title">
+          ...
+          <br>
+          &lt; page content here &gt;
+          <br>
+          ...
+        </fm-page>
+      </mat-card-content>
+    </mat-card>
+    
+    <mat-card>
+      <mat-toolbar color="primary">
+        Advanced usage
+        <fm-spacer></fm-spacer>
+        <button mat-icon-button [collapseTrigger]="exampleCode">
+          <mat-icon ngClass="fa-code"></mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-card-content collapsed #exampleCode>
+        <pre class="codeblock">
+&lt;<b>fm-page</b>&gt;
+  &lt;<b>fm-page-title</b>&gt;Page title&lt;/<b>fm-page-title</b>&gt;
+  &lt;<b>fm-page-subtitle</b>&gt;Subtitle&lt;/<b>fm-page-subtitle</b>&gt;
+  &lt;<b>button</b> <span fcolor="accent">mat-button fm-page-button</span>&gt;Page button&lt;/<b>button</b>&gt;
+  &lt;<b>button</b> <span fcolor="accent">mat-icon-button fm-page-button</span>&gt;
+    &lt;<b>mat-icon</b> ngClass="fa-ellipsis-v" <span fcolor="accent">weight</span>="regular"&gt;&lt;/<b>mat-icon</b>&gt;
+  &lt;/<b>button</b>&gt;
+  ...
+  &lt; page content here &gt;
+  ...
+&lt;/<b>fm-page</b>&gt;</pre>
+      </mat-card-content>
+      <mat-card-content>
+        <p>A <code>Page</code> containing each of the page components: <code>&lt;<b>fm-page-title</b>&gt;</code>, <code>&lt;<b>fm-page-subtitle</b>&gt;</code>, and <code>&lt;<b>button</b> <span fcolor="accent">fm-page-button</span>&gt;</code></p>
+        <fm-page>
+          <fm-page-title>Page title</fm-page-title>
+          <fm-page-subtitle>Subtitle</fm-page-subtitle>
+          <button mat-button fm-page-button>
+            Page button
+          </button>
+          <button mat-icon-button fm-page-button>
+            <mat-icon ngClass="fa-ellipsis-v" weight="regular"></mat-icon>
+          </button>
+          ...
+          <br>
+          &lt; page content here &gt;
+          <br>
+          ...
+        </fm-page>
+      </mat-card-content>
+    </mat-card>
+  </fm-section>
+
+  <fm-section section-title="Page properties">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">page-title</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">string</span>
+          </td>
+          <td></td>
+          <td>
+            <p>Text to appear as the page title.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span class="property-name" fcolor="accentDark">page-subtitle</span>
+          </td>
+          <td>
+            <span class="property-type" fcolor="primary">string</span>
+          </td>
+          <td></td>
+          <td>
+            <p>Text to appear as the page subtitle.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fm-section>
+</fm-page>
