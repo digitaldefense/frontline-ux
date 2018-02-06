@@ -64,6 +64,7 @@ export class DemoApp {
   navItems = [
     {name: 'Autocomplete', route: '/autocomplete'},
     {name: 'Avatar', route: '/avatar'},
+    { name: 'Bottom sheet', route: '/bottom-sheet' },
     {name: 'Button Toggle', route: '/button-toggle'},
     {name: 'Button', route: '/button'},
     {name: 'Card', route: '/card'},
