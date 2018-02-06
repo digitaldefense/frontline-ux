@@ -19,6 +19,12 @@
     background: mat-color($background, app-bar);
     color: mat-color($foreground, text);
 
+    // Normalize links
+    a {
+      color: mat-color($foreground, text);
+      text-decoration: none;
+    }
+
     &.mat-primary {
       @include _mat-toolbar-color($primary);
     }

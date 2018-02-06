@@ -1,7 +1,7 @@
 <mat-sidenav-container class="demo-root" fullscreen>
   <mat-sidenav #start>
     <mat-nav-list>
-      <a mat-list-item (click)="start.close()" routerLink="/avatar">Avatar</a>
+      <!-- <a mat-list-item (click)="start.close()" routerLink="/avatar">Avatar</a>
       <a mat-list-item (click)="start.close()" routerLink="/button">Buttons</a>
       <a mat-list-item (click)="start.close()" routerLink="/card">Card</a>
       <a mat-list-item (click)="start.close()" routerLink="/color">Color</a>
@@ -16,8 +16,8 @@
         <a mat-list-item (click)="start.close()" routerLink="/slide-toggle">Switch</a>
       </mat-expansion-panel>
       <a mat-list-item (click)="start.close()" routerLink="/toolbar">Toolbar</a>
-      <a mat-list-item (click)="start.close()" routerLink="/typography">Typography</a>
-      <!-- <a *ngFor="let navItem of navItems"
+      <a mat-list-item (click)="start.close()" routerLink="/typography">Typography</a> -->
+      <a *ngFor="let navItem of navItems"
          mat-list-item
          (click)="start.close()"
          routerLinkActive
@@ -34,17 +34,17 @@
          (click)="start.close()"
          [routerLink]="['/baseline']">
         Baseline
-      </a> -->
+      </a>
     </mat-nav-list>
     <button mat-button tabindex="-1" (click)="start.close()">CLOSE</button>
   </mat-sidenav>
   <div>
     <mat-toolbar color="primary">
-      <button mat-icon-button (click)="start.open('mouse')" class="d-lg-none">
+      <button mat-icon-button (click)="start.open('mouse')">
         <mat-icon ngClass="fa-bars"></mat-icon>
       </button>
       <div class="demo-toolbar">
-        <h1>FRONTLINE Material</h1>
+        <h1><a routerLink="/">FRONTLINE Material</a></h1>
         <div>
           <button mat-icon-button (click)="toggleFullscreen()" title="Toggle fullscreen">
             <mat-icon ngClass="fa-window-maximize"></mat-icon>
@@ -57,8 +57,8 @@
       </div>
     </mat-toolbar>
 
-    <div fxLayout="row">
-      <div fxFlex="200px" class="d-none d-lg-block">
+    <!-- <div fxLayout="row">
+      <div class="d-none d-lg-block mat-drawer">
         <mat-nav-list>
           <a mat-list-item (click)="start.close()" routerLink="/avatar">Avatar</a>
           <a mat-list-item (click)="start.close()" routerLink="/button">Buttons</a>
@@ -78,11 +78,11 @@
           <a mat-list-item (click)="start.close()" routerLink="/toolbar">Toolbar</a>
           <a mat-list-item (click)="start.close()" routerLink="/typography">Typography</a>
         </mat-nav-list>
-      </div>
-      <div #root="dir" dir="ltr" class="demo-content" fxFlex>
+      </div> -->
+      <div #root="dir" dir="ltr" class="demo-content">
         <router-outlet></router-outlet>
       </div>
-    </div>
+    <!-- </div> -->
 
   </div>
 </mat-sidenav-container>
