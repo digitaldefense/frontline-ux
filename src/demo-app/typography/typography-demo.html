@@ -14,17 +14,39 @@
   </fx-section>
   
   <fx-section section-title="Headings">
-    <h1 class="mat-display-4">How vexingly quick daft zebras jump!</h1>
-    <h1 class="mat-display-3">The wizard quickly jinxed the gnomes before they vaporized.</h1>
-    <h1 class="mat-display-2">The quick brown fox jumps over the lazy dog.</h1>
-    <h1 class="mat-display-1">Grumpy wizards make toxic brew for the evil queen and jack.</h1>
-    <h1 class="mat-headline">Jackdaws love my big sphinx of quartz.</h1>
+    <dl>
+      <dt><code>.mat-display-4</code></dt>
+      <dl><h1 class="mat-display-4">How vexingly quick daft zebras jump!</h1></dl>
+      <dt><code>.mat-display-3</code></dt>
+      <dd>
+        <h1 class="mat-display-3">The wizard quickly jinxed the gnomes before they vaporized.</h1>
+      </dd>
+      <dt><code>.mat-display-2</code></dt>
+      <dd>
+        <h1 class="mat-display-2">The quick brown fox jumps over the lazy dog.</h1>
+      </dd>
+      <dt><code>.mat-display-1</code></dt>
+      <dd>
+          <h1 class="mat-display-1">Grumpy wizards make toxic brew for the evil queen and jack.</h1>
+      </dd>
+      <dt><code>.mat-headline</code></dt>
+      <dd>
+        <h1 class="mat-headline">Jackdaws love my big sphinx of quartz.</h1>
+      </dd>
+    </dl>
   </fx-section>
 
   <fx-section section-title="Titles">
-    <h2 class="mat-title">The five boxing wizards jump quickly.</h2>
-    <h3 class="mat-subheading">Pack my box with five dozen liquor jugs.</h3>
-    <!-- <h4>Bright vixens jump; dozy fowl quack.</h4> -->
+    <dl>
+      <dt><code>.mat-title</code></dt>
+      <dd>
+        <h2 class="mat-title">The five boxing wizards jump quickly.</h2>
+      </dd>
+      <dt><code>.mat-subheading</code></dt>
+      <dd>
+        <h3 class="mat-subheading">Pack my box with five dozen liquor jugs.</h3>
+      </dd>
+    </dl>
   </fx-section>
   
   <fx-section section-title="Body">
@@ -56,4 +78,18 @@
     </p>
   </fx-section>
 
+  <fx-section section-title="Lists">
+    <h3 class="mat-title">Unstyled</h3>
+    <p>Remove the default <code fcolor="accent">list-style</code> and <code fcolor="accent">left-margin</code> on list items (immediate children only). <strong>This only applies to immediate children list items</strong>, meaning you will need to add the class for any nested lists as well.</p>
+    <dl>
+      <dt><code>.list-unstyled</code></dt>
+      <dd>
+        <ul class="list-unstyled">
+          <li>Item one</li>
+          <li>Item two</li>
+          <li>Item three</li>
+        </ul>
+      </dd>
+    </dl>
+  </fx-section>
 </fx-page>
