@@ -8,17 +8,28 @@
   </div>
 
   <mat-card>
-    <mat-toolbar color="primary">Basic Usage</mat-toolbar>
+    <mat-toolbar color="primary">
+      Basic Usage
+      <flx-spacer></flx-spacer>
+      <button mat-icon-button [collapseTrigger]="basic">
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-card-content collapsed #basic>
+      <pre class="codeblock">&lt;<b>mat-icon</b> <span fcolor="accent">ngClass</span>="fa-shield-alt">&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> <span fcolor="accent">ngClass</span>="fa-shield-alt" <span fcolor="accent">color</span>="primary"&gt;&lt;/<b>mat-icon</b>&gt;</pre>
+    </mat-card-content>
     <mat-card-content>
-      <mat-icon ngClass="fa-shield-alt"></mat-icon>
-      <mat-icon ngClass="fa-shield-alt" color="primary"></mat-icon>
+      <mat-icon ngClass="fa-shield-alt"></mat-icon>&nbsp;
+      <mat-icon ngClass="fa-shield-alt" color="primary"></mat-icon>&nbsp;
+      <mat-icon ngClass="fa-shield-alt" color="accent"></mat-icon>
     </mat-card-content>
   </mat-card>
 
-    <h3 class="title">Theming</h3>
-    <p>By default, icons will use the current font color. This can be changed using the <code fcolor="primary">color</code> attribute. Acceptable values are <code fcolor="primary">primary</code> and <code fcolor="primary">accent</code>.</p>
+    <!-- <h3 class="title">Theming</h3>
+    <p>By default, icons will use the current font color. This can be changed using the <code fcolor="primary">color</code> attribute. Acceptable values are <code fcolor="primary">primary</code> and <code fcolor="primary">accent</code>.</p> -->
 
-    <h3 class="title">Styles &amp; Prefixes</h3>
+  <fx-section section-title="Styles & Prefixes">
     <p>Frontline UX uses two of Font Awesome's four styles: <b>Solid</b> and <b>Regular</b>.</p>
     <table class="table">
       <thead>
@@ -34,7 +45,7 @@
           <td>Solid</td>
           <td><code>fas</code></td>
           <td>
-            <code>&lt;mat-icon ngClass="fa-plane"&gt;&lt;/mat-icon&gt;</code>
+            <code>&lt;<b>mat-icon</b> ngClass="fa-plane"&gt;&lt;/<b>mat-icon</b>&gt;</code>
           </td>
           <td><mat-icon ngClass="fa-plane"></mat-icon></td>
         </tr>
@@ -42,35 +53,43 @@
           <td>Regular</td>
           <td><code>far</code></td>
           <td>
-            <code>&lt;mat-icon ngClass="fa-plane" weight="regular"&gt;&lt;/mat-icon&gt;</code>
+            <code>&lt;<b>mat-icon</b> ngClass="fa-plane" <span fcolor="accent">weight</span>="regular"&gt;&lt;/<b>mat-icon</b>&gt;</code>
           </td>
           <td><mat-icon ngClass="fa-plane" weight="regular"></mat-icon></td>
         </tr>
         <tr>
           <td>Light</td>
-          <td><code>far</code></td>
+          <td><code>fal</code></td>
           <td>
-            <code>&lt;mat-icon ngClass="fa-plane" weight="light"&gt;&lt;/mat-icon&gt;</code>
+            <code>&lt;<b>mat-icon</b> ngClass="fa-plane" <span fcolor="accent">weight</span>="light"&gt;&lt;/<b>mat-icon</b>&gt;</code>
           </td>
           <td><mat-icon ngClass="fa-plane" weight="light"></mat-icon></td>
         </tr>
       </tbody>
     </table>
-
-  <fx-section section-title="Examples">
-    <mat-icon ngClass="fa-tree"></mat-icon>
-    <mat-icon ngClass="fa-rocket" color="accent"></mat-icon>
-    <mat-icon ngClass="fa-user-circle"></mat-icon>
   </fx-section>
-  
+  <br>
+
   <mat-card>
     <mat-toolbar color="primary">
       Sizes
       <flx-spacer></flx-spacer>
-      <button mat-icon-button>
+      <button mat-icon-button [collapseTrigger]="sizes">
         <mat-icon ngClass="fa-code"></mat-icon>
       </button>
     </mat-toolbar>
+    <mat-card-content collapsed #sizes>
+      <pre class="codeblock">
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="xs"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="sm"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="lg"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="2x"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="3x"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="4x"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="5x"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="7x"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> ngClass="fa-shield-alt" <span fcolor="accent">size</span>="10x"&gt;&lt;/<b>mat-icon</b>&gt;</pre>
+    </mat-card-content>
     <mat-card-content>
       <mat-icon ngClass="fa-shield-alt" size="xs"></mat-icon>
       <mat-icon ngClass="fa-shield-alt" size="sm"></mat-icon>
@@ -83,16 +102,30 @@
       <mat-icon ngClass="fa-shield-alt" size="10x"></mat-icon>
     </mat-card-content>
   </mat-card>
+  <br>
     
-  <fx-section section-title="Animated Icons">
-    <mat-card>
-      <mat-card-content>
-        <mat-icon [ngClass]="['fa-spinner', 'fa-spin', 'fa-fw']"></mat-icon>
-        <mat-icon [ngClass]="['fa-spinner', 'fa-pulse', 'fa-fw']"></mat-icon>
-        <mat-icon [ngClass]="['fa-compass', 'fa-spin', 'fa-fw']"></mat-icon>
-        <mat-icon [ngClass]="['fa-cog', 'fa-spin', 'fa-fw']"></mat-icon>
-        <mat-icon [ngClass]="['fa-sync', 'fa-spin', 'fa-fw']"></mat-icon>
-      </mat-card-content>
-    </mat-card>
-  </fx-section>
+  <mat-card>
+    <mat-toolbar color="primary">
+      Animated icons
+      <flx-spacer></flx-spacer>
+      <button mat-icon-button [collapseTrigger]="animatedCode">
+        <mat-icon ngClass="fa-code"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-card-content collapsed #animatedCode>
+      <pre class="codeblock">
+&lt;<b>mat-icon</b> [<span fcolor="accent">ngClass</span>]="['fa-spinner', 'fa-spin', 'fa-fw']"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> [<span fcolor="accent">ngClass</span>]="['fa-spinner', 'fa-pulse', 'fa-fw']"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> [<span fcolor="accent">ngClass</span>]="['fa-compass', 'fa-spin', 'fa-fw']"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> [<span fcolor="accent">ngClass</span>]="['fa-cog', 'fa-spin', 'fa-fw']"&gt;&lt;/<b>mat-icon</b>&gt;
+&lt;<b>mat-icon</b> [<span fcolor="accent">ngClass</span>]="['fa-sync', 'fa-spin', 'fa-fw']"&gt;&lt;/<b>mat-icon</b>&gt;</pre>
+    </mat-card-content>
+    <mat-card-content>
+      <mat-icon [ngClass]="['fa-spinner', 'fa-spin', 'fa-fw']"></mat-icon>
+      <mat-icon [ngClass]="['fa-spinner', 'fa-pulse', 'fa-fw']"></mat-icon>
+      <mat-icon [ngClass]="['fa-compass', 'fa-spin', 'fa-fw']"></mat-icon>
+      <mat-icon [ngClass]="['fa-cog', 'fa-spin', 'fa-fw']"></mat-icon>
+      <mat-icon [ngClass]="['fa-sync', 'fa-spin', 'fa-fw']"></mat-icon>
+    </mat-card-content>
+  </mat-card>
 </fx-page>
