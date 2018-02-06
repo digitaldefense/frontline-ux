@@ -6,7 +6,19 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Directive, Input, ViewEncapsulation } from '@angular/core';
+
+@Directive({
+  selector: 'fm-page-title',
+  host: {'class': 'fm-page-title mat-display-2'}
+})
+export class FmPageTitle {}
+
+@Directive({
+  selector: 'fm-page-subtitle',
+  host: { 'class': 'fm-page-subtitle' }
+})
+export class FmPageSubtitle {}
 
 @Component({
   moduleId: module.id,

@@ -1,2 +1,12 @@
-<h1 class="mat-display-2">{{title}}</h1>
+<div class="fm-page-toolbar">
+  <div class="fm-page-title-group">
+    <h1 class="fm-page-title mat-display-2" ngIf="title">{{title}}</h1>
+    <ng-content select="fm-page-title"></ng-content>
+    <ng-content select="fm-page-subtitle"></ng-content>
+  </div>
+  <div class="fm-spacer"></div>
+  <div class="fm-page-control-group">
+    <ng-content select="button"></ng-content>
+  </div>
+</div>
 <ng-content></ng-content>

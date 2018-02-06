@@ -4,3 +4,27 @@
     display: block;
     margin: $spacer;
 }
+
+.fm-page-toolbar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $spacer*4;
+}
+
+.fm-page-title-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.fm-page-title {
+    display: block;
+    margin-bottom: 0 !important;
+}
+
+.fm-page-subtitle {
+    display: block;
+}
+
+.fm-page-ref {
+
+}
