@@ -47,26 +47,30 @@
 &lt;<b>fm-page</b>&gt;
   &lt;<b>fm-page-title</b>&gt;Page title&lt;/<b>fm-page-title</b>&gt;
   &lt;<b>fm-page-subtitle</b>&gt;Subtitle&lt;/<b>fm-page-subtitle</b>&gt;
-  &lt;<b>button</b> <span fcolor="accent">mat-button fm-page-button</span>&gt;Page button&lt;/<b>button</b>&gt;
-  &lt;<b>button</b> <span fcolor="accent">mat-icon-button fm-page-button</span>&gt;
-    &lt;<b>mat-icon</b> ngClass="fa-ellipsis-v" <span fcolor="accent">weight</span>="regular"&gt;&lt;/<b>mat-icon</b>&gt;
-  &lt;/<b>button</b>&gt;
+  &lt;<b>fm-page-controls</b>&gt;
+    &lt;<b>button</b> <span fcolor="accent">mat-button</span>&gt;Page button&lt;/<b>button</b>&gt;
+    &lt;<b>button</b> <span fcolor="accent">mat-icon-button</span>&gt;
+      &lt;<b>mat-icon</b> ngClass="fa-ellipsis-v" <span fcolor="accent">weight</span>="regular"&gt;&lt;/<b>mat-icon</b>&gt;
+    &lt;/<b>button</b>&gt;
+  &lt;/<b>fm-page-controls</b>&gt;
   ...
   &lt; page content here &gt;
   ...
 &lt;/<b>fm-page</b>&gt;</pre>
       </mat-card-content>
       <mat-card-content>
-        <p>A <code>Page</code> containing each of the page components: <code>&lt;<b>fm-page-title</b>&gt;</code>, <code>&lt;<b>fm-page-subtitle</b>&gt;</code>, and <code>&lt;<b>button</b> <span fcolor="accent">fm-page-button</span>&gt;</code></p>
+        <p>A <code>Page</code> containing each of the page components: <code>&lt;<b>fm-page-title</b>&gt;</code>, <code>&lt;<b>fm-page-subtitle</b>&gt;</code>, and <code>&lt;<b>fm-page-controls</b>&gt;</code></p>
         <fm-page>
           <fm-page-title>Page title</fm-page-title>
           <fm-page-subtitle>Subtitle</fm-page-subtitle>
-          <button mat-button fm-page-button>
-            Page button
-          </button>
-          <button mat-icon-button fm-page-button>
-            <mat-icon ngClass="fa-ellipsis-v" weight="regular"></mat-icon>
-          </button>
+          <fm-page-controls>
+            <button mat-button>
+              Page button
+            </button>
+            <button mat-icon-button>
+              <mat-icon ngClass="fa-ellipsis-v" weight="regular"></mat-icon>
+            </button>
+          </fm-page-controls>
           ...
           <br>
           &lt; page content here &gt;

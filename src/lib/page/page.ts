@@ -20,6 +20,12 @@ export class FmPageTitle {}
 })
 export class FmPageSubtitle {}
 
+@Directive({
+  selector: 'fm-page-controls',
+  host: { 'class': 'fm-page-control-group' }
+})
+export class FmPageControls {}
+
 @Component({
   moduleId: module.id,
   selector: 'fm-page',
