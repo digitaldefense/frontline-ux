@@ -7,10 +7,10 @@
  */
 
 import { NgModule } from '@angular/core';
-import { FxSection } from './section';
+import { FmSection } from './section';
 
 @NgModule({
-  exports: [FxSection],
-  declarations: [FxSection],
+  exports: [FmSection],
+  declarations: [FmSection],
 })
-export class FxSectionModule { }
+export class FmSectionModule { }

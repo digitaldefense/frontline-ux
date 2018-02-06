@@ -10,10 +10,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'flx-spacer',
+  selector: 'fm-spacer',
   template: '',
   styleUrls: ['spacer.css'],
-  host: { class: 'flx-spacer' },
+  host: { class: 'fm-spacer' },
   encapsulation: ViewEncapsulation.None
 })
-export class FlxSpacer {}
+export class FmSpacer {}

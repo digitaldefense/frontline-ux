@@ -7,11 +7,11 @@
  */
 
 import {NgModule} from '@angular/core';
-import {FxPage} from './page';
+import {FmPage} from './page';
 
 
 @NgModule({
-  exports: [FxPage],
-  declarations: [FxPage],
+  exports: [FmPage],
+  declarations: [FmPage],
 })
-export class FxPageModule {}
+export class FmPageModule {}

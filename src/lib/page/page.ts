@@ -10,13 +10,15 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'fx-page',
+  selector: 'fm-page',
   templateUrl: 'page.html',
   styleUrls: ['page.css'],
-  host: { 'class': 'fx-page' },
+  host: { 'class': 'fm-page' },
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
-export class FxPage {
+export class FmPage {
   @Input('page-title') title: string;
+
+  @Input() ref: string;
 }

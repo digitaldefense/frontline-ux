@@ -22,15 +22,15 @@ import { FlxTheme, FlxThemeService } from '@angular/material/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'fx-section',
+  selector: 'fm-section',
   templateUrl: 'section.html',
   styleUrls: ['section.css'],
   host: {
-    class: 'fx-section'
+    class: 'fm-section'
   },
   encapsulation: ViewEncapsulation.None
 })
-export class FxSection implements AfterViewInit {
+export class FmSection implements AfterViewInit {
   private _theme: FlxTheme;
 
   @Input('section-title') title: string;

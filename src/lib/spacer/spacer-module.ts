@@ -7,10 +7,10 @@
  */
 
 import { NgModule } from '@angular/core';
-import { FlxSpacer } from './spacer';
+import { FmSpacer } from './spacer';
 
 @NgModule({
-  exports: [FlxSpacer],
-  declarations: [FlxSpacer],
+  exports: [FmSpacer],
+  declarations: [FmSpacer],
 })
-export class FlxSpacerModule { }
+export class FmSpacerModule { }
