@@ -295,8 +295,8 @@ export class FlxTheme {
   accentLightContrast: string;
   accentDark: string;
   accentDarkContrast: string;
-  warning: string;
-  warningContrast: string;
+  warn: string;
+  warnContrast: string;
   danger: string;
   dangerContrast: string;
   success: string;
@@ -324,7 +324,7 @@ export class FlxTheme {
   private _generateBaseCoat(domain) {
     this.background = basecoats[domain].background;
     this.text = basecoats[domain].text;
-    this.warning = flxPalette['amber']['800'];
+    this.warn = flxPalette['amber']['800'];
     this.danger = flxPalette['red']['800'];
     this.success = flxPalette['green']['700'];
   }
