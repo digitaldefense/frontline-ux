@@ -4,7 +4,7 @@
 
     <mat-toolbar>
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Open basic menu">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
@@ -19,7 +19,7 @@
 
     <mat-toolbar>
       <button mat-icon-button [matMenuTriggerFor]="divider" aria-label="Open basic menu">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
@@ -37,7 +37,7 @@
 
     <mat-toolbar>
       <button mat-icon-button [matMenuTriggerFor]="animals">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
@@ -90,7 +90,7 @@
     <p>Clicking these will navigate:</p>
     <mat-toolbar>
       <button mat-icon-button [matMenuTriggerFor]="anchorMenu" aria-label="Open anchor menu">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
@@ -106,13 +106,13 @@
     </p>
     <mat-toolbar class="end-icon">
       <button mat-icon-button [matMenuTriggerFor]="posXMenu" aria-label="Open x-positioned menu">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
     <mat-menu xPosition="before" #posXMenu="matMenu" class="before">
       <button mat-menu-item *ngFor="let item of iconItems" [disabled]="item.disabled">
-        <mat-icon>{{ item.icon }}</mat-icon>
+        <mat-icon [ngClass]="item.icon"></mat-icon>
         {{ item.text }}
       </button>
     </mat-menu>
@@ -123,7 +123,7 @@
     </p>
     <mat-toolbar>
       <button mat-icon-button [matMenuTriggerFor]="posYMenu" aria-label="Open y-positioned menu">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
@@ -141,7 +141,7 @@
 
     <mat-toolbar>
       <button mat-icon-button [mat-menu-trigger-for]="menuOverlay">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
@@ -157,13 +157,13 @@
     </p>
     <mat-toolbar class="end-icon">
       <button mat-icon-button [mat-menu-trigger-for]="posXMenuOverlay">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
     <mat-menu xPosition="before" [overlapTrigger]="false" #posXMenuOverlay="matMenu" class="before">
       <button mat-menu-item *ngFor="let item of iconItems" [disabled]="item.disabled">
-        <mat-icon>{{ item.icon }}</mat-icon>
+        <mat-icon [ngClass]="item.icon"></mat-icon>
         {{ item.text }}
       </button>
     </mat-menu>
@@ -174,7 +174,7 @@
     </p>
     <mat-toolbar>
       <button mat-icon-button [mat-menu-trigger-for]="posYMenuOverlay">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon ngClass="fa-ellipsis-v"></mat-icon>
       </button>
     </mat-toolbar>
 
