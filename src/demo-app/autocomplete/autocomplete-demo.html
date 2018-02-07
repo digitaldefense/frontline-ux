@@ -1,76 +1,105 @@
-Space above cards: <input type="number" [formControl]="topHeightCtrl">
-<div [style.height.px]="topHeightCtrl.value"></div>
-<div class="demo-autocomplete">
-  <mat-card>
-    Reactive length: {{ reactiveStates.length }}
-    <div>Reactive value: {{ stateCtrl.value | json }}</div>
-    <div>Reactive dirty: {{ stateCtrl.dirty }}</div>
+<fm-page page-title="Autocomplete">
+  <fm-page-subtitle><code>&lt;mat-autocomplete&gt;</code></fm-page-subtitle>
+  <h2 class="mat-headline">The autocomplete is a normal text input enhanced by a panel of suggested options.</h2>
 
-    <mat-form-field floatLabel="never">
-      <mat-label>State</mat-label>
-      <input matInput [matAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
-      <mat-autocomplete #reactiveAuto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let state of reactiveStates | async" [value]="state">
-          <span>{{ state.name }}</span>
-          <span class="demo-secondary-text"> ({{state.code}}) </span>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+  <fm-section section-title="Examples">
+    <mat-card>
+      <mat-toolbar color="primary">
+        Basic usage
+        <fm-spacer></fm-spacer>
+        <button mat-icon-button [collapseTrigger]="basicDemoCode">
+          <mat-icon ngClass="fa-code"></mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-card-content collapsed #basicDemoCode>
+        <pre class="codeblock">
+&lt;<b>mat-form-field</b> <span fcolor="accent">floatLabel</span>="never"&gt;
+  &lt;<b>mat-label</b>&gt;State&lt;/<b>mat-label</b>&gt;
+  &lt;<b>input</b> <span fcolor="accent">matInput</span> [<span fcolor="accent">matAutocomplete</span>]="reactiveAuto" [<span fcolor="accent">formControl</span>]="stateCtrl"&gt;
+  &lt;<b>mat-autocomplete</b> #<span fcolor="accent">reactiveAuto</span>="matAutocomplete" [<span fcolor="accent">displayWith</span>]="displayFn"&gt;
+    &lt;<b>mat-option</b> &#42;<span fcolor="accent">ngFor</span>="let state of reactiveStates &#124; async" [<span fcolor="accent">value</span>]="state"&gt;
+      &lt;<b>span</b>&gt; &#123;&#00;&#123;state.code&#125;&#00;&#125; &lt;/<b>span</b>&gt; &lt;<b>span</b> <span fcolor="accent">class</span>="demo-secondary-text"&gt; (&#123;&#00;&#123;state.code&#125;&#00;&#125;) &lt;/<b>span</b>&gt;
+    &lt;/<b>mat-option</b>&gt;
+  &lt;/<b>mat-autocomplete</b>&gt;
+&lt;/<b>mat-form-field</b>&gt;</pre>
+      </mat-card-content>
+      <mat-card-content>
+        <ul class="list-unstyled">
+          <li>Reactive length: {{ reactiveStates.length }}</li>
+          <li>Reactive value: {{ stateCtrl.value | json }}</li>
+          <li>Reactive dirty: {{ stateCtrl.dirty }}</li>
+        </ul>
+        <mat-form-field floatLabel="never">
+          <mat-label>State</mat-label>
+          <input matInput [matAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
+          <mat-autocomplete #reactiveAuto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let state of reactiveStates | async" [value]="state">
+              <span>{{ state.name }}</span>
+              <span class="demo-secondary-text"> ({{state.code}}) </span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="stateCtrl.reset()">RESET</button>
+        <button mat-button (click)="stateCtrl.setValue(states[10])">SET VALUE</button>
+        <button mat-button (click)="stateCtrl.enabled ? stateCtrl.disable() : stateCtrl.enable()">
+          TOGGLE DISABLED
+        </button>
+      </mat-card-actions>
+    </mat-card>
 
-    <mat-card-actions>
-      <button mat-button (click)="stateCtrl.reset()">RESET</button>
-      <button mat-button (click)="stateCtrl.setValue(states[10])">SET VALUE</button>
-      <button mat-button (click)="stateCtrl.enabled ? stateCtrl.disable() : stateCtrl.enable()">
-        TOGGLE DISABLED
-      </button>
-    </mat-card-actions>
+    <mat-card>
+      <mat-toolbar color="primary">
+        Template based
+      </mat-toolbar>
+      <mat-card-content>
+        <p>Template-driven value (currentState): {{ currentState }}</p>
+        <p>Template-driven dirty: {{ modelDir ? modelDir.dirty : false }}</p>
+    
+        <!-- Added an ngIf below to test that autocomplete works with ngIf -->
+        <mat-form-field *ngIf="true">
+          <mat-label>State</mat-label>
+          <input matInput [matAutocomplete]="tdAuto" [(ngModel)]="currentState"
+            (ngModelChange)="tdStates = filterStates(currentState)" [disabled]="tdDisabled">
+          <mat-autocomplete #tdAuto="matAutocomplete">
+            <mat-option *ngFor="let state of tdStates" [value]="state.name">
+              <span>{{ state.name }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    
+        <mat-card-actions>
+          <button mat-button (click)="modelDir.reset()">RESET</button>
+          <button mat-button (click)="currentState='California'">SET VALUE</button>
+          <button mat-button (click)="tdDisabled=!tdDisabled">
+            TOGGLE DISABLED
+          </button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
 
-  </mat-card>
-
-  <mat-card>
-
-    <div>Template-driven value (currentState): {{ currentState }}</div>
-    <div>Template-driven dirty: {{ modelDir ? modelDir.dirty : false }}</div>
-
-    <!-- Added an ngIf below to test that autocomplete works with ngIf -->
-    <mat-form-field *ngIf="true">
-      <mat-label>State</mat-label>
-      <input matInput [matAutocomplete]="tdAuto" [(ngModel)]="currentState"
-        (ngModelChange)="tdStates = filterStates(currentState)" [disabled]="tdDisabled">
-      <mat-autocomplete #tdAuto="matAutocomplete">
-        <mat-option *ngFor="let state of tdStates" [value]="state.name">
-          <span>{{ state.name }}</span>
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-
-    <mat-card-actions>
-      <button mat-button (click)="modelDir.reset()">RESET</button>
-      <button mat-button (click)="currentState='California'">SET VALUE</button>
-      <button mat-button (click)="tdDisabled=!tdDisabled">
-        TOGGLE DISABLED
-      </button>
-    </mat-card-actions>
-
-  </mat-card>
-
-  <mat-card>
-    <div>Option groups (currentGroupedState): {{ currentGroupedState }}</div>
-
-    <mat-form-field>
-      <mat-label>State</mat-label>
-      <input
-        matInput
-        [matAutocomplete]="groupedAuto"
-        [(ngModel)]="currentGroupedState"
-        (ngModelChange)="filteredGroupedStates = filterStateGroups(currentGroupedState)">
-    </mat-form-field>
-  </mat-card>
-</div>
-
-<mat-autocomplete #groupedAuto="matAutocomplete">
-  <mat-optgroup *ngFor="let group of filteredGroupedStates"
-    [label]="'States starting with ' + group.letter">
-    <mat-option *ngFor="let state of group.states" [value]="state.name">{{ state.name }}</mat-option>
-  </mat-optgroup>
-</mat-autocomplete>
+    <mat-card>
+      <mat-toolbar color="primary">
+        Groups
+      </mat-toolbar>
+      <mat-card-content>
+        <p>Option groups (currentGroupedState): {{ currentGroupedState }}</p>
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <input
+            matInput
+            [matAutocomplete]="groupedAuto"
+            [(ngModel)]="currentGroupedState"
+            (ngModelChange)="filteredGroupedStates = filterStateGroups(currentGroupedState)">
+          <mat-autocomplete #groupedAuto="matAutocomplete">
+            <mat-optgroup *ngFor="let group of filteredGroupedStates"
+              [label]="'States starting with ' + group.letter">
+              <mat-option *ngFor="let state of group.states" [value]="state.name">{{ state.name }}</mat-option>
+            </mat-optgroup>
+          </mat-autocomplete>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </fm-section>
+</fm-page>
