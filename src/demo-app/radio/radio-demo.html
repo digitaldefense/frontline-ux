@@ -1,4 +1,89 @@
-<h1>Basic Example</h1>
+<fm-page>
+  <fm-page-title>Radio</fm-page-title>
+  <fm-page-subtitle><code>&lt;mat-radio&gt;</code></fm-page-subtitle>
+
+  <h2 class="mat-headline">Radio buttons allow the user to select one option from a set.</h2>
+  <p>Use radio buttons for exclusive selection if you think that the user needs to see all available options side-by-side. Otherwise, consider a dropdown, which uses less space than displaying all options.</p>
+
+  <fm-section section-title="Examples">
+    <mat-card>
+      <mat-toolbar color="primary">
+        Basic usage
+        <fm-spacer></fm-spacer>
+        <button mat-icon-button [collapseTrigger]="collapse">
+          <mat-icon ngClass="fa-code"></mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-card-content collapsed #collapse>
+        <pre class="codeblock">
+&lt;<b>mat-radio-button</b> <span fcolor="accent">name</span>="group1" <span fcolor="accent">checked</span>&gt;Option 1&lt;/<b>mat-radio-button</b>&gt;
+&lt;<b>mat-radio-button</b> <span fcolor="accent">name</span>="group1"&gt;Option 2&lt;/<b>mat-radio-button</b>&gt;
+&lt;<b>mat-radio-button</b> <span fcolor="accent">name</span>="group1" <span fcolor="accent">disabled</span>&gt;Option 3&lt;/<b>mat-radio-button</b>&gt;</pre>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-radio-button name="group1" checked>Option 1</mat-radio-button>
+        <mat-radio-button name="group1">Option 2</mat-radio-button>
+        <mat-radio-button name="group1" disabled>Option 3</mat-radio-button>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-toolbar color="primary">
+        Color examples
+        <fm-spacer></fm-spacer>
+        <button mat-icon-button>
+          <mat-icon ngClass="fa-code"></mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-card-content>
+        <mat-radio-button name="group2" color="primary">Primary</mat-radio-button>
+        <mat-radio-button name="group2" color="accent">Accent</mat-radio-button>
+        <mat-radio-button name="group2" color="warn">Warn</mat-radio-button>
+        <mat-radio-button name="group2" color="danger">Danger</mat-radio-button>
+        <mat-radio-button name="group2" color="success">Success</mat-radio-button>
+      </mat-card-content>
+    </mat-card>
+  </fm-section>
+
+  <fm-section section-title="Radio properties">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd fcolor="accent">color</kbd>
+          </td>
+          <td>
+            <var fcolor="primary">string</var>
+          </td>
+          <td><kbd>accent</kbd></td>
+          <td>
+            <p>Theme color to apply.</p>
+            <dl>
+              <dt>Accepted values:</dt>
+              <dd>
+                <code>primary</code>
+                <code>accent</code>
+                <code>warning</code>
+                <code>danger</code>
+                <code>success</code>
+              </dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fm-section>
+</fm-page>
+
+<!-- <h1>Basic Example</h1>
 <section class="demo-section">
   <mat-radio-button name="group1" checked>Option 1</mat-radio-button>
   <mat-radio-button name="group1">Option 2</mat-radio-button>
@@ -49,4 +134,4 @@
     </mat-radio-button>
   </mat-radio-group>
   <p>Your favorite season is: {{favoriteSeason}}</p>
-</section>
+</section> -->

@@ -26,6 +26,7 @@ import {
   Optional,
   Output,
   QueryList,
+  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -41,6 +42,8 @@ import {
   mixinDisableRipple,
   mixinTabIndex,
   RippleRef,
+  FlxThemeService,
+  FlxTheme,
 } from '@angular/material/core';
 
 // Increasing integer for generating unique ids for radio components.
@@ -317,13 +320,11 @@ export class MatRadioButtonBase {
   // the mixin base class. To be able to use the tabindex mixin, a disabled property must be
   // defined to properly work.
   disabled: boolean;
-
-  constructor(public _elementRef: ElementRef) {}
 }
 // As per Material design specifications the selection control radio should use the accent color
 // palette by default. https://material.io/guidelines/components/selection-controls.html
 export const _MatRadioButtonMixinBase =
-    mixinColor(mixinDisableRipple(mixinTabIndex(MatRadioButtonBase)), 'accent');
+    mixinDisableRipple(mixinTabIndex(MatRadioButtonBase));
 
 /**
  * A Material design radio-button. Typically placed inside of `<mat-radio-group>` elements.
@@ -350,9 +351,15 @@ export const _MatRadioButtonMixinBase =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatRadioButton extends _MatRadioButtonMixinBase
-    implements OnInit, AfterViewInit, OnDestroy, CanColor, CanDisableRipple, HasTabIndex {
+    implements OnInit, AfterViewInit, OnDestroy, CanDisableRipple, HasTabIndex {
 
   private _uniqueId: string = `mat-radio-${++nextUniqueId}`;
+
+  private _theme: FlxTheme;
+  private _color: string;
+
+  dotColor: string;
+  ringColor: string;
 
   /** The unique ID for the radio button. */
   @Input() id: string = this._uniqueId;
@@ -365,6 +372,13 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
 
   /** The 'aria-labelledby' attribute takes precedence as the element's text alternative. */
   @Input('aria-labelledby') ariaLabelledby: string;
+
+  @Input()
+  get color(): string { return this._color; }
+  set color(value: string) {
+    this._color = value;
+    this._setElementColor(value);
+  }
 
   /** Whether this radio button is checked. */
   @Input()
@@ -491,11 +505,13 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
   @ViewChild('input') _inputElement: ElementRef;
 
   constructor(@Optional() radioGroup: MatRadioGroup,
-              elementRef: ElementRef,
+              private _elementRef: ElementRef,
+              private _renderer: Renderer2,
+              private _themeSvc: FlxThemeService,
               private _changeDetector: ChangeDetectorRef,
               private _focusMonitor: FocusMonitor,
               private _radioDispatcher: UniqueSelectionDispatcher) {
-    super(elementRef);
+    super();
 
     // Assertions. Ideally these should be stripped out by the compiler.
     // TODO(jelbourn): Assert that there's no name binding AND a parent radio group.
@@ -507,6 +523,9 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
           this.checked = false;
         }
       });
+
+    this._theme = _themeSvc.theme.getValue();
+    this._setElementColor('accent');
   }
 
   /** Focuses the radio button. */
@@ -552,6 +571,10 @@ export class MatRadioButton extends _MatRadioButtonMixinBase
 
   _isRippleDisabled() {
     return this.disableRipple || this.disabled;
+  }
+
+  private _setElementColor(color: string) {
+    this.dotColor = this.ringColor = this._theme[color];
   }
 
   _onInputClick(event: Event) {

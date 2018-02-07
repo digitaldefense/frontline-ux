@@ -28,7 +28,7 @@
   }
 
   .mat-radio-disabled .mat-radio-outer-circle {
-    border-color: mat-color($foreground, disabled);
+    border-color: mat-color($foreground, disabled) !important;
   }
 
   .mat-radio-disabled {

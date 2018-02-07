@@ -3,8 +3,8 @@
 <label [attr.for]="inputId" class="mat-radio-label" #label>
   <!-- The actual 'radio' part of the control. -->
   <div class="mat-radio-container">
-    <div class="mat-radio-outer-circle"></div>
-    <div class="mat-radio-inner-circle"></div>
+    <div class="mat-radio-outer-circle" [ngStyle]="{'border-color': dotColor}"></div>
+    <div class="mat-radio-inner-circle" [ngStyle]="{'background-color': dotColor}"></div>
     <div mat-ripple class="mat-radio-ripple"
          [matRippleTrigger]="label"
          [matRippleDisabled]="_isRippleDisabled()"
