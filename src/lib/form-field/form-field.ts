@@ -21,16 +21,16 @@ import {
   Input,
   Optional,
   QueryList,
+  Renderer2,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
-  CanColor,
   FloatLabelType,
   LabelOptions,
   MAT_LABEL_GLOBAL_OPTIONS,
-  mixinColor,
-  ThemePalette
+  FlxThemeService,
+  FlxTheme
 } from '@angular/material/core';
 import {fromEvent} from 'rxjs/observable/fromEvent';
 import {startWith} from 'rxjs/operators/startWith';
@@ -54,16 +54,6 @@ import {Directionality} from '@angular/cdk/bidi';
 let nextUniqueId = 0;
 const floatingLabelScale = 0.75;
 const outlineGapPadding = 5;
-
-
-// Boilerplate for applying mixins to MatFormField.
-/** @docs-private */
-export class MatFormFieldBase {
-  constructor(public _elementRef: ElementRef) { }
-}
-
-
-export const _MatFormFieldMixinBase = mixinColor(MatFormFieldBase, 'primary');
 
 
 export type MatFormFieldAppearance = 'legacy' | 'standard' | 'fill' | 'outline';
@@ -112,26 +102,30 @@ export type MatFormFieldAppearance = 'legacy' | 'standard' | 'fill' | 'outline';
     '[class.ng-invalid]': '_shouldForward("invalid")',
     '[class.ng-pending]': '_shouldForward("pending")',
   },
-  inputs: ['color'],
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class MatFormField extends _MatFormFieldMixinBase
-    implements AfterContentInit, AfterContentChecked, AfterViewInit, CanColor {
+export class MatFormField implements AfterContentInit, AfterContentChecked, AfterViewInit {
   private _labelOptions: LabelOptions;
+  private _theme: FlxTheme;
+  private _color: string;
+
+  rgb: string;
 
   /** The form-field appearance style. */
-  @Input() appearance: MatFormFieldAppearance = 'legacy';
+  @Input() appearance: MatFormFieldAppearance = 'standard';
 
   /**
    * @deprecated Use `color` instead.
    * @deletion-target 6.0.0
    */
   @Input()
-  get dividerColor(): ThemePalette { return this.color; }
-  set dividerColor(value: ThemePalette) { this.color = value; }
+  get color(): string { return this._color; }
+  set color(value: string) {
+    this._color = value;
+  }
 
   /** Whether the required marker should be hidden. */
   @Input()
@@ -216,13 +210,17 @@ export class MatFormField extends _MatFormFieldMixinBase
 
   constructor(
       public _elementRef: ElementRef,
+      private _renderer: Renderer2,
+      private _themeSvc: FlxThemeService,
       private _changeDetectorRef: ChangeDetectorRef,
       @Optional() @Inject(MAT_LABEL_GLOBAL_OPTIONS) labelOptions: LabelOptions,
       @Optional() private _dir: Directionality) {
-    super(_elementRef);
 
     this._labelOptions = labelOptions ? labelOptions : {};
     this.floatLabel = this._labelOptions.float || 'auto';
+
+    this._theme = _themeSvc.theme.getValue();
+    if (this.color === undefined) { this.color = 'primary'; }
   }
 
   /**
@@ -242,6 +240,7 @@ export class MatFormField extends _MatFormFieldMixinBase
 
     // Subscribe to changes in the child control state in order to update the form field UI.
     this._control.stateChanges.pipe(startWith(null!)).subscribe(() => {
+      this._applyThemeColors();
       this._validatePlaceholders();
       this._syncDescribedByIds();
       this._changeDetectorRef.markForCheck();
@@ -329,6 +328,20 @@ export class MatFormField extends _MatFormFieldMixinBase
       });
 
       this._changeDetectorRef.markForCheck();
+    }
+  }
+
+  private _applyThemeColors() {
+    if (this.underlineRef === undefined) { return; }
+
+    if (this._control.focused && !this._control.errorState) {
+      this.underlineRef.nativeElement.style['background-color'] = this._theme[this.color];
+      // this._label.nativeElement.style['color'] = this._theme[this.color];
+      this.rgb = this._theme[this.color];
+    } else {
+      this.underlineRef.nativeElement.setAttribute('style', '');
+      // this._label.nativeElement.setAttribute('style', '');
+      this.rgb = '';
     }
   }
 
