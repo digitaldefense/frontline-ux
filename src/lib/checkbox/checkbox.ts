@@ -27,12 +27,10 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {
-  CanColor,
   CanDisable,
   CanDisableRipple,
   HasTabIndex,
   MatRipple,
-  mixinColor,
   mixinDisabled,
   mixinDisableRipple,
   mixinTabIndex,
@@ -109,10 +107,9 @@ export const _MatCheckboxMixinBase =
     '[class.mat-checkbox-checked]': 'checked',
     '[class.mat-checkbox-disabled]': 'disabled',
     '[class.mat-checkbox-label-before]': 'labelPosition == "before"',
-    // '[style.background-color]': 'checked ? boxcolor ? "transparent"'
   },
   providers: [MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR],
-  inputs: ['disabled', 'disableRipple', 'color', 'tabIndex'],
+  inputs: ['disabled', 'disableRipple', 'tabIndex'],
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -175,7 +172,7 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
   get color() { return this._color; }
   set color(value) {
     this._color = value;
-    this.boxcolor = this._theme[value];
+    this._setElementColor(value);
   }
 
   /** Event emitted when the checkbox's `checked` value changes. */
@@ -220,6 +217,9 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
 
     this.tabIndex = parseInt(tabIndex) || 0;
     this._theme = _themeSvc.theme.getValue();
+    if (this.color === undefined) {
+      this.color = 'accent';
+    }
   }
 
   ngAfterViewInit() {
@@ -304,6 +304,10 @@ export class MatCheckbox extends _MatCheckboxMixinBase implements ControlValueAc
 
   _getAriaChecked(): 'true' | 'false' | 'mixed' {
     return this.checked ? 'true' : (this.indeterminate ? 'mixed' : 'false');
+  }
+
+  private _setElementColor(color: string) {
+    this.boxcolor = this._theme[color];
   }
 
   private _transitionCheckState(newState: TransitionCheckState) {
