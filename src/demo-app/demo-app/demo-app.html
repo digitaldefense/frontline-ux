@@ -1,6 +1,15 @@
 <mat-sidenav-container class="demo-root" fullscreen>
   <mat-sidenav #start>
     <mat-nav-list>
+      <h3 matSubheader>Style</h3>
+      <a mat-list-item (click)="start.close()" routerLink="/color">Color</a>
+      <a mat-list-item (click)="start.close()" routerLink="/typography">Typography</a>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Layout</h3>
+      <a mat-list-item (click)="start.close()" routerLink="/page">Page</a>
+      <mat-divider></mat-divider>
+      <h3 matSubheader>Components</h3>
+
       <!-- <a mat-list-item (click)="start.close()" routerLink="/avatar">Avatar</a>
       <a mat-list-item (click)="start.close()" routerLink="/button">Buttons</a>
       <a mat-list-item (click)="start.close()" routerLink="/card">Card</a>
