@@ -95,7 +95,7 @@ export function mixinColor<T extends Constructor<HasElementRef>>(base: T,
         foreground = 'white';
       } else {
         const contrast = color + 'Contrast';
-        const palette = ['danger', 'warning', 'success'];
+        const palette = ['danger', 'warn', 'success'];
         background = this._theme[color];
         foreground = (palette.indexOf(color) !== -1) ? 'white' : this._theme[contrast];
       }

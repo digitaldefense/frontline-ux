@@ -52,7 +52,7 @@ export class ChipsDemo {
     { name: 'none', color: '' },
     { name: 'Primary', color: 'primary' },
     { name: 'Accent', color: 'accent' },
-    { name: 'Warning', color: 'warning' }
+    { name: 'Warn', color: 'warn' }
   ];
 
   displayMessage(message: string): void {
@@ -99,6 +99,6 @@ export class ChipsDemo {
   toggleVisible(): void {
     this.visible = false;
   }
-  selectedColors: any[] = ['Primary', 'Warning'];
+  selectedColors: any[] = ['Primary', 'Warn'];
   selectedColor = 'Accent';
 }
